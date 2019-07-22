@@ -1,0 +1,42 @@
+{
+  "name": "@reactioncommerce/components",
+  "version": "0.0.0-development",
+  "description": "Reaction Components",
+  "homepage": "https://github.com/reactioncommerce/reaction-component-library",
+  "repository": "https://github.com/reactioncommerce/reaction-component-library",
+  "author": {
+    "name": "Reaction Commerce",
+    "email": "engineering@reactioncommerce.com",
+    "url": "https://reactioncommerce.com"
+  },
+  "license": "Apache-2.0",
+  "private": false,
+  "sideEffects": false,
+  "dependencies": {
+    "@babel/runtime": "~7.3.1",
+    "@material-ui/core": "~3.1.0",
+    "accounting-js": "~1.1.1",
+    "lodash.debounce": "~4.0.8",
+    "lodash.get": "~4.4.2",
+    "lodash.isempty": "~4.4.0",
+    "lodash.isequal": "~4.5.0",
+    "lodash.uniqueid": "~4.0.1",
+    "mdi-material-ui": "~5.8.0",
+    "react-is": "~16.4.1",
+    "react-select": "~2.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@reactioncommerce/components-context": "~1.2.0",
+    "prop-types": "~15.6.2",
+    "react": "~16.4.2",
+    "react-container-query": "~0.11.0",
+    "react-stripe-elements": "~2.0.1",
+    "reacto-form": "~0.0.2",
+    "styled-components": "~3.3.3"
+  },
+  "main": "index",
+  "module": "index.mjs"
+}
