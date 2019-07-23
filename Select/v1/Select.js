@@ -41,13 +41,13 @@ var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/de
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _lodash = _interopRequireDefault(require("lodash.isequal"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactSelect = _interopRequireDefault(require("react-select"));
-
-var _utils = require("../../utils");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -666,5 +666,8 @@ Select.defaultProps = {
   options: []
 };
 Select.isFormInput = true;
-var _default = Select;
+
+var _default = _utils.default.withTranslation()(Select); // auto-add i18n
+
+
 exports.default = _default;

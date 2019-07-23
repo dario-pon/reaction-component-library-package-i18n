@@ -14,12 +14,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _mockComponents = _interopRequireDefault(require("../../../tests/mockComponents"));
 
 var _CheckoutActions = _interopRequireDefault(require("./CheckoutActions"));
 
+// auto-add i18n 
 var mockCheckoutAction =
 /*#__PURE__*/
 function (_React$Component) {

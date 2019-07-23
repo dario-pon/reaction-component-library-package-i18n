@@ -23,14 +23,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactContainerQuery = require("react-container-query");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var imageContainerQueries = {
   isLargeWidth: {
     minWidth: 301 // Use medium image (600px) until container width is greater than image width / 2 (up to 2x scaling)
@@ -353,5 +354,8 @@ ProgressiveImage.defaultProps = {
   altText: "",
   fit: "contain"
 };
-var _default = ProgressiveImage;
+
+var _default = _utils.default.withTranslation()(ProgressiveImage); // auto-add i18n
+
+
 exports.default = _default;

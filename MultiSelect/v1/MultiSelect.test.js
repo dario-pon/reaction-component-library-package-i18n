@@ -6,10 +6,13 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _MultiSelect = _interopRequireDefault(require("./MultiSelect"));
 
+// auto-add i18n 
 var OPTIONS = [{
   label: "A",
   value: "a"

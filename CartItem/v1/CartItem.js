@@ -23,14 +23,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var Item = _styledComponents.default.div.withConfig({
   displayName: "CartItem__Item",
   componentId: "sc-3kmsar-0"
@@ -385,6 +386,7 @@ CartItem.defaultProps = {
   onRemoveItemFromCart: function onRemoveItemFromCart() {}
 };
 
-var _default = (0, _componentsContext.withComponents)(CartItem);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(CartItem)); // auto-add i18n
+
 
 exports.default = _default;

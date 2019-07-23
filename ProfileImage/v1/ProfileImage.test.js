@@ -4,10 +4,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _ProfileImage = _interopRequireDefault(require("./ProfileImage"));
 
+// auto-add i18n 
 var viewer = {
   firstName: "John",
   lastName: "Doe",

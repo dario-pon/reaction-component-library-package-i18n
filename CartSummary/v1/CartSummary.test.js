@@ -4,10 +4,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _CartSummary = _interopRequireDefault(require("./CartSummary"));
 
+// auto-add i18n 
 test("Displays a summary of the current items in the cart", function () {
   var component = _reactTestRenderer.default.create(_react.default.createElement(_CartSummary.default, {
     displayShipping: "3-5 Days",

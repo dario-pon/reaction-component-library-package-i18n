@@ -23,14 +23,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var AccountProfileInfoContainer = _styledComponents.default.div.withConfig({
   displayName: "AccountProfileInfo__AccountProfileInfoContainer",
   componentId: "bbm1ai-0"
@@ -191,6 +192,7 @@ AccountProfileInfo.defaultProps = {
   shouldShowEditButton: false
 };
 
-var _default = (0, _componentsContext.withComponents)(AccountProfileInfo);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(AccountProfileInfo)); // auto-add i18n
+
 
 exports.default = _default;

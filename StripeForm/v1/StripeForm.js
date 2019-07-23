@@ -25,6 +25,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactStripeElements = require("react-stripe-elements");
@@ -33,7 +35,7 @@ var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
+// auto-add i18n 
 
 /**
  * @summary A function for use in styled-components template string, which
@@ -294,6 +296,7 @@ StripeForm.defaultProps = {
   }
 };
 
-var _default = (0, _componentsContext.withComponents)((0, _utils.withStripeElements)((0, _reactStripeElements.injectStripe)(StripeForm)));
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)((0, _utils.withStripeElements)((0, _reactStripeElements.injectStripe)(StripeForm)))); // auto-add i18n
+
 
 exports.default = _default;

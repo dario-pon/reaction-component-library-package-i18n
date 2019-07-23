@@ -3,7 +3,9 @@ import _createClass from "@babel/runtime/helpers/esm/createClass";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
-import React from "react";
+import React from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import renderer from "react-test-renderer";
 import mockComponents from "../../../tests/mockComponents";
 import CheckoutActions from "./CheckoutActions";

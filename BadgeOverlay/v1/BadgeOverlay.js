@@ -21,14 +21,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _utils = require("../../utils");
-
 var _utils2 = require("./utils");
 
+// auto-add i18n 
 // font-size and line-height here are used to set the height of the badge, and not
 // the badge text. Badge text typography is set in `BadgeLabel` below.
 var baseBadgeStyles = (0, _styledComponents.css)(["font-size:11px;height:auto;line-height:16px;position:absolute;z-index:1200;"]);
@@ -233,5 +234,8 @@ BadgeOverlay.defaultProps = {
   filterOnly: "",
   shouldShowPrimaryOnly: false
 };
-var _default = BadgeOverlay;
+
+var _default = _utils.default.withTranslation()(BadgeOverlay); // auto-add i18n
+
+
 exports.default = _default;

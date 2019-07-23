@@ -4,12 +4,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _checkPropTypes = _interopRequireDefault(require("check-prop-types"));
 
 var _StockWarning = _interopRequireDefault(require("./StockWarning"));
 
+// auto-add i18n 
 test("Displays error warning about required props", function () {
   var errorMessage = (0, _checkPropTypes.default)(_StockWarning.default.propTypes, {});
   expect(errorMessage).toMatchSnapshot();

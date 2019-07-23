@@ -3,7 +3,9 @@ import "core-js/modules/es6.array.find";
 import "core-js/modules/es6.regexp.to-string";
 
 /* eslint-disable require-jsdoc  */
-import React from "react";
+import React from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import { mount } from "enzyme";
 import renderer from "react-test-renderer";
 import { testInput } from "composable-form-tests";

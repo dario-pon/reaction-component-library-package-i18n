@@ -21,16 +21,17 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
 var _utils2 = require("./utils");
 
+// auto-add i18n 
 var SoldOutSpan = _styledComponents.default.div.withConfig({
   displayName: "InventoryStatus__SoldOutSpan",
   componentId: "sc-18fz7sn-0"
@@ -133,6 +134,7 @@ InventoryStatus.defaultProps = {
   statusLabels: _utils2.STATUS_LABELS
 };
 
-var _default = (0, _componentsContext.withComponents)(InventoryStatus);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(InventoryStatus)); // auto-add i18n
+
 
 exports.default = _default;

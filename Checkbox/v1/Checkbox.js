@@ -21,14 +21,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _lodash = _interopRequireDefault(require("lodash.uniqueid"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var StyledDiv = _styledComponents.default.div.withConfig({
   displayName: "Checkbox__StyledDiv",
   componentId: "sc-1abqzv2-0"
@@ -210,5 +211,8 @@ Checkbox.defaultProps = {
   value: undefined
 };
 Checkbox.isFormInput = true;
-var _default = Checkbox;
+
+var _default = _utils.default.withTranslation()(Checkbox); // auto-add i18n
+
+
 exports.default = _default;

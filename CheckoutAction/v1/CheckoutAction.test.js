@@ -4,6 +4,8 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _mockComponents = _interopRequireDefault(require("../../../tests/mockComponents"));
@@ -14,6 +16,7 @@ var _v2 = _interopRequireDefault(require("../../CheckoutActionIncomplete/v1"));
 
 var _CheckoutAction = _interopRequireDefault(require("./CheckoutAction"));
 
+// auto-add i18n 
 var MockActiveCheckoutAction = function MockActiveCheckoutAction(_ref) {
   var activeLabel = _ref.activeLabel;
   return _react.default.createElement("span", null, activeLabel);

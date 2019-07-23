@@ -6,6 +6,8 @@ require("core-js/modules/es6.array.find");
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _enzyme = require("enzyme");
@@ -18,6 +20,7 @@ var _realComponents = _interopRequireDefault(require("../../../tests/realCompone
 
 var _ExampleIOUPaymentForm = _interopRequireDefault(require("./ExampleIOUPaymentForm"));
 
+// auto-add i18n 
 test("basic snapshot", function () {
   var component = _reactTestRenderer.default.create(_react.default.createElement(_ExampleIOUPaymentForm.default, {
     components: _mockComponents.default

@@ -21,12 +21,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var Table = _styledComponents.default.table.withConfig({
   displayName: "CartSummary__Table",
   componentId: "sc-1s88t8e-0"
@@ -241,5 +242,8 @@ CartSummary.propTypes = {
    */
   itemsQuantity: _propTypes.default.number
 };
-var _default = CartSummary;
+
+var _default = _utils.default.withTranslation()(CartSummary); // auto-add i18n
+
+
 exports.default = _default;

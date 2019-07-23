@@ -21,12 +21,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var Detail = _styledComponents.default.div.withConfig({
   displayName: "CartItemDetail__Detail",
   componentId: "om1nev-0"
@@ -174,5 +175,8 @@ CartItemDetail.propTypes = {
    */
   title: _propTypes.default.string
 };
-var _default = CartItemDetail;
+
+var _default = _utils.default.withTranslation()(CartItemDetail); // auto-add i18n
+
+
 exports.default = _default;

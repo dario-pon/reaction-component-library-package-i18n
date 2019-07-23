@@ -10,6 +10,8 @@ require("core-js/modules/es6.regexp.to-string");
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _enzyme = require("enzyme");
 
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
@@ -19,6 +21,7 @@ var _composableFormTests = require("composable-form-tests");
 var _Select = _interopRequireDefault(require("./Select"));
 
 /* eslint-disable require-jsdoc  */
+// auto-add i18n 
 var OPTIONS = [{
   label: "A",
   value: "a"

@@ -21,13 +21,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _lodash = _interopRequireDefault(require("lodash.isempty"));
 
-var _utils = require("../../utils");
+// auto-add i18n 
 
 /**
  * @summary A function for use in styled-components template string, which
@@ -148,5 +150,8 @@ Field.defaultProps = {
   isOptional: false,
   isRequired: false
 };
-var _default = Field;
+
+var _default = _utils.default.withTranslation()(Field); // auto-add i18n
+
+
 exports.default = _default;

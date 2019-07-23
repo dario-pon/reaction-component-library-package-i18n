@@ -4,10 +4,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _CheckoutTopHat = _interopRequireDefault(require("./CheckoutTopHat"));
 
+// auto-add i18n 
 test("render Top Hat with message", function () {
   var component = _reactTestRenderer.default.create(_react.default.createElement(_CheckoutTopHat.default, {
     checkoutMessage: "Free Shipping + Free Returns"

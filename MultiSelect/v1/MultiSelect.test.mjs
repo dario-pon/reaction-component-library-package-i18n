@@ -1,5 +1,7 @@
 import _extends from "@babel/runtime/helpers/esm/extends";
-import React from "react";
+import React from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import renderer from "react-test-renderer";
 import MultiSelect from "./MultiSelect";
 var OPTIONS = [{

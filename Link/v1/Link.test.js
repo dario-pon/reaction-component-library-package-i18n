@@ -4,12 +4,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _enzyme = require("enzyme");
 
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _Link = _interopRequireDefault(require("./Link"));
 
+// auto-add i18n 
 test("Link component with image snapshot", function () {
   var component = _reactTestRenderer.default.create(_react.default.createElement(_Link.default, {
     href: "http://google.com"

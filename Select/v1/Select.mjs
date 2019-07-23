@@ -18,7 +18,9 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-import React, { Component } from "react";
+import React, { Component } from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import isEqual from "lodash.isequal";
 import PropTypes from "prop-types";
 import ReactSelect from "react-select";
@@ -638,4 +640,4 @@ Select.defaultProps = {
   options: []
 };
 Select.isFormInput = true;
-export default Select;
+export default i18n.withTranslation()(Select); // auto-add i18n

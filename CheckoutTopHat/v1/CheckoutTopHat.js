@@ -21,12 +21,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var TopHatContainer = _styledComponents.default.div.withConfig({
   displayName: "CheckoutTopHat__TopHatContainer",
   componentId: "a5n5fr-0"
@@ -76,5 +77,8 @@ CheckoutTopHat.propTypes = {
    */
   className: _propTypes.default.string
 };
-var _default = CheckoutTopHat;
+
+var _default = _utils.default.withTranslation()(CheckoutTopHat); // auto-add i18n
+
+
 exports.default = _default;

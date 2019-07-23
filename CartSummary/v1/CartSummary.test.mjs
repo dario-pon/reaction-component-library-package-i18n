@@ -1,4 +1,6 @@
-import React from "react";
+import React from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import renderer from "react-test-renderer";
 import CartSummary from "./CartSummary";
 test("Displays a summary of the current items in the cart", function () {

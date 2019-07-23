@@ -4,7 +4,9 @@ import _createClass from "@babel/runtime/helpers/esm/createClass";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
-import React, { Component } from "react";
+import React, { Component } from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -599,4 +601,4 @@ TextInput.defaultProps = {
   shouldTrimValue: true,
   type: "text"
 };
-export default withComponents(TextInput);
+export default i18n.withTranslation()(withComponents(TextInput)); // auto-add i18n

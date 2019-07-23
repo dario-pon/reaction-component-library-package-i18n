@@ -4,12 +4,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _v = _interopRequireDefault(require("../../Button/v1"));
 
 var _CartEmptyMessage = _interopRequireDefault(require("./CartEmptyMessage"));
 
+// auto-add i18n 
 test("default cart empty button", function () {
   var onClick = function onClick() {};
 

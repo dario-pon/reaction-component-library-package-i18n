@@ -21,6 +21,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactoForm = require("reacto-form");
@@ -29,7 +31,7 @@ var _lodash = require("lodash");
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
+// auto-add i18n 
 
 /**
  * Convert the form document to the object structure
@@ -216,6 +218,7 @@ ExampleIOUPaymentForm.defaultProps = {
   onSubmit: function onSubmit() {}
 };
 
-var _default = (0, _componentsContext.withComponents)(ExampleIOUPaymentForm);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(ExampleIOUPaymentForm)); // auto-add i18n
+
 
 exports.default = _default;

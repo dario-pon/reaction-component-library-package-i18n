@@ -4,6 +4,8 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
@@ -14,6 +16,7 @@ var _Field = _interopRequireDefault(require("./Field"));
 
 var _v = _interopRequireDefault(require("./../../TextInput/v1"));
 
+// auto-add i18n 
 var FontIcon = _styledComponents.default.i.withConfig({
   displayName: "Fieldtest__FontIcon",
   componentId: "kqjl7x-0"

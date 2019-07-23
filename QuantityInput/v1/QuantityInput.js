@@ -25,6 +25,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styles = require("@material-ui/core/styles");
@@ -39,6 +41,7 @@ var _Minus = _interopRequireDefault(require("mdi-material-ui/Minus"));
 
 var _Plus = _interopRequireDefault(require("mdi-material-ui/Plus"));
 
+// auto-add i18n 
 var styles = function styles() {
   return {
     incrementButton: {
@@ -215,6 +218,7 @@ QuantityInput.defaultProps = {
   onChange: function onChange() {}
 };
 
-var _default = (0, _styles.withStyles)(styles)(QuantityInput);
+var _default = _utils.default.withTranslation()((0, _styles.withStyles)(styles)(QuantityInput)); // auto-add i18n
+
 
 exports.default = _default;

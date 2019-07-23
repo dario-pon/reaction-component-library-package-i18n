@@ -6,7 +6,9 @@ import _createClass from "@babel/runtime/helpers/esm/createClass";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
-import React, { Component } from "react";
+import React, { Component } from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import { withComponents } from "@reactioncommerce/components-context";
 import styled from "styled-components";
@@ -178,4 +180,4 @@ StripePaymentInput.defaultProps = {
   onReadyForSaveChange: function onReadyForSaveChange() {},
   onSubmit: function onSubmit() {}
 };
-export default withComponents(StripePaymentInput);
+export default i18n.withTranslation()(withComponents(StripePaymentInput)); // auto-add i18n

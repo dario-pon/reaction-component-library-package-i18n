@@ -65,6 +65,12 @@ Object.defineProperty(exports, "formatMoney", {
     return _formatMoney.default;
   }
 });
+Object.defineProperty(exports, "i18n", {
+  enumerable: true,
+  get: function get() {
+    return _i18n.default;
+  }
+});
 
 var _addTypographyStyles = _interopRequireDefault(require("./addTypographyStyles"));
 
@@ -85,3 +91,5 @@ var _withStripeElements = _interopRequireDefault(require("./withStripeElements")
 var _addressToString = _interopRequireDefault(require("./addressToString"));
 
 var _formatMoney = _interopRequireDefault(require("./formatMoney"));
+
+var _i18n = _interopRequireDefault(require("./i18n"));

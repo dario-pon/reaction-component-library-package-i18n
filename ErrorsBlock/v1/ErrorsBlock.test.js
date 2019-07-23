@@ -4,10 +4,13 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _ErrorsBlock = _interopRequireDefault(require("./ErrorsBlock"));
 
+// auto-add i18n 
 test("has isFormErrors property set to true", function () {
   expect(_ErrorsBlock.default.isFormErrors).toBe(true);
 });

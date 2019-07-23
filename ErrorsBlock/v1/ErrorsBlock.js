@@ -23,6 +23,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
@@ -31,8 +33,7 @@ var _lodash = _interopRequireDefault(require("lodash.isempty"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var ErrorWrapper = _styledComponents.default.div.withConfig({
   displayName: "ErrorsBlock__ErrorWrapper",
   componentId: "sc-2zxcue-0"
@@ -131,6 +132,7 @@ ErrorsBlock.defaultProps = {
   shouldShowIcon: false
 };
 
-var _default = (0, _componentsContext.withComponents)(ErrorsBlock);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(ErrorsBlock)); // auto-add i18n
+
 
 exports.default = _default;

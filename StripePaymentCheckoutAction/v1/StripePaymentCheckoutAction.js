@@ -35,6 +35,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
@@ -43,8 +45,7 @@ var _Fade = _interopRequireDefault(require("@material-ui/core/Fade"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var Title = _styledComponents.default.h3.withConfig({
   displayName: "StripePaymentCheckoutAction__Title",
   componentId: "sc-4fjs9q-0"
@@ -384,6 +385,7 @@ StripePaymentCheckoutAction.defaultProps = {
   onReadyForSaveChange: function onReadyForSaveChange() {}
 };
 
-var _default = (0, _componentsContext.withComponents)(StripePaymentCheckoutAction);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(StripePaymentCheckoutAction)); // auto-add i18n
+
 
 exports.default = _default;

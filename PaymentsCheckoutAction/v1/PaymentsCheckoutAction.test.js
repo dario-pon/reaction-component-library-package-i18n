@@ -16,6 +16,8 @@ require("core-js/modules/es6.array.find");
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _enzyme = require("enzyme");

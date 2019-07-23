@@ -23,6 +23,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
@@ -33,8 +35,7 @@ var _reactoForm = require("reacto-form");
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var FormAction = _styledComponents.default.div.withConfig({
   displayName: "GuestForm__FormAction",
   componentId: "sc-1ibny27-0"
@@ -234,6 +235,7 @@ GuestForm.defaultProps = {
   }
 };
 
-var _default = (0, _componentsContext.withComponents)(GuestForm);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(GuestForm)); // auto-add i18n
+
 
 exports.default = _default;

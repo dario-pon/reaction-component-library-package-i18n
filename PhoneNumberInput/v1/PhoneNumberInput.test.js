@@ -4,12 +4,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _mockComponents = _interopRequireDefault(require("../../../tests/mockComponents"));
 
 var _PhoneNumberInput = _interopRequireDefault(require("./PhoneNumberInput"));
 
+// auto-add i18n 
 test("basic snapshot", function () {
   var component = _reactTestRenderer.default.create(_react.default.createElement(_PhoneNumberInput.default, {
     components: _mockComponents.default

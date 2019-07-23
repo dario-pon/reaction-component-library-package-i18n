@@ -6,6 +6,8 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var ReactContainerQueryExports = _interopRequireWildcard(require("react-container-query"));
@@ -16,6 +18,7 @@ var _CatalogGrid = _interopRequireDefault(require("./CatalogGrid"));
 
 var _products = _interopRequireDefault(require("./__mocks__/products"));
 
+// auto-add i18n 
 // ContainerQuery component causes errors inside `renderer.create` so we mock it
 ReactContainerQueryExports.ContainerQuery = jest.fn().mockImplementation(function (props) {
   return props.children({});

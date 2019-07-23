@@ -6,6 +6,8 @@ require("core-js/modules/es6.promise");
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _enzyme = require("enzyme");
@@ -20,6 +22,7 @@ var _realComponents = _interopRequireDefault(require("../../../tests/realCompone
 
 var _StripePaymentInput = _interopRequireDefault(require("./StripePaymentInput"));
 
+// auto-add i18n 
 // Mock the Stripe instance
 var elementMock = {
   mount: jest.fn(),

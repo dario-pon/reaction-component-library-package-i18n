@@ -4,7 +4,9 @@ import _createClass from "@babel/runtime/helpers/esm/createClass";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
-import React, { Component } from "react";
+import React, { Component } from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import { ContainerQuery } from "react-container-query";
 import styled from "styled-components";
@@ -331,4 +333,4 @@ ProgressiveImage.defaultProps = {
   altText: "",
   fit: "contain"
 };
-export default ProgressiveImage;
+export default i18n.withTranslation()(ProgressiveImage); // auto-add i18n

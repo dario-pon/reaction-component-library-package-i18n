@@ -23,16 +23,17 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
 var _applyThemeWithActionType = _interopRequireDefault(require("./utils/applyThemeWithActionType"));
 
+// auto-add i18n 
 var paddingFunc = function paddingFunc(props) {
   var isShortHeight = props.isShortHeight;
   if (isShortHeight) return (0, _utils.applyTheme)("Button.verticalPaddingShort");
@@ -273,6 +274,7 @@ Button.defaultProps = {
   onClick: function onClick() {}
 };
 
-var _default = (0, _componentsContext.withComponents)(Button);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(Button)); // auto-add i18n
+
 
 exports.default = _default;

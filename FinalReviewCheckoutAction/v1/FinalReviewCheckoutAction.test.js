@@ -4,12 +4,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _react = _interopRequireDefault(require("react"));
 
+var _utils = _interopRequireDefault(require("../../utils"));
+
 var _reactTestRenderer = _interopRequireDefault(require("react-test-renderer"));
 
 var _mockComponents = _interopRequireDefault(require("../../../tests/mockComponents"));
 
 var _FinalReviewCheckoutAction = _interopRequireDefault(require("./FinalReviewCheckoutAction"));
 
+// auto-add i18n 
 var checkoutSummary = {
   displayShipping: "$5.25",
   displaySubtotal: "$275.77",

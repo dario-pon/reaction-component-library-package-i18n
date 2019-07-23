@@ -21,12 +21,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var Table = _styledComponents.default.table.withConfig({
   displayName: "MiniCartSummary__Table",
   componentId: "sc-1pnkmz7-0"
@@ -102,5 +103,8 @@ MiniCartSummary.propTypes = {
    */
   displayTax: _propTypes.default.string
 };
-var _default = MiniCartSummary;
+
+var _default = _utils.default.withTranslation()(MiniCartSummary); // auto-add i18n
+
+
 exports.default = _default;

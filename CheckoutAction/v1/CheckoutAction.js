@@ -21,12 +21,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var CompleteActionWrapper = _styledComponents.default.div.withConfig({
   displayName: "CheckoutAction__CompleteActionWrapper",
   componentId: "sc-1ye3yw9-0"
@@ -151,5 +152,8 @@ CheckoutAction.defaultProps = {
   completeLabel: "Completed Step",
   incompleteLabel: "Incomplete Step"
 };
-var _default = CheckoutAction;
+
+var _default = _utils.default.withTranslation()(CheckoutAction); // auto-add i18n
+
+
 exports.default = _default;

@@ -1,5 +1,7 @@
 import "core-js/modules/es6.array.find";
-import React from "react";
+import React from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import renderer from "react-test-renderer";
 import { mount } from "enzyme";
 import { ComponentsProvider } from "@reactioncommerce/components-context";

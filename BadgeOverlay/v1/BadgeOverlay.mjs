@@ -3,7 +3,9 @@ import _createClass from "@babel/runtime/helpers/esm/createClass";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment } from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -209,4 +211,4 @@ BadgeOverlay.defaultProps = {
   filterOnly: "",
   shouldShowPrimaryOnly: false
 };
-export default BadgeOverlay;
+export default i18n.withTranslation()(BadgeOverlay); // auto-add i18n

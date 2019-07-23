@@ -16,7 +16,9 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-import React, { Component } from "react";
+import React, { Component } from "react"; // auto-add i18n 
+
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import uniqueId from "lodash.uniqueid";
 import { Form } from "reacto-form";
@@ -253,4 +255,4 @@ AddressReview.defaultProps = {
   isSaving: false,
   value: SUGGESTED
 };
-export default withComponents(AddressReview);
+export default i18n.withTranslation()(withComponents(AddressReview)); // auto-add i18n

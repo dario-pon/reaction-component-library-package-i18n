@@ -25,12 +25,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var AddressElement = _styledComponents.default.address.withConfig({
   displayName: "Address__AddressElement",
   componentId: "sc-1a2sry4-0"
@@ -146,5 +147,8 @@ Address.defaultProps = {
   invalidAddressProperties: [],
   isFlat: false
 };
-var _default = Address;
+
+var _default = _utils.default.withTranslation()(Address); // auto-add i18n
+
+
 exports.default = _default;

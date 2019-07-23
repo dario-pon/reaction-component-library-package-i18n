@@ -21,14 +21,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var ViewerInfoContainer = _styledComponents.default.div.withConfig({
   displayName: "ViewerInfo__ViewerInfoContainer",
   componentId: "sc-11in3tg-0"
@@ -150,6 +151,7 @@ ViewerInfo.defaultProps = {
   full: false
 };
 
-var _default = (0, _componentsContext.withComponents)(ViewerInfo);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(ViewerInfo)); // auto-add i18n
+
 
 exports.default = _default;

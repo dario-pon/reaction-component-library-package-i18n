@@ -21,14 +21,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var EmptyButton = _styledComponents.default.div.withConfig({
   displayName: "CartEmptyMessage__EmptyButton",
   componentId: "e1n47h-0"
@@ -117,6 +118,7 @@ CartEmptyMessage.defaultProps = {
   messageText: "Your shopping cart is empty."
 };
 
-var _default = (0, _componentsContext.withComponents)(CartEmptyMessage);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(CartEmptyMessage)); // auto-add i18n
+
 
 exports.default = _default;

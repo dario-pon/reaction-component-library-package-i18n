@@ -21,14 +21,15 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 var _componentsContext = require("@reactioncommerce/components-context");
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var ActionContainer = _styledComponents.default.div.withConfig({
   displayName: "CheckoutActionComplete__ActionContainer",
   componentId: "sc-115d6h5-0"
@@ -141,6 +142,7 @@ CheckoutActionComplete.propTypes = {
   stepNumber: _propTypes.default.number
 };
 
-var _default = (0, _componentsContext.withComponents)(CheckoutActionComplete);
+var _default = _utils.default.withTranslation()((0, _componentsContext.withComponents)(CheckoutActionComplete)); // auto-add i18n
+
 
 exports.default = _default;

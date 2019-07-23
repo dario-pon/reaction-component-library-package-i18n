@@ -23,12 +23,13 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _utils = _interopRequireWildcard(require("../../utils"));
+
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _utils = require("../../utils");
-
+// auto-add i18n 
 var ViewerImageCircle = _styledComponents.default.div.withConfig({
   displayName: "ProfileImage__ViewerImageCircle",
   componentId: "sc-1ez7h3d-0"
@@ -150,5 +151,8 @@ ProfileImage.propTypes = {
 ProfileImage.defaultProps = {
   size: 80
 };
-var _default = ProfileImage;
+
+var _default = _utils.default.withTranslation()(ProfileImage); // auto-add i18n
+
+
 exports.default = _default;
