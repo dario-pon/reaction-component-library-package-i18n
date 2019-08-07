@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -33,166 +33,166 @@ var PriceContainer = styled.div.withConfig({
 })(["text-align:right;"]);
 
 var CatalogGridItem =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CatalogGridItem, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CatalogGridItem, _Component);
 
-  function CatalogGridItem() {
-    var _getPrototypeOf2;
+    function CatalogGridItem() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, CatalogGridItem);
+      _classCallCheck(this, CatalogGridItem);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CatalogGridItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      fit: "cover"
-    };
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CatalogGridItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        fit: "cover"
+      };
 
-    _this.setImageFit = function () {
-      // Use cover fit if image is landcape, contain if portrait
-      if (typeof Image !== "undefined") {
-        var large = _this.primaryImage.URLs.large;
-        var largeImage = new Image();
-        largeImage.src = large;
+      _this.setImageFit = function () {
+        // Use cover fit if image is landcape, contain if portrait
+        if (typeof Image !== "undefined") {
+          var large = _this.primaryImage.URLs.large;
+          var largeImage = new Image();
+          largeImage.src = large;
 
-        largeImage.onload = function () {
-          if (_this._mounted === false) {
-            return;
-          }
+          largeImage.onload = function () {
+            if (_this._mounted === false) {
+              return;
+            }
 
-          var fit = "";
-          var width = largeImage.width,
+            var fit = "";
+            var width = largeImage.width,
               height = largeImage.height;
 
-          if (height > width) {
-            // Image is portrait
-            fit = "contain";
-          } else {
-            // Image is landscape
-            fit = "cover";
-          }
+            if (height > width) {
+              // Image is portrait
+              fit = "contain";
+            } else {
+              // Image is landscape
+              fit = "cover";
+            }
 
-          if (fit !== _this.state.fit) {
-            _this.setState({
-              fit: fit
-            });
-          }
-        };
+            if (fit !== _this.state.fit) {
+              _this.setState({
+                fit: fit
+              });
+            }
+          };
+        }
+      };
+
+      _this.handleOnClick = preventAccidentalDoubleClick(function (event) {
+        _this.props.onClick(event, _this.props.product);
+      });
+      return _this;
+    }
+
+    _createClass(CatalogGridItem, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        this._mounted = true;
+        this.setImageFit();
       }
-    };
-
-    _this.handleOnClick = preventAccidentalDoubleClick(function (event) {
-      _this.props.onClick(event, _this.props.product);
-    });
-    return _this;
-  }
-
-  _createClass(CatalogGridItem, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this._mounted = true;
-      this.setImageFit();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.setImageFit();
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this._mounted = false;
-    }
-  }, {
-    key: "renderProductMedia",
-    value: function renderProductMedia() {
-      var _this$props = this.props,
+    }, {
+      key: "componentDidUpdate",
+      value: function componentDidUpdate() {
+        this.setImageFit();
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        this._mounted = false;
+      }
+    }, {
+      key: "renderProductMedia",
+      value: function renderProductMedia() {
+        var _this$props = this.props,
           ProgressiveImage = _this$props.components.ProgressiveImage,
           description = _this$props.product.description;
-      var fit = this.state.fit;
-      return React.createElement(ProductMediaWrapper, null, React.createElement(ProgressiveImage, {
-        fit: fit,
-        altText: description,
-        presrc: this.primaryImage.URLs.thumbnail,
-        srcs: this.primaryImage.URLs
-      }));
-    }
-  }, {
-    key: "renderProductInfo",
-    value: function renderProductInfo() {
-      var _this$props2 = this.props,
+        var fit = this.state.fit;
+        return React.createElement(ProductMediaWrapper, null, React.createElement(ProgressiveImage, {
+          fit: fit,
+          altText: description,
+          presrc: this.primaryImage.URLs.thumbnail,
+          srcs: this.primaryImage.URLs
+        }));
+      }
+    }, {
+      key: "renderProductInfo",
+      value: function renderProductInfo() {
+        var _this$props2 = this.props,
           Price = _this$props2.components.Price,
           currencyCode = _this$props2.currencyCode,
           _this$props2$product = _this$props2.product,
           pricing = _this$props2$product.pricing,
           title = _this$props2$product.title,
           vendor = _this$props2$product.vendor;
-      var productPrice = priceByCurrencyCode(currencyCode, pricing) || {};
-      return React.createElement("div", null, React.createElement(ProductInfo, null, React.createElement(ProductTitle, null, title), React.createElement(PriceContainer, null, React.createElement(Price, {
-        displayPrice: productPrice.displayPrice
-      }))), React.createElement("div", null, React.createElement(ProductVendor, null, vendor)));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props3 = this.props,
+        var productPrice = priceByCurrencyCode(currencyCode, pricing) || {};
+        return React.createElement("div", null, React.createElement(ProductInfo, null, React.createElement(ProductTitle, null, title), React.createElement(PriceContainer, null, React.createElement(Price, {
+          displayPrice: productPrice.displayPrice
+        }))), React.createElement("div", null, React.createElement(ProductVendor, null, vendor)));
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props3 = this.props,
           className = _this$props3.className,
           badgeLabels = _this$props3.badgeLabels,
           _this$props3$componen = _this$props3.components,
           BadgeOverlay = _this$props3$componen.BadgeOverlay,
           Link = _this$props3$componen.Link,
           product = _this$props3.product;
-      var badgeProps = {
-        product: product
-      };
+        var badgeProps = {
+          product: product
+        };
 
-      if (badgeLabels) {
-        badgeProps.badgeLabels = badgeLabels;
+        if (badgeLabels) {
+          badgeProps.badgeLabels = badgeLabels;
+        }
+
+        return React.createElement("div", {
+          className: className
+        }, React.createElement(Link, {
+          href: this.productDetailHref,
+          onClick: this.handleOnClick
+        }, React.createElement(BadgeOverlay, badgeProps, this.renderProductMedia(), this.renderProductInfo())));
       }
-
-      return React.createElement("div", {
-        className: className
-      }, React.createElement(Link, {
-        href: this.productDetailHref,
-        onClick: this.handleOnClick
-      }, React.createElement(BadgeOverlay, badgeProps, this.renderProductMedia(), this.renderProductInfo())));
-    }
-  }, {
-    key: "productDetailHref",
-    get: function get() {
-      var slug = this.props.product.slug;
-      var url = "/product/".concat(slug);
-      return url;
-    }
-  }, {
-    key: "primaryImage",
-    get: function get() {
-      var _this$props4 = this.props,
+    }, {
+      key: "productDetailHref",
+      get: function get() {
+        var slug = this.props.product.slug;
+        var url = "/product/".concat(slug);
+        return url;
+      }
+    }, {
+      key: "primaryImage",
+      get: function get() {
+        var _this$props4 = this.props,
           primaryImage = _this$props4.product.primaryImage,
           placeholderImageURL = _this$props4.placeholderImageURL;
 
-      if (!primaryImage) {
-        return {
-          URLs: {
-            thumbnail: placeholderImageURL,
-            small: placeholderImageURL,
-            medium: placeholderImageURL,
-            large: placeholderImageURL
-          }
-        };
+        if (!primaryImage) {
+          return {
+            URLs: {
+              thumbnail: placeholderImageURL,
+              small: placeholderImageURL,
+              medium: placeholderImageURL,
+              large: placeholderImageURL
+            }
+          };
+        }
+
+        return primaryImage;
       }
+    }]);
 
-      return primaryImage;
-    }
-  }]);
-
-  return CatalogGridItem;
-}(Component);
+    return CatalogGridItem;
+  }(Component);
 
 CatalogGridItem.propTypes = {
   /**
@@ -272,7 +272,7 @@ CatalogGridItem.propTypes = {
 };
 CatalogGridItem.defaultProps = {
   badgeLabels: null,
-  onClick: function onClick() {},
+  onClick: function onClick() { },
   placeholderImageURL: ""
 };
 export default i18n.withTranslation()(withComponents(CatalogGridItem)); // auto-add i18n

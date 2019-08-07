@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -23,47 +23,47 @@ var TdValue = styled.td.withConfig({
 })(["", " padding-top:", ";padding-bottom:", ";padding-left:", ";padding-right:", ";text-align:left;"], addTypographyStyles("MiniCartSummaryRight", "bodyTextBold"), applyTheme("MiniCartSummaryRight.cellPaddingTop"), applyTheme("MiniCartSummaryRight.cellPaddingBottom"), applyTheme("MiniCartSummaryRight.cellPaddingLeft"), applyTheme("MiniCartSummaryRight.cellPaddingRight"));
 
 var MiniCartSummary =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(MiniCartSummary, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(MiniCartSummary, _Component);
 
-  function MiniCartSummary() {
-    var _getPrototypeOf2;
+    function MiniCartSummary() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, MiniCartSummary);
+      _classCallCheck(this, MiniCartSummary);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(MiniCartSummary)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+      _this.renderTax = function () {
+        var displayTax = _this.props.displayTax;
+        return React.createElement("tr", null, React.createElement(Td, null, "Tax"), React.createElement(TdValue, null, displayTax));
+      };
+
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(MiniCartSummary)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _this.renderTax = function () {
-      var displayTax = _this.props.displayTax;
-      return React.createElement("tr", null, React.createElement(Td, null, "Tax"), React.createElement(TdValue, null, displayTax));
-    };
-
-    return _this;
-  }
-
-  _createClass(MiniCartSummary, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(MiniCartSummary, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           className = _this$props.className,
           displaySubtotal = _this$props.displaySubtotal,
           displayTax = _this$props.displayTax;
-      var taxes = displayTax && this.renderTax();
-      return React.createElement(Table, {
-        className: className
-      }, React.createElement("tbody", null, React.createElement("tr", null, React.createElement(Td, null, "Subtotal"), React.createElement(TdValue, null, displaySubtotal)), taxes));
-    }
-  }]);
+        var taxes = displayTax && this.renderTax();
+        return React.createElement(Table, {
+          className: className
+        }, React.createElement("tbody", null, React.createElement("tr", null, React.createElement(Td, null, "Subtotal"), React.createElement(TdValue, null, displaySubtotal)), taxes));
+      }
+    }]);
 
-  return MiniCartSummary;
-}(Component);
+    return MiniCartSummary;
+  }(Component);
 
 MiniCartSummary.propTypes = {
   /**

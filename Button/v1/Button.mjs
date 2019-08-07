@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -69,42 +69,42 @@ var WaitingOverlay = styled.div.withConfig({
 })(["position:absolute;top:0;left:0;right:0;bottom:0;background-color:rgba(255,255,255,0.5);"]);
 
 var Button =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Button, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(Button, _Component);
 
-  function Button() {
-    var _getPrototypeOf2;
+    function Button() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, Button);
+      _classCallCheck(this, Button);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Button)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.handleClick = preventAccidentalDoubleClick(function (event) {
-      event.preventDefault();
-      var _this$props = _this.props,
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Button)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.handleClick = preventAccidentalDoubleClick(function (event) {
+        event.preventDefault();
+        var _this$props = _this.props,
           isDisabled = _this$props.isDisabled,
           isWaiting = _this$props.isWaiting,
           onClick = _this$props.onClick;
-      if (!isDisabled && !isWaiting) onClick();
-    });
+        if (!isDisabled && !isWaiting) onClick();
+      });
 
-    _this.handleKeyPress = function (event) {
-      if (event.keyCode === 13) _this.handleClick(event);
-    };
+      _this.handleKeyPress = function (event) {
+        if (event.keyCode === 13) _this.handleClick(event);
+      };
 
-    return _this;
-  }
+      return _this;
+    }
 
-  _createClass(Button, [{
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
+    _createClass(Button, [{
+      key: "render",
+      value: function render() {
+        var _this$props2 = this.props,
           actionType = _this$props2.actionType,
           children = _this$props2.children,
           className = _this$props2.className,
@@ -117,60 +117,60 @@ function (_Component) {
           isWaiting = _this$props2.isWaiting,
           title = _this$props2.title;
 
-      var _ref = components || {},
+        var _ref = components || {},
           spinner = _ref.spinner;
 
-      var moreButtonDivProps = {};
+        var moreButtonDivProps = {};
 
-      if (isDisabled) {
-        moreButtonDivProps["aria-disabled"] = "true";
-      } // wrap text children so that ButtonDiv flex styling applies correctly
+        if (isDisabled) {
+          moreButtonDivProps["aria-disabled"] = "true";
+        } // wrap text children so that ButtonDiv flex styling applies correctly
 
 
-      var kids;
+        var kids;
 
-      if (typeof children === "string") {
-        kids = React.createElement("div", null, children);
-      } else {
-        kids = children;
+        if (typeof children === "string") {
+          kids = React.createElement("div", null, children);
+        } else {
+          kids = children;
+        }
+
+        var spinnerStyles = {};
+
+        if (isWaiting) {
+          spinnerStyles.width = "auto";
+          spinnerStyles.opacity = 100;
+        } else {
+          spinnerStyles.width = 0;
+          spinnerStyles.paddingLeft = 0;
+          spinnerStyles.opacity = 0;
+        }
+
+        return React.createElement(ButtonDiv, _extends({
+          actionType: actionType,
+          className: className,
+          isDisabled: isDisabled,
+          isFullWidth: isFullWidth,
+          isShortHeight: isShortHeight,
+          isTextOnly: isTextOnly,
+          isTextOnlyNoPadding: isTextOnlyNoPadding,
+          onClick: this.handleClick,
+          onKeyPress: this.handleKeyPress,
+          role: "button",
+          tabIndex: 0,
+          title: title
+        }, moreButtonDivProps), kids, React.createElement(SpinnerWrap, {
+          actionType: actionType,
+          isDisabled: isDisabled,
+          isTextOnly: isTextOnly,
+          isTextOnlyNoPadding: isTextOnlyNoPadding,
+          style: spinnerStyles
+        }, spinner), !!isWaiting && React.createElement(WaitingOverlay, null));
       }
+    }]);
 
-      var spinnerStyles = {};
-
-      if (isWaiting) {
-        spinnerStyles.width = "auto";
-        spinnerStyles.opacity = 100;
-      } else {
-        spinnerStyles.width = 0;
-        spinnerStyles.paddingLeft = 0;
-        spinnerStyles.opacity = 0;
-      }
-
-      return React.createElement(ButtonDiv, _extends({
-        actionType: actionType,
-        className: className,
-        isDisabled: isDisabled,
-        isFullWidth: isFullWidth,
-        isShortHeight: isShortHeight,
-        isTextOnly: isTextOnly,
-        isTextOnlyNoPadding: isTextOnlyNoPadding,
-        onClick: this.handleClick,
-        onKeyPress: this.handleKeyPress,
-        role: "button",
-        tabIndex: 0,
-        title: title
-      }, moreButtonDivProps), kids, React.createElement(SpinnerWrap, {
-        actionType: actionType,
-        isDisabled: isDisabled,
-        isTextOnly: isTextOnly,
-        isTextOnlyNoPadding: isTextOnlyNoPadding,
-        style: spinnerStyles
-      }, spinner), !!isWaiting && React.createElement(WaitingOverlay, null));
-    }
-  }]);
-
-  return Button;
-}(Component);
+    return Button;
+  }(Component);
 
 Button.propTypes = {
   /**
@@ -249,6 +249,6 @@ Button.defaultProps = {
   isDisabled: false,
   isFullWidth: false,
   isWaiting: false,
-  onClick: function onClick() {}
+  onClick: function onClick() { }
 };
 export default i18n.withTranslation()(withComponents(Button)); // auto-add i18n

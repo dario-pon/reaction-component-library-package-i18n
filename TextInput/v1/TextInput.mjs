@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -111,243 +111,243 @@ var stringDefaultEquals = function stringDefaultEquals(value1, value2) {
 };
 
 var TextInput =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(TextInput, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(TextInput, _Component);
 
-  function TextInput(props) {
-    var _this;
+    function TextInput(props) {
+      var _this;
 
-    _classCallCheck(this, TextInput);
+      _classCallCheck(this, TextInput);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TextInput).call(this, props));
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(TextInput).call(this, props));
 
-    _this.onKeyPress = function (event) {
-      var onSubmit = _this.props.onSubmit;
-      if (event.which === 13) onSubmit();
-    };
+      _this.onKeyPress = function (event) {
+        var onSubmit = _this.props.onSubmit;
+        if (event.which === 13) onSubmit();
+      };
 
-    _this.onInputBlur = function (event) {
-      // when a user clicks the input's clear button the input will blur
-      // and remove the button before the onClick event fires. This timeout will
-      // keep the button rendered long enough for the onClick event to fire.
-      setTimeout(function () {
-        if (_this._isMounted) {
-          _this.setState({
-            isInputFocused: false
+      _this.onInputBlur = function (event) {
+        // when a user clicks the input's clear button the input will blur
+        // and remove the button before the onClick event fires. This timeout will
+        // keep the button rendered long enough for the onClick event to fire.
+        setTimeout(function () {
+          if (_this._isMounted) {
+            _this.setState({
+              isInputFocused: false
+            });
+          }
+        }, 150);
+
+        _this.setValue(event.target.value, false);
+      };
+
+      _this.onButtonBlur = function () {
+        _this.setState({
+          isButtonFocused: false
+        });
+      };
+
+      _this.onChange = function (event) {
+        var value = event.target.value;
+        value = value || "";
+
+        _this.setState({
+          value: value
+        });
+
+        _this.handleChanging(value);
+      };
+
+      _this.onInputFocus = function () {
+        _this.setState({
+          isInputFocused: true
+        });
+      };
+
+      _this.onButtonFocus = function () {
+        _this.setState({
+          isButtonFocused: true
+        });
+      };
+
+      _this.onClearValue = function () {
+        _this.setValue();
+
+        _this.onButtonBlur();
+      };
+
+      var _value = props.value || "";
+
+      _this.state = {
+        initialValue: _value,
+        value: _value,
+        isInputFocused: false,
+        isButtonFocused: false
+      };
+      return _this;
+    }
+
+    _createClass(TextInput, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        var value = this.state.value;
+        this.handleChanging(value);
+        this.handleChanged(value);
+        this._isMounted = true;
+      }
+    }, {
+      key: "componentWillReceiveProps",
+      value: function componentWillReceiveProps(nextProps) {
+        var value = this.props.value;
+        var stateValue = this.state.value;
+        var nextValue = nextProps.value; // Whenever a changed value prop comes in, and doesn't match our state,
+        // and therefore was from outside this input, we reset state to that, thus becoming clean.
+
+        if (!stringDefaultEquals(value, nextValue) && !stringDefaultEquals(stateValue, nextValue)) {
+          this.setValue(nextValue, true);
+        }
+      }
+    }, {
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps, prevState) {
+        var value = this.state.value;
+        var prevValue = prevState.value;
+
+        if (!stringDefaultEquals(value, prevValue)) {
+          this.handleChanging(value);
+        } // We do not worry about whether value has changed when calling handleChanged
+        // because it will do its own check against a different value. In fact, often
+        // value will not differ from prevValue here because `value` tracks "changing"
+        // rather than "changed".
+
+
+        if (this.shouldCallChanged) {
+          this.shouldCallChanged = false;
+          this.handleChanged(value);
+        }
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        this._isMounted = false;
+      }
+    }, {
+      key: "getValue",
+      value: function getValue() {
+        return this.cleanValue(this.state.value);
+      }
+    }, {
+      key: "setValue",
+      value: function setValue(value, shouldSetInitialValue) {
+        this.shouldCallChanged = true;
+        this.setState({
+          value: value || ""
+        });
+
+        if (shouldSetInitialValue) {
+          this.setState({
+            initialValue: value || ""
           });
         }
-      }, 150);
-
-      _this.setValue(event.target.value, false);
-    };
-
-    _this.onButtonBlur = function () {
-      _this.setState({
-        isButtonFocused: false
-      });
-    };
-
-    _this.onChange = function (event) {
-      var value = event.target.value;
-      value = value || "";
-
-      _this.setState({
-        value: value
-      });
-
-      _this.handleChanging(value);
-    };
-
-    _this.onInputFocus = function () {
-      _this.setState({
-        isInputFocused: true
-      });
-    };
-
-    _this.onButtonFocus = function () {
-      _this.setState({
-        isButtonFocused: true
-      });
-    };
-
-    _this.onClearValue = function () {
-      _this.setValue();
-
-      _this.onButtonBlur();
-    };
-
-    var _value = props.value || "";
-
-    _this.state = {
-      initialValue: _value,
-      value: _value,
-      isInputFocused: false,
-      isButtonFocused: false
-    };
-    return _this;
-  }
-
-  _createClass(TextInput, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      var value = this.state.value;
-      this.handleChanging(value);
-      this.handleChanged(value);
-      this._isMounted = true;
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      var value = this.props.value;
-      var stateValue = this.state.value;
-      var nextValue = nextProps.value; // Whenever a changed value prop comes in, and doesn't match our state,
-      // and therefore was from outside this input, we reset state to that, thus becoming clean.
-
-      if (!stringDefaultEquals(value, nextValue) && !stringDefaultEquals(stateValue, nextValue)) {
-        this.setValue(nextValue, true);
       }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      var value = this.state.value;
-      var prevValue = prevState.value;
-
-      if (!stringDefaultEquals(value, prevValue)) {
-        this.handleChanging(value);
-      } // We do not worry about whether value has changed when calling handleChanged
-      // because it will do its own check against a different value. In fact, often
-      // value will not differ from prevValue here because `value` tracks "changing"
-      // rather than "changed".
-
-
-      if (this.shouldCallChanged) {
-        this.shouldCallChanged = false;
-        this.handleChanged(value);
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this._isMounted = false;
-    }
-  }, {
-    key: "getValue",
-    value: function getValue() {
-      return this.cleanValue(this.state.value);
-    }
-  }, {
-    key: "setValue",
-    value: function setValue(value, shouldSetInitialValue) {
-      this.shouldCallChanged = true;
-      this.setState({
-        value: value || ""
-      });
-
-      if (shouldSetInitialValue) {
-        this.setState({
-          initialValue: value || ""
-        });
-      }
-    }
-  }, {
-    key: "cleanValue",
-    value: function cleanValue(value) {
-      var _this$props = this.props,
+    }, {
+      key: "cleanValue",
+      value: function cleanValue(value) {
+        var _this$props = this.props,
           shouldConvertEmptyStringToNull = _this$props.shouldConvertEmptyStringToNull,
           shouldTrimValue = _this$props.shouldTrimValue;
-      var outputValue = shouldTrimValue ? (value || "").trim() : value || "";
-      if (shouldConvertEmptyStringToNull && outputValue === "") outputValue = null;
-      return outputValue;
-    }
-  }, {
-    key: "resetValue",
-    value: function resetValue() {
-      this.setValue(this.props.value, true);
-    }
-  }, {
-    key: "handleChanged",
-    value: function handleChanged(value) {
-      var onChange = this.props.onChange;
-      var outputValue = this.cleanValue(value);
-
-      if (outputValue !== this.lastChangedValue) {
-        this.lastChangedValue = outputValue;
-        onChange(outputValue);
+        var outputValue = shouldTrimValue ? (value || "").trim() : value || "";
+        if (shouldConvertEmptyStringToNull && outputValue === "") outputValue = null;
+        return outputValue;
       }
-    }
-  }, {
-    key: "handleChanging",
-    value: function handleChanging(value) {
-      var onChanging = this.props.onChanging;
-      var outputValue = this.cleanValue(value);
-
-      if (outputValue !== this.lastChangingValue) {
-        this.lastChangingValue = outputValue;
-        onChanging(outputValue);
+    }, {
+      key: "resetValue",
+      value: function resetValue() {
+        this.setValue(this.props.value, true);
       }
-    } // Input is dirty if value prop doesn't match value state. Whenever a changed
-    // value prop comes in, we reset state to that, thus becoming clean.
+    }, {
+      key: "handleChanged",
+      value: function handleChanged(value) {
+        var onChange = this.props.onChange;
+        var outputValue = this.cleanValue(value);
 
-  }, {
-    key: "isDirty",
-    value: function isDirty() {
-      var _this$state = this.state,
+        if (outputValue !== this.lastChangedValue) {
+          this.lastChangedValue = outputValue;
+          onChange(outputValue);
+        }
+      }
+    }, {
+      key: "handleChanging",
+      value: function handleChanging(value) {
+        var onChanging = this.props.onChanging;
+        var outputValue = this.cleanValue(value);
+
+        if (outputValue !== this.lastChangingValue) {
+          this.lastChangingValue = outputValue;
+          onChanging(outputValue);
+        }
+      } // Input is dirty if value prop doesn't match value state. Whenever a changed
+      // value prop comes in, we reset state to that, thus becoming clean.
+
+    }, {
+      key: "isDirty",
+      value: function isDirty() {
+        var _this$state = this.state,
           initialValue = _this$state.initialValue,
           value = _this$state.value;
-      return !stringDefaultEquals(value, initialValue);
-    }
-  }, {
-    key: "showClearButton",
-    value: function showClearButton() {
-      var isReadOnly = this.props.isReadOnly;
-      var _this$state2 = this.state,
+        return !stringDefaultEquals(value, initialValue);
+      }
+    }, {
+      key: "showClearButton",
+      value: function showClearButton() {
+        var isReadOnly = this.props.isReadOnly;
+        var _this$state2 = this.state,
           isInputFocused = _this$state2.isInputFocused,
           isButtonFocused = _this$state2.isButtonFocused;
-      return (this.getValue() && isInputFocused || this.getValue() && isButtonFocused) && !isReadOnly;
-    }
-  }, {
-    key: "renderClearButton",
-    value: function renderClearButton() {
-      var _this$props2 = this.props,
+        return (this.getValue() && isInputFocused || this.getValue() && isButtonFocused) && !isReadOnly;
+      }
+    }, {
+      key: "renderClearButton",
+      value: function renderClearButton() {
+        var _this$props2 = this.props,
           components = _this$props2.components,
           shouldAllowLineBreaks = _this$props2.shouldAllowLineBreaks,
           errors = _this$props2.errors,
           hasBeenValidated = _this$props2.hasBeenValidated,
           iconClearAccessibilityText = _this$props2.iconClearAccessibilityText;
 
-      var _ref2 = components || {},
+        var _ref2 = components || {},
           iconClear = _ref2.iconClear;
 
-      var value = this.state.value;
-      if (!iconClear) return null;
+        var value = this.state.value;
+        if (!iconClear) return null;
 
-      if (shouldAllowLineBreaks) {
-        return React.createElement(TextareaClearButton, {
+        if (shouldAllowLineBreaks) {
+          return React.createElement(TextareaClearButton, {
+            onClick: this.onClearValue,
+            onFocus: this.onButtonFocus,
+            onBlur: this.onButtonBlur,
+            tabIndex: -1
+          }, iconClear, React.createElement("span", null, t(iconClearAccessibilityText)));
+        }
+
+        return React.createElement(IconWrapper, {
+          errors: errors,
+          hasBeenValidated: hasBeenValidated,
+          isTextarea: shouldAllowLineBreaks,
+          value: value
+        }, React.createElement(ClearButton, {
           onClick: this.onClearValue,
           onFocus: this.onButtonFocus,
           onBlur: this.onButtonBlur,
           tabIndex: -1
-        }, iconClear, React.createElement("span", null, t(iconClearAccessibilityText)));
+        }, iconClear, React.createElement("span", null, t(iconClearAccessibilityText))));
       }
-
-      return React.createElement(IconWrapper, {
-        errors: errors,
-        hasBeenValidated: hasBeenValidated,
-        isTextarea: shouldAllowLineBreaks,
-        value: value
-      }, React.createElement(ClearButton, {
-        onClick: this.onClearValue,
-        onFocus: this.onButtonFocus,
-        onBlur: this.onButtonBlur,
-        tabIndex: -1
-      }, iconClear, React.createElement("span", null, t(iconClearAccessibilityText))));
-    }
-  }, {
-    key: "renderIcon",
-    value: function renderIcon() {
-      var _this$props3 = this.props,
+    }, {
+      key: "renderIcon",
+      value: function renderIcon() {
+        var _this$props3 = this.props,
           components = _this$props3.components,
           errors = _this$props3.errors,
           hasBeenValidated = _this$props3.hasBeenValidated,
@@ -355,34 +355,34 @@ function (_Component) {
           onIconClick = _this$props3.onIconClick,
           shouldAllowLineBreaks = _this$props3.shouldAllowLineBreaks;
 
-      var _ref3 = components || {},
+        var _ref3 = components || {},
           iconValid = _ref3.iconValid,
           iconError = _ref3.iconError;
 
-      var value = this.state.value;
-      var inputIcon;
+        var value = this.state.value;
+        var inputIcon;
 
-      if (errors && errors.length) {
-        inputIcon = iconError;
-      } else if (hasBeenValidated && value && value.length) {
-        inputIcon = iconValid;
-      } else {
-        inputIcon = icon;
+        if (errors && errors.length) {
+          inputIcon = iconError;
+        } else if (hasBeenValidated && value && value.length) {
+          inputIcon = iconValid;
+        } else {
+          inputIcon = icon;
+        }
+
+        if (!inputIcon) return null;
+        return React.createElement(IconWrapper, {
+          errors: errors,
+          hasBeenValidated: hasBeenValidated,
+          onClick: onIconClick,
+          isTextarea: shouldAllowLineBreaks,
+          value: value
+        }, inputIcon);
       }
-
-      if (!inputIcon) return null;
-      return React.createElement(IconWrapper, {
-        errors: errors,
-        hasBeenValidated: hasBeenValidated,
-        onClick: onIconClick,
-        isTextarea: shouldAllowLineBreaks,
-        value: value
-      }, inputIcon);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props4 = this.props,
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props4 = this.props,
           className = _this$props4.className,
           errors = _this$props4.errors,
           hasBeenValidated = _this$props4.hasBeenValidated,
@@ -394,22 +394,46 @@ function (_Component) {
           placeholder = _this$props4.placeholder,
           shouldAllowLineBreaks = _this$props4.shouldAllowLineBreaks,
           type = _this$props4.type;
-      var _this$state3 = this.state,
+        var _this$state3 = this.state,
           isButtonFocused = _this$state3.isButtonFocused,
           isInputFocused = _this$state3.isInputFocused,
           value = _this$state3.value;
 
-      if (shouldAllowLineBreaks) {
-        // Same as "input" but without `onKeyPress` and `type` props.
-        // We don"t support rows; use style to set height instead
-        return React.createElement("div", {
-          style: {
-            position: "relative"
-          }
-        }, React.createElement(StyledTextarea, {
+        if (shouldAllowLineBreaks) {
+          // Same as "input" but without `onKeyPress` and `type` props.
+          // We don"t support rows; use style to set height instead
+          return React.createElement("div", {
+            style: {
+              position: "relative"
+            }
+          }, React.createElement(StyledTextarea, {
+            className: className,
+            errors: errors,
+            fieldIsDirty: this.isDirty(),
+            hasBeenValidated: hasBeenValidated,
+            id: id,
+            isOnDarkBackground: isOnDarkBackground,
+            maxLength: maxLength,
+            name: name,
+            onBlur: this.onInputBlur,
+            onChange: this.onChange,
+            onFocus: this.onInputFocus,
+            placeholder: placeholder,
+            readOnly: isReadOnly,
+            value: value
+          }), this.showClearButton() ? this.renderClearButton() : null);
+        }
+
+        return React.createElement(InputWrapper, {
+          errors: errors,
+          hasBeenValidated: hasBeenValidated,
+          isButtonFocused: isButtonFocused,
+          isInputFocused: isInputFocused,
+          isOnDarkBackground: isOnDarkBackground,
+          value: value
+        }, React.createElement(StyledInput, {
           className: className,
           errors: errors,
-          fieldIsDirty: this.isDirty(),
           hasBeenValidated: hasBeenValidated,
           id: id,
           isOnDarkBackground: isOnDarkBackground,
@@ -418,41 +442,17 @@ function (_Component) {
           onBlur: this.onInputBlur,
           onChange: this.onChange,
           onFocus: this.onInputFocus,
+          onKeyPress: this.onKeyPress,
           placeholder: placeholder,
           readOnly: isReadOnly,
+          type: type,
           value: value
-        }), this.showClearButton() ? this.renderClearButton() : null);
+        }), this.showClearButton() ? this.renderClearButton() : this.renderIcon());
       }
+    }]);
 
-      return React.createElement(InputWrapper, {
-        errors: errors,
-        hasBeenValidated: hasBeenValidated,
-        isButtonFocused: isButtonFocused,
-        isInputFocused: isInputFocused,
-        isOnDarkBackground: isOnDarkBackground,
-        value: value
-      }, React.createElement(StyledInput, {
-        className: className,
-        errors: errors,
-        hasBeenValidated: hasBeenValidated,
-        id: id,
-        isOnDarkBackground: isOnDarkBackground,
-        maxLength: maxLength,
-        name: name,
-        onBlur: this.onInputBlur,
-        onChange: this.onChange,
-        onFocus: this.onInputFocus,
-        onKeyPress: this.onKeyPress,
-        placeholder: placeholder,
-        readOnly: isReadOnly,
-        type: type,
-        value: value
-      }), this.showClearButton() ? this.renderClearButton() : this.renderIcon());
-    }
-  }]);
-
-  return TextInput;
-}(Component);
+    return TextInput;
+  }(Component);
 
 TextInput.isFormInput = true;
 TextInput.propTypes = {
@@ -592,10 +592,10 @@ TextInput.defaultProps = {
   iconClearAccessibilityText: "Clear",
   isOnDarkBackground: false,
   isReadOnly: false,
-  onChange: function onChange() {},
-  onChanging: function onChanging() {},
-  onIconClick: function onIconClick() {},
-  onSubmit: function onSubmit() {},
+  onChange: function onChange() { },
+  onChanging: function onChanging() { },
+  onIconClick: function onIconClick() { },
+  onSubmit: function onSubmit() { },
   shouldAllowLineBreaks: false,
   shouldConvertEmptyStringToNull: true,
   shouldTrimValue: true,

@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -66,75 +66,75 @@ var ItemRemoveButton = styled.button.withConfig({
 })(["", " align-self:flex-start;background-color:transparent;border:none;color:", ";cursor:pointer;display:table;flex:0 1 auto;margin-bottom:", ";margin-left:0;margin-right:0;margin-top:", ";padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;width:auto;&:focus,&:hover{color:", ";}"], addTypographyStyles("CartItemRemoveButton", "labelText"), applyTheme("CartItem.removeButtonColor"), applyTheme("CartItem.removeButtonSpacingBelow"), applyTheme("CartItem.removeButtonSpacingAbove"), applyTheme("CartItem.removeButtonColor_focus"));
 
 var CartItem =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CartItem, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CartItem, _Component);
 
-  function CartItem() {
-    var _getPrototypeOf2;
+    function CartItem() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, CartItem);
+      _classCallCheck(this, CartItem);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CartItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      isProcessing: false
-    };
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CartItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        isProcessing: false
+      };
 
-    _this.handleChangeCartItemQuantity = function (value) {
-      var _this$props = _this.props,
+      _this.handleChangeCartItemQuantity = function (value) {
+        var _this$props = _this.props,
           onChangeCartItemQuantity = _this$props.onChangeCartItemQuantity,
           _id = _this$props.item._id;
-      onChangeCartItemQuantity(value, _id);
-    };
+        onChangeCartItemQuantity(value, _id);
+      };
 
-    _this.handleRemoveItemFromCart = function () {
-      var _this$props2 = _this.props,
+      _this.handleRemoveItemFromCart = function () {
+        var _this$props2 = _this.props,
           onRemoveItemFromCart = _this$props2.onRemoveItemFromCart,
           _id = _this$props2.item._id;
-      onRemoveItemFromCart(_id);
-    };
+        onRemoveItemFromCart(_id);
+      };
 
-    return _this;
-  }
+      return _this;
+    }
 
-  _createClass(CartItem, [{
-    key: "renderImage",
-    value: function renderImage() {
-      var _this$props3 = this.props,
+    _createClass(CartItem, [{
+      key: "renderImage",
+      value: function renderImage() {
+        var _this$props3 = this.props,
           isMiniCart = _this$props3.isMiniCart,
           _this$props3$item = _this$props3.item,
           imageURLs = _this$props3$item.imageURLs,
           productSlug = _this$props3$item.productSlug,
           productURLPath = _this$props3.productURLPath;
 
-      var _ref2 = imageURLs || {},
+        var _ref2 = imageURLs || {},
           small = _ref2.small,
           thumbnail = _ref2.thumbnail;
 
-      if (!small || !thumbnail) return null;
-      return React.createElement("a", {
-        href: [productURLPath, productSlug].join("")
-      }, React.createElement("picture", null, isMiniCart ? "" : React.createElement("source", {
-        srcSet: small,
-        media: "(min-width: 768px)"
-      }), React.createElement("img", {
-        src: thumbnail,
-        alt: "",
-        style: {
-          display: "block"
-        }
-      })));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props4 = this.props,
+        if (!small || !thumbnail) return null;
+        return React.createElement("a", {
+          href: [productURLPath, productSlug].join("")
+        }, React.createElement("picture", null, isMiniCart ? "" : React.createElement("source", {
+          srcSet: small,
+          media: "(min-width: 768px)"
+        }), React.createElement("img", {
+          src: thumbnail,
+          alt: "",
+          style: {
+            display: "block"
+          }
+        })));
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props4 = this.props,
           className = _this$props4.className,
           components = _this$props4.components,
           isMiniCart = _this$props4.isMiniCart,
@@ -152,54 +152,54 @@ function (_Component) {
           displayPrice = _this$props4$item.price.displayAmount,
           subtotal = _this$props4$item.subtotal;
 
-      var _ref3 = subtotal || {},
+        var _ref3 = subtotal || {},
           displaySubtotal = _ref3.displayAmount;
 
-      var _ref4 = compareAtPrice || {},
+        var _ref4 = compareAtPrice || {},
           displayCompareAtPrice = _ref4.displayAmount;
 
-      var _ref5 = components || {},
+        var _ref5 = components || {},
           CartItemDetail = _ref5.CartItemDetail,
           Price = _ref5.Price,
           QuantityInput = _ref5.QuantityInput,
           StockWarning = _ref5.StockWarning;
 
-      return React.createElement(Item, {
-        className: className
-      }, this.renderImage(), React.createElement(ItemContent, null, React.createElement(ItemContentDetail, null, React.createElement(ItemContentDetailInner, null, React.createElement(ItemContentDetailInfo, {
-        isMiniCart: isMiniCart
-      }, React.createElement(CartItemDetail, {
-        attributes: attributes,
-        isMiniCart: isMiniCart,
-        productURLPath: productURLPath,
-        productSlug: productSlug,
-        productVendor: productVendor,
-        quantity: isReadOnly ? quantity : null,
-        title: title
-      }), React.createElement(StockWarning, {
-        inventoryQuantity: currentQuantity,
-        isLowInventoryQuantity: isLowQuantity
-      })), !isReadOnly && React.createElement(ItemContentQuantityInput, {
-        isMiniCart: isMiniCart
-      }, React.createElement(QuantityInput, {
-        value: quantity,
-        onChange: this.handleChangeCartItemQuantity
-      }))), !isReadOnly && React.createElement(ItemRemoveButton, {
-        onClick: this.handleRemoveItemFromCart
-      }, "Remove"))), React.createElement(ItemContentPrice, {
-        isMiniCart: isMiniCart
-      }, React.createElement(Price, {
-        displayPrice: displayPrice,
-        displayCompareAtPrice: displayCompareAtPrice,
-        hasPriceBottom: isMiniCart
-      }), quantity !== 1 ? React.createElement(ItemContentSubtotal, {
-        isMiniCart: isMiniCart
-      }, React.createElement(ItemContentSubtotalTitle, null, "Total (", quantity, "):"), React.createElement(ItemContentSubtotalDisplay, null, displaySubtotal)) : null));
-    }
-  }]);
+        return React.createElement(Item, {
+          className: className
+        }, this.renderImage(), React.createElement(ItemContent, null, React.createElement(ItemContentDetail, null, React.createElement(ItemContentDetailInner, null, React.createElement(ItemContentDetailInfo, {
+          isMiniCart: isMiniCart
+        }, React.createElement(CartItemDetail, {
+          attributes: attributes,
+          isMiniCart: isMiniCart,
+          productURLPath: productURLPath,
+          productSlug: productSlug,
+          productVendor: productVendor,
+          quantity: isReadOnly ? quantity : null,
+          title: title
+        }), React.createElement(StockWarning, {
+          inventoryQuantity: currentQuantity,
+          isLowInventoryQuantity: isLowQuantity
+        })), !isReadOnly && React.createElement(ItemContentQuantityInput, {
+          isMiniCart: isMiniCart
+        }, React.createElement(QuantityInput, {
+          value: quantity,
+          onChange: this.handleChangeCartItemQuantity
+        }))), !isReadOnly && React.createElement(ItemRemoveButton, {
+          onClick: this.handleRemoveItemFromCart
+        }, "Remove"))), React.createElement(ItemContentPrice, {
+          isMiniCart: isMiniCart
+        }, React.createElement(Price, {
+          displayPrice: displayPrice,
+          displayCompareAtPrice: displayCompareAtPrice,
+          hasPriceBottom: isMiniCart
+        }), quantity !== 1 ? React.createElement(ItemContentSubtotal, {
+          isMiniCart: isMiniCart
+        }, React.createElement(ItemContentSubtotalTitle, null, "Total (", quantity, "):"), React.createElement(ItemContentSubtotalDisplay, null, displaySubtotal)) : null));
+      }
+    }]);
 
-  return CartItem;
-}(Component);
+    return CartItem;
+  }(Component);
 
 CartItem.propTypes = {
   /**
@@ -352,7 +352,7 @@ CartItem.propTypes = {
 CartItem.defaultProps = {
   isMiniCart: false,
   isReadOnly: false,
-  onChangeCartItemQuantity: function onChangeCartItemQuantity() {},
-  onRemoveItemFromCart: function onRemoveItemFromCart() {}
+  onChangeCartItemQuantity: function onChangeCartItemQuantity() { },
+  onRemoveItemFromCart: function onRemoveItemFromCart() { }
 };
 export default i18n.withTranslation()(withComponents(CartItem)); // auto-add i18n

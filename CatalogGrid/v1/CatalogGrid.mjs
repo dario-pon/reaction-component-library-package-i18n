@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import { ContainerQuery } from "react-container-query";
 import styled from "styled-components";
@@ -22,8 +22,8 @@ var GridItem = styled.div.withConfig({
 })(["box-sizing:border-box;flex-basis:100%;flex-grow:0;margin:0;max-width:100%;padding:12px;", ""], function (_ref) {
   var containerParams = _ref.containerParams;
   var is2PerRowWidth = containerParams.is2PerRowWidth,
-      is3PerRowWidth = containerParams.is3PerRowWidth,
-      is4PerRowWidth = containerParams.is4PerRowWidth;
+    is3PerRowWidth = containerParams.is3PerRowWidth,
+    is4PerRowWidth = containerParams.is4PerRowWidth;
 
   if (is2PerRowWidth) {
     return "\n        max-width: 50%;\n        flex-basis: 50%;\n      ";
@@ -37,54 +37,54 @@ var GridItem = styled.div.withConfig({
 });
 
 var CatalogGrid =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CatalogGrid, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CatalogGrid, _Component);
 
-  function CatalogGrid() {
-    var _getPrototypeOf2;
+    function CatalogGrid() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, CatalogGrid);
+      _classCallCheck(this, CatalogGrid);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CatalogGrid)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.handleOnClick = preventAccidentalDoubleClick(function (event, product) {
+        _this.props.onItemClick(event, product);
+      });
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CatalogGrid)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.handleOnClick = preventAccidentalDoubleClick(function (event, product) {
-      _this.props.onItemClick(event, product);
-    });
-    return _this;
-  }
+    _createClass(CatalogGrid, [{
+      key: "getContainerQueries",
+      value: function getContainerQueries() {
+        var threePerRowMinWidth = applyTheme("CatalogGrid.threePerRowMinWidth")(this.props);
+        var fourPerRowMinWidth = applyTheme("CatalogGrid.fourPerRowMinWidth")(this.props);
+        return {
+          is2PerRowWidth: {
+            minWidth: 450,
+            // Min width that item w/ 2 badges renders appropriately
+            maxWidth: threePerRowMinWidth - 1
+          },
+          is3PerRowWidth: {
+            minWidth: threePerRowMinWidth,
+            maxWidth: fourPerRowMinWidth - 1
+          },
+          is4PerRowWidth: {
+            minWidth: fourPerRowMinWidth
+          }
+        };
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this2 = this;
 
-  _createClass(CatalogGrid, [{
-    key: "getContainerQueries",
-    value: function getContainerQueries() {
-      var threePerRowMinWidth = applyTheme("CatalogGrid.threePerRowMinWidth")(this.props);
-      var fourPerRowMinWidth = applyTheme("CatalogGrid.fourPerRowMinWidth")(this.props);
-      return {
-        is2PerRowWidth: {
-          minWidth: 450,
-          // Min width that item w/ 2 badges renders appropriately
-          maxWidth: threePerRowMinWidth - 1
-        },
-        is3PerRowWidth: {
-          minWidth: threePerRowMinWidth,
-          maxWidth: fourPerRowMinWidth - 1
-        },
-        is4PerRowWidth: {
-          minWidth: fourPerRowMinWidth
-        }
-      };
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _this$props = this.props,
+        var _this$props = this.props,
           badgeLabels = _this$props.badgeLabels,
           className = _this$props.className,
           CatalogGridItem = _this$props.components.CatalogGridItem,
@@ -93,35 +93,35 @@ function (_Component) {
           onItemClick = _this$props.onItemClick,
           placeholderImageURL = _this$props.placeholderImageURL,
           products = _this$props.products;
-      var gridItemProps = {
-        currencyCode: currencyCode,
-        placeholderImageURL: placeholderImageURL,
-        onClick: onItemClick
-      };
+        var gridItemProps = {
+          currencyCode: currencyCode,
+          placeholderImageURL: placeholderImageURL,
+          onClick: onItemClick
+        };
 
-      if (badgeLabels) {
-        gridItemProps.badgeLabels = badgeLabels;
+        if (badgeLabels) {
+          gridItemProps.badgeLabels = badgeLabels;
+        }
+
+        return React.createElement(ContainerQuery, {
+          className: className,
+          query: this.getContainerQueries(),
+          initialSize: initialSize
+        }, function (params) {
+          return React.createElement(GridContainer, null, products.map(function (product, index) {
+            return React.createElement(GridItem, _extends({
+              containerParams: params,
+              key: "grid-item-".concat(index)
+            }, _this2.props), React.createElement(CatalogGridItem, _extends({
+              product: product
+            }, gridItemProps)));
+          }));
+        });
       }
+    }]);
 
-      return React.createElement(ContainerQuery, {
-        className: className,
-        query: this.getContainerQueries(),
-        initialSize: initialSize
-      }, function (params) {
-        return React.createElement(GridContainer, null, products.map(function (product, index) {
-          return React.createElement(GridItem, _extends({
-            containerParams: params,
-            key: "grid-item-".concat(index)
-          }, _this2.props), React.createElement(CatalogGridItem, _extends({
-            product: product
-          }, gridItemProps)));
-        }));
-      });
-    }
-  }]);
-
-  return CatalogGrid;
-}(Component);
+    return CatalogGrid;
+  }(Component);
 
 CatalogGrid.propTypes = {
   /**
@@ -187,7 +187,7 @@ CatalogGrid.defaultProps = {
   initialSize: {
     width: 325
   },
-  onItemClick: function onItemClick() {},
+  onItemClick: function onItemClick() { },
   placeholderImageURL: "/resources/placeholder.gif",
   products: []
 };

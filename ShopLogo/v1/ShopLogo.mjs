@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -19,34 +19,34 @@ var Logo = styled.img.withConfig({
 })(["height:", ";"], applyTheme("ShopLogo.height"));
 
 var ShopLogo =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(ShopLogo, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(ShopLogo, _Component);
 
-  function ShopLogo() {
-    _classCallCheck(this, ShopLogo);
+    function ShopLogo() {
+      _classCallCheck(this, ShopLogo);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ShopLogo).apply(this, arguments));
-  }
+      return _possibleConstructorReturn(this, _getPrototypeOf(ShopLogo).apply(this, arguments));
+    }
 
-  _createClass(ShopLogo, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(ShopLogo, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           className = _this$props.className,
           shopLogoUrl = _this$props.shopLogoUrl,
           shopName = _this$props.shopName;
-      return React.createElement(Container, {
-        className: className
-      }, shopLogoUrl ? React.createElement(Logo, {
-        src: shopLogoUrl,
-        alt: shopName
-      }) : shopName);
-    }
-  }]);
+        return React.createElement(Container, {
+          className: className
+        }, shopLogoUrl ? React.createElement(Logo, {
+          src: shopLogoUrl,
+          alt: shopName
+        }) : shopName);
+      }
+    }]);
 
-  return ShopLogo;
-}(Component);
+    return ShopLogo;
+  }(Component);
 
 ShopLogo.propTypes = {
   /**

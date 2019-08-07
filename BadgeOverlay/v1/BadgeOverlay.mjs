@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -59,106 +59,106 @@ var BadgeLabel = styled.span.withConfig({
 })(["", " padding:0;position:relative;white-space:nowrap;"], addTypographyStyles("BadgeOverlayBadgeLabel", "labelText"));
 
 var BadgeOverlay =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(BadgeOverlay, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(BadgeOverlay, _Component);
 
-  function BadgeOverlay() {
-    var _getPrototypeOf2;
+    function BadgeOverlay() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, BadgeOverlay);
+      _classCallCheck(this, BadgeOverlay);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BadgeOverlay)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(BadgeOverlay)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _this.renderBadges = function () {
-      var _this$props = _this.props,
+      _this.renderBadges = function () {
+        var _this$props = _this.props,
           badgeLabels = _this$props.badgeLabels,
           filterOnly = _this$props.filterOnly,
           product = _this$props.product,
           shouldShowPrimaryOnly = _this$props.shouldShowPrimaryOnly;
-      var status = badgeStatus(product, badgeLabels);
-      if (!status) return null;
-      var type = status.type,
+        var status = badgeStatus(product, badgeLabels);
+        if (!status) return null;
+        var type = status.type,
           label = status.label;
 
-      if (filterOnly) {
-        if (type === filterOnly) {
+        if (filterOnly) {
+          if (type === filterOnly) {
+            return _this.renderPrimaryBadge(type, label);
+          }
+
+          return null;
+        } // If status type is "BACKORDER" or "SOLD_OUT", only show primary badge
+
+
+        if (type === BADGE_TYPES.BACKORDER || type === BADGE_TYPES.SOLD_OUT || shouldShowPrimaryOnly) {
           return _this.renderPrimaryBadge(type, label);
-        }
-
-        return null;
-      } // If status type is "BACKORDER" or "SOLD_OUT", only show primary badge
+        } // If any other status, check to see if secondary badges are needed
 
 
-      if (type === BADGE_TYPES.BACKORDER || type === BADGE_TYPES.SOLD_OUT || shouldShowPrimaryOnly) {
-        return _this.renderPrimaryBadge(type, label);
-      } // If any other status, check to see if secondary badges are needed
+        return React.createElement(Fragment, null, _this.renderPrimaryBadge(type, label), _this.renderSecondaryBadgeIfNeeded(status.type));
+      };
 
+      _this.renderPrimaryBadge = function (type, label) {
+        return React.createElement(PrimaryBadge, {
+          type: type
+        }, React.createElement(BadgeLabel, null, label));
+      };
 
-      return React.createElement(Fragment, null, _this.renderPrimaryBadge(type, label), _this.renderSecondaryBadgeIfNeeded(status.type));
-    };
-
-    _this.renderPrimaryBadge = function (type, label) {
-      return React.createElement(PrimaryBadge, {
-        type: type
-      }, React.createElement(BadgeLabel, null, label));
-    };
-
-    _this.renderSecondaryBadgeIfNeeded = function (primaryBadgeType) {
-      var _this$props2 = _this.props,
+      _this.renderSecondaryBadgeIfNeeded = function (primaryBadgeType) {
+        var _this$props2 = _this.props,
           badgeLabels = _this$props2.badgeLabels,
           product = _this$props2.product;
 
-      if (primaryBadgeType === BADGE_TYPES.SALE) {
-        if (isProductLowQuantity(product)) {
-          return _this.renderSecondaryBadge(badgeLabels.LOW_QUANTITY);
+        if (primaryBadgeType === BADGE_TYPES.SALE) {
+          if (isProductLowQuantity(product)) {
+            return _this.renderSecondaryBadge(badgeLabels.LOW_QUANTITY);
+          }
+
+          if (isProductBestseller(product)) {
+            return _this.renderSecondaryBadge(badgeLabels.BESTSELLER);
+          }
         }
 
-        if (isProductBestseller(product)) {
-          return _this.renderSecondaryBadge(badgeLabels.BESTSELLER);
+        if (primaryBadgeType === BADGE_TYPES.LOW_QUANTITY) {
+          if (isProductBestseller(product)) {
+            return _this.renderSecondaryBadge(badgeLabels.BESTSELLER);
+          }
         }
-      }
 
-      if (primaryBadgeType === BADGE_TYPES.LOW_QUANTITY) {
-        if (isProductBestseller(product)) {
-          return _this.renderSecondaryBadge(badgeLabels.BESTSELLER);
-        }
-      }
+        return null;
+      };
 
-      return null;
-    };
+      _this.renderSecondaryBadge = function (label) {
+        return React.createElement(SecondaryBadge, null, React.createElement(BadgeLabel, null, label));
+      };
 
-    _this.renderSecondaryBadge = function (label) {
-      return React.createElement(SecondaryBadge, null, React.createElement(BadgeLabel, null, label));
-    };
+      return _this;
+    }
 
-    return _this;
-  }
-
-  _createClass(BadgeOverlay, [{
-    key: "render",
-    value: function render() {
-      var _this$props3 = this.props,
+    _createClass(BadgeOverlay, [{
+      key: "render",
+      value: function render() {
+        var _this$props3 = this.props,
           className = _this$props3.className,
           badgeLabels = _this$props3.badgeLabels,
           children = _this$props3.children,
           product = _this$props3.product;
-      var status = badgeStatus(product, badgeLabels) || {};
-      return React.createElement(Overlay, {
-        className: className,
-        isFaded: status.type === BADGE_TYPES.SOLD_OUT
-      }, this.renderBadges(), children);
-    }
-  }]);
+        var status = badgeStatus(product, badgeLabels) || {};
+        return React.createElement(Overlay, {
+          className: className,
+          isFaded: status.type === BADGE_TYPES.SOLD_OUT
+        }, this.renderBadges(), children);
+      }
+    }]);
 
-  return BadgeOverlay;
-}(Component);
+    return BadgeOverlay;
+  }(Component);
 
 BadgeOverlay.propTypes = {
   /**

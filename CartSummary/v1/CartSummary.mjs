@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -81,39 +81,39 @@ var Total = styled.span.withConfig({
 })(["", ""], addTypographyStyles("CartSummaryTotal", "subheadingTextBold"));
 
 var CartSummary =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CartSummary, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CartSummary, _Component);
 
-  function CartSummary() {
-    _classCallCheck(this, CartSummary);
+    function CartSummary() {
+      _classCallCheck(this, CartSummary);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CartSummary).apply(this, arguments));
-  }
-
-  _createClass(CartSummary, [{
-    key: "renderHeader",
-    value: function renderHeader() {
-      var itemsQuantity = this.props.itemsQuantity;
-      var itemsLabel = itemsQuantity >= 0 ? "".concat(itemsQuantity, " items") : null;
-      return React.createElement("thead", null, React.createElement("tr", null, React.createElement(Th, null, React.createElement(Title, null, "Cart Summary")), React.createElement(Thr, null, itemsLabel)));
+      return _possibleConstructorReturn(this, _getPrototypeOf(CartSummary).apply(this, arguments));
     }
-  }, {
-    key: "renderDiscount",
-    value: function renderDiscount() {
-      var _this$props = this.props,
+
+    _createClass(CartSummary, [{
+      key: "renderHeader",
+      value: function renderHeader() {
+        var itemsQuantity = this.props.itemsQuantity;
+        var itemsLabel = itemsQuantity >= 0 ? "".concat(itemsQuantity, " items") : null;
+        return React.createElement("thead", null, React.createElement("tr", null, React.createElement(Th, null, React.createElement(Title, null, "Cart Summary")), React.createElement(Thr, null, itemsLabel)));
+      }
+    }, {
+      key: "renderDiscount",
+      value: function renderDiscount() {
+        var _this$props = this.props,
           displayDiscount = _this$props.displayDiscount,
           isDense = _this$props.isDense;
-      return React.createElement("tr", null, React.createElement(Td, {
-        isDense: isDense
-      }, "Promo code applied:"), React.createElement(TdValue, {
-        isDense: isDense
-      }, React.createElement(Discount, null, displayDiscount)));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
+        return React.createElement("tr", null, React.createElement(Td, {
+          isDense: isDense
+        }, "Promo code applied:"), React.createElement(TdValue, {
+          isDense: isDense
+        }, React.createElement(Discount, null, displayDiscount)));
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props2 = this.props,
           className = _this$props2.className,
           displayDiscount = _this$props2.displayDiscount,
           displayShipping = _this$props2.displayShipping,
@@ -124,42 +124,42 @@ function (_Component) {
           isDense = _this$props2.isDense,
           isFreeShipping = _this$props2.isFreeShipping; // Use "-" to indicate we are still calculating this field.
 
-      var shipping = (isFreeShipping ? "FREE" : displayShipping) || "-";
-      var tax = displayTax || "-";
-      var header = !isDense && this.renderHeader();
-      var discount = displayDiscount && this.renderDiscount();
-      var surcharge = displaySurcharge || "-";
-      return React.createElement(Table, {
-        className: className,
-        isDense: isDense
-      }, header, React.createElement("tbody", null, React.createElement("tr", null, React.createElement(Td, {
-        isDense: isDense
-      }, "Items:"), React.createElement(TdValue, {
-        isDense: isDense
-      }, displaySubtotal)), React.createElement("tr", null, React.createElement(Td, {
-        isDense: isDense
-      }, "Shipping:"), React.createElement(TdValue, {
-        isDense: isDense
-      }, shipping)), discount, React.createElement("tr", null, React.createElement(Td, {
-        isDense: isDense
-      }, "Surcharges:"), React.createElement(TdValue, {
-        isDense: isDense
-      }, surcharge)), React.createElement("tr", null, React.createElement(TdTax, {
-        isDense: isDense
-      }, "Tax:"), React.createElement(TdTaxValue, {
-        isDense: isDense
-      }, tax)), React.createElement("tr", null, React.createElement(TdTotal, {
-        isDense: isDense,
-        isBordered: true
-      }, "Order total:"), React.createElement(TdTotalValue, {
-        isDense: isDense,
-        isBordered: true
-      }, React.createElement(Total, null, displayTotal)))));
-    }
-  }]);
+        var shipping = (isFreeShipping ? "FREE" : displayShipping) || "-";
+        var tax = displayTax || "-";
+        var header = !isDense && this.renderHeader();
+        var discount = displayDiscount && this.renderDiscount();
+        var surcharge = displaySurcharge || "-";
+        return React.createElement(Table, {
+          className: className,
+          isDense: isDense
+        }, header, React.createElement("tbody", null, React.createElement("tr", null, React.createElement(Td, {
+          isDense: isDense
+        }, "Items:"), React.createElement(TdValue, {
+          isDense: isDense
+        }, displaySubtotal)), React.createElement("tr", null, React.createElement(Td, {
+          isDense: isDense
+        }, "Shipping:"), React.createElement(TdValue, {
+          isDense: isDense
+        }, shipping)), discount, React.createElement("tr", null, React.createElement(Td, {
+          isDense: isDense
+        }, "Surcharges:"), React.createElement(TdValue, {
+          isDense: isDense
+        }, surcharge)), React.createElement("tr", null, React.createElement(TdTax, {
+          isDense: isDense
+        }, "Tax:"), React.createElement(TdTaxValue, {
+          isDense: isDense
+        }, tax)), React.createElement("tr", null, React.createElement(TdTotal, {
+          isDense: isDense,
+          isBordered: true
+        }, "Order total:"), React.createElement(TdTotalValue, {
+          isDense: isDense,
+          isBordered: true
+        }, React.createElement(Total, null, displayTotal)))));
+      }
+    }]);
 
-  return CartSummary;
-}(Component);
+    return CartSummary;
+  }(Component);
 
 CartSummary.propTypes = {
   /**

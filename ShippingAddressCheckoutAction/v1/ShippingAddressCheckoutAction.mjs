@@ -9,7 +9,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import isEqual from "lodash.isequal";
@@ -47,180 +47,180 @@ var FORM_ERRORS = [{
 }];
 
 var ShippingAddressCheckoutAction =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(ShippingAddressCheckoutAction, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(ShippingAddressCheckoutAction, _Component);
 
-  function ShippingAddressCheckoutAction() {
-    var _getPrototypeOf2;
+    function ShippingAddressCheckoutAction() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, ShippingAddressCheckoutAction);
+      _classCallCheck(this, ShippingAddressCheckoutAction);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ShippingAddressCheckoutAction)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      status: !_this.hasShippingAddressOnCart && _this.hasValidationResults ? REVIEW : ENTRY,
-      formErrors: _this.hasValidationResults ? FORM_ERRORS : []
-    };
-    _this._form = null;
-
-    _this.isFormFilled = function (values) {
-      return Object.keys(values).every(function (key) {
-        return key === "address2" || key === "company" ? true : values[key] !== null;
-      });
-    };
-
-    _this.submit = function () {
-      _this._form.submit();
-    };
-
-    _this.ready = function () {
-      var onReadyForSaveChange = _this.props.onReadyForSaveChange;
-      onReadyForSaveChange(true);
-    };
-
-    _this.handleChange = function (values) {
-      var formErrors = _this.state.formErrors;
-      if (formErrors.length) _this.setFormErrors = [];
-      if (_this.isFormFilled(values)) _this.ready();
-    };
-
-    return _this;
-  }
-
-  _createClass(ShippingAddressCheckoutAction, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.inReview) this.ready();
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(_ref) {
-      var prevValidationResults = _ref.addressValidationResults;
-      var addressValidationResults = this.props.addressValidationResults;
-
-      if (!isEqual(prevValidationResults, addressValidationResults) && this.hasValidationResults) {
-        this.setFormErrors = FORM_ERRORS;
-        this.toggleStatus = EDIT;
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
       }
-    }
-  }, {
-    key: "renderAddressCapture",
-    value: function renderAddressCapture() {
-      var _this2 = this;
 
-      var _this$props = this.props,
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ShippingAddressCheckoutAction)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        status: !_this.hasShippingAddressOnCart && _this.hasValidationResults ? REVIEW : ENTRY,
+        formErrors: _this.hasValidationResults ? FORM_ERRORS : []
+      };
+      _this._form = null;
+
+      _this.isFormFilled = function (values) {
+        return Object.keys(values).every(function (key) {
+          return key === "address2" || key === "company" ? true : values[key] !== null;
+        });
+      };
+
+      _this.submit = function () {
+        _this._form.submit();
+      };
+
+      _this.ready = function () {
+        var onReadyForSaveChange = _this.props.onReadyForSaveChange;
+        onReadyForSaveChange(true);
+      };
+
+      _this.handleChange = function (values) {
+        var formErrors = _this.state.formErrors;
+        if (formErrors.length) _this.setFormErrors = [];
+        if (_this.isFormFilled(values)) _this.ready();
+      };
+
+      return _this;
+    }
+
+    _createClass(ShippingAddressCheckoutAction, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        if (this.inReview) this.ready();
+      }
+    }, {
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(_ref) {
+        var prevValidationResults = _ref.addressValidationResults;
+        var addressValidationResults = this.props.addressValidationResults;
+
+        if (!isEqual(prevValidationResults, addressValidationResults) && this.hasValidationResults) {
+          this.setFormErrors = FORM_ERRORS;
+          this.toggleStatus = EDIT;
+        }
+      }
+    }, {
+      key: "renderAddressCapture",
+      value: function renderAddressCapture() {
+        var _this2 = this;
+
+        var _this$props = this.props,
           addressValidationResults = _this$props.addressValidationResults,
           AddressCapture = _this$props.components.AddressCapture,
           isSaving = _this$props.isSaving,
           onSubmit = _this$props.onSubmit,
           onAddressValidation = _this$props.onAddressValidation;
-      var formErrors = this.state.formErrors;
-      var captureProps = {
-        addressFormProps: {
-          onChange: this.handleChange,
-          shouldShowIsCommercialField: true,
-          value: this.inEdit ? this.getSubmittedAddress : this.getShippingAddress,
-          errors: formErrors
-        },
-        addressReviewProps: {
-          addressEntered: this.getSubmittedAddress,
-          addressSuggestion: this.hasValidationResults ? addressValidationResults.suggestedAddresses[0] : null,
-          validationError: this.hasValidationResults ? addressValidationResults.validationErrors[0] : null
-        },
-        isSaving: isSaving,
-        onAddressValidation: onAddressValidation,
-        onSubmit: onSubmit
-      };
-      return React.createElement(AddressCapture, _extends({
-        ref: function ref(formEl) {
-          _this2._form = formEl;
-        }
-      }, captureProps));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
+        var formErrors = this.state.formErrors;
+        var captureProps = {
+          addressFormProps: {
+            onChange: this.handleChange,
+            shouldShowIsCommercialField: true,
+            value: this.inEdit ? this.getSubmittedAddress : this.getShippingAddress,
+            errors: formErrors
+          },
+          addressReviewProps: {
+            addressEntered: this.getSubmittedAddress,
+            addressSuggestion: this.hasValidationResults ? addressValidationResults.suggestedAddresses[0] : null,
+            validationError: this.hasValidationResults ? addressValidationResults.validationErrors[0] : null
+          },
+          isSaving: isSaving,
+          onAddressValidation: onAddressValidation,
+          onSubmit: onSubmit
+        };
+        return React.createElement(AddressCapture, _extends({
+          ref: function ref(formEl) {
+            _this2._form = formEl;
+          }
+        }, captureProps));
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props2 = this.props,
           alert = _this$props2.alert,
           InlineAlert = _this$props2.components.InlineAlert,
           label = _this$props2.label,
           stepNumber = _this$props2.stepNumber;
-      return React.createElement(Fragment, null, React.createElement(Title, null, stepNumber, ". ", label), alert ? React.createElement(InlineAlert, alert) : "", this.renderAddressCapture());
-    }
-  }, {
-    key: "hasShippingAddressOnCart",
-    get: function get() {
-      var fulfillmentGroup = this.props.fulfillmentGroup;
-      return !!(fulfillmentGroup && fulfillmentGroup.data.shippingAddress);
-    }
-  }, {
-    key: "hasValidationResults",
-    get: function get() {
-      var addressValidationResults = this.props.addressValidationResults;
-      return !!(addressValidationResults && addressValidationResults.validationErrors.length);
-    }
-  }, {
-    key: "getSubmittedAddress",
-    get: function get() {
-      if (!this.hasValidationResults) return null;
-      var submittedAddress = this.props.addressValidationResults.submittedAddress;
-      return submittedAddress;
-    }
-  }, {
-    key: "getShippingAddress",
-    get: function get() {
-      if (!this.hasShippingAddressOnCart) return null;
-      var shippingAddress = this.props.fulfillmentGroup.data.shippingAddress;
-      return shippingAddress;
-    }
-  }, {
-    key: "inEntry",
-    get: function get() {
-      var status = this.state.status;
-      return status === ENTRY;
-    }
-  }, {
-    key: "inEdit",
-    get: function get() {
-      var status = this.state.status;
-      return status === EDIT;
-    }
-  }, {
-    key: "inReview",
-    get: function get() {
-      var status = this.state.status;
-      return status === REVIEW;
-    }
-  }, {
-    key: "toggleStatus",
-    set: function set(status) {
-      this.setState({
-        status: status
-      });
-    }
-  }, {
-    key: "setFormErrors",
-    set: function set(formErrors) {
-      this.setState({
-        formErrors: formErrors
-      });
-    }
-  }], [{
-    key: "renderComplete",
-    value: function renderComplete(_ref2) {
-      var shippingAddress = _ref2.fulfillmentGroup.data.shippingAddress;
-      return React.createElement(Address, null, shippingAddress.fullName, React.createElement("br", null), shippingAddress.address1, React.createElement("br", null), shippingAddress.address2 !== null && shippingAddress.address2 !== "" ? React.createElement("span", null, shippingAddress.address2, " ", React.createElement("br", null)) : null, shippingAddress.city, ", ", shippingAddress.region, " ", shippingAddress.postal, " ", React.createElement("br", null), shippingAddress.country);
-    }
-  }]);
+        return React.createElement(Fragment, null, React.createElement(Title, null, stepNumber, ". ", label), alert ? React.createElement(InlineAlert, alert) : "", this.renderAddressCapture());
+      }
+    }, {
+      key: "hasShippingAddressOnCart",
+      get: function get() {
+        var fulfillmentGroup = this.props.fulfillmentGroup;
+        return !!(fulfillmentGroup && fulfillmentGroup.data.shippingAddress);
+      }
+    }, {
+      key: "hasValidationResults",
+      get: function get() {
+        var addressValidationResults = this.props.addressValidationResults;
+        return !!(addressValidationResults && addressValidationResults.validationErrors.length);
+      }
+    }, {
+      key: "getSubmittedAddress",
+      get: function get() {
+        if (!this.hasValidationResults) return null;
+        var submittedAddress = this.props.addressValidationResults.submittedAddress;
+        return submittedAddress;
+      }
+    }, {
+      key: "getShippingAddress",
+      get: function get() {
+        if (!this.hasShippingAddressOnCart) return null;
+        var shippingAddress = this.props.fulfillmentGroup.data.shippingAddress;
+        return shippingAddress;
+      }
+    }, {
+      key: "inEntry",
+      get: function get() {
+        var status = this.state.status;
+        return status === ENTRY;
+      }
+    }, {
+      key: "inEdit",
+      get: function get() {
+        var status = this.state.status;
+        return status === EDIT;
+      }
+    }, {
+      key: "inReview",
+      get: function get() {
+        var status = this.state.status;
+        return status === REVIEW;
+      }
+    }, {
+      key: "toggleStatus",
+      set: function set(status) {
+        this.setState({
+          status: status
+        });
+      }
+    }, {
+      key: "setFormErrors",
+      set: function set(formErrors) {
+        this.setState({
+          formErrors: formErrors
+        });
+      }
+    }], [{
+      key: "renderComplete",
+      value: function renderComplete(_ref2) {
+        var shippingAddress = _ref2.fulfillmentGroup.data.shippingAddress;
+        return React.createElement(Address, null, shippingAddress.fullName, React.createElement("br", null), shippingAddress.address1, React.createElement("br", null), shippingAddress.address2 !== null && shippingAddress.address2 !== "" ? React.createElement("span", null, shippingAddress.address2, " ", React.createElement("br", null)) : null, shippingAddress.city, ", ", shippingAddress.region, " ", shippingAddress.postal, " ", React.createElement("br", null), shippingAddress.country);
+      }
+    }]);
 
-  return ShippingAddressCheckoutAction;
-}(Component);
+    return ShippingAddressCheckoutAction;
+  }(Component);
 
 ShippingAddressCheckoutAction.propTypes = {
   /**
@@ -299,6 +299,6 @@ ShippingAddressCheckoutAction.propTypes = {
 };
 ShippingAddressCheckoutAction.defaultProps = {
   isSaving: false,
-  onReadyForSaveChange: function onReadyForSaveChange() {}
+  onReadyForSaveChange: function onReadyForSaveChange() { }
 };
 export default i18n.withTranslation()(withComponents(ShippingAddressCheckoutAction)); // auto-add i18n

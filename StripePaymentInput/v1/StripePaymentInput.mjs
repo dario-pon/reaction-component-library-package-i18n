@@ -8,7 +8,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import { withComponents } from "@reactioncommerce/components-context";
 import styled from "styled-components";
@@ -27,106 +27,106 @@ var Span = styled.span.withConfig({
 })(["vertical-align:super;"]);
 
 var StripePaymentInput =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(StripePaymentInput, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(StripePaymentInput, _Component);
 
-  function StripePaymentInput() {
-    var _getPrototypeOf2;
+    function StripePaymentInput() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, StripePaymentInput);
+      _classCallCheck(this, StripePaymentInput);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(StripePaymentInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _this.handleChangeReadyState = function (isReady) {
-      var onReadyForSaveChange = _this.props.onReadyForSaveChange;
-
-      if (isReady !== _this.lastIsReady) {
-        onReadyForSaveChange(isReady);
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
       }
 
-      _this.lastIsReady = isReady;
-    };
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(StripePaymentInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    return _this;
-  }
+      _this.handleChangeReadyState = function (isReady) {
+        var onReadyForSaveChange = _this.props.onReadyForSaveChange;
 
-  _createClass(StripePaymentInput, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var onReadyForSaveChange = this.props.onReadyForSaveChange;
-      onReadyForSaveChange(false);
+        if (isReady !== _this.lastIsReady) {
+          onReadyForSaveChange(isReady);
+        }
+
+        _this.lastIsReady = isReady;
+      };
+
+      return _this;
     }
-  }, {
-    key: "submit",
-    value: function () {
-      var _submit = _asyncToGenerator(
-      /*#__PURE__*/
-      _regeneratorRuntime.mark(function _callee() {
-        var onSubmit, _ref, token;
 
-        return _regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                onSubmit = this.props.onSubmit;
-                _context.next = 3;
-                return this._stripe.createToken();
-
-              case 3:
-                _ref = _context.sent;
-                token = _ref.token;
-                _context.next = 7;
-                return onSubmit({
-                  displayName: "".concat(token.card.brand, " ending in ").concat(token.card.last4),
-                  data: {
-                    stripeTokenId: token.id
-                  }
-                });
-
-              case 7:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function submit() {
-        return _submit.apply(this, arguments);
+    _createClass(StripePaymentInput, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var onReadyForSaveChange = this.props.onReadyForSaveChange;
+        onReadyForSaveChange(false);
       }
+    }, {
+      key: "submit",
+      value: function () {
+        var _submit = _asyncToGenerator(
+          /*#__PURE__*/
+          _regeneratorRuntime.mark(function _callee() {
+            var onSubmit, _ref, token;
 
-      return submit;
-    }()
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
+            return _regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    onSubmit = this.props.onSubmit;
+                    _context.next = 3;
+                    return this._stripe.createToken();
 
-      var _this$props = this.props,
+                  case 3:
+                    _ref = _context.sent;
+                    token = _ref.token;
+                    _context.next = 7;
+                    return onSubmit({
+                      displayName: "".concat(token.card.brand, " ending in ").concat(token.card.last4),
+                      data: {
+                        stripeTokenId: token.id
+                      }
+                    });
+
+                  case 7:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+        function submit() {
+          return _submit.apply(this, arguments);
+        }
+
+        return submit;
+      }()
+    }, {
+      key: "render",
+      value: function render() {
+        var _this2 = this;
+
+        var _this$props = this.props,
           className = _this$props.className,
           _this$props$component = _this$props.components,
           iconLock = _this$props$component.iconLock,
           StripeForm = _this$props$component.StripeForm;
-      return React.createElement("div", {
-        className: className
-      }, React.createElement(StripeForm, {
-        isComplete: this.handleChangeReadyState,
-        stripeRef: function stripeRef(stripe) {
-          _this2._stripe = stripe;
-        }
-      }), React.createElement(SecureCaption, null, React.createElement(IconLockSpan, null, iconLock), " ", React.createElement(Span, null, "Your Information is private and secure.")));
-    }
-  }]);
+        return React.createElement("div", {
+          className: className
+        }, React.createElement(StripeForm, {
+          isComplete: this.handleChangeReadyState,
+          stripeRef: function stripeRef(stripe) {
+            _this2._stripe = stripe;
+          }
+        }), React.createElement(SecureCaption, null, React.createElement(IconLockSpan, null, iconLock), " ", React.createElement(Span, null, "Your Information is private and secure.")));
+      }
+    }]);
 
-  return StripePaymentInput;
-}(Component);
+    return StripePaymentInput;
+  }(Component);
 
 StripePaymentInput.propTypes = {
   /**
@@ -177,7 +177,7 @@ StripePaymentInput.propTypes = {
   onSubmit: PropTypes.func
 };
 StripePaymentInput.defaultProps = {
-  onReadyForSaveChange: function onReadyForSaveChange() {},
-  onSubmit: function onSubmit() {}
+  onReadyForSaveChange: function onReadyForSaveChange() { },
+  onSubmit: function onSubmit() { }
 };
 export default i18n.withTranslation()(withComponents(StripePaymentInput)); // auto-add i18n

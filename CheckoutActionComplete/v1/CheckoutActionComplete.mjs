@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -28,53 +28,53 @@ var ActionButton = styled.div.withConfig({
 })(["display:flex;flex:1 0 auto;justify-content:flex-end;order:3;@media (max-width:959px){flex:0 0 50%;margin-bottom:", ";order:2;}"], applyTheme("CheckoutActionComplete.mobileMargin"));
 
 var CheckoutActionComplete =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CheckoutActionComplete, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CheckoutActionComplete, _Component);
 
-  function CheckoutActionComplete() {
-    var _getPrototypeOf2;
+    function CheckoutActionComplete() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, CheckoutActionComplete);
+      _classCallCheck(this, CheckoutActionComplete);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CheckoutActionComplete)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+      _this.handleOnChange = function () {
+        return _this.props.onClickChangeButton();
+      };
+
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CheckoutActionComplete)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _this.handleOnChange = function () {
-      return _this.props.onClickChangeButton();
-    };
-
-    return _this;
-  }
-
-  _createClass(CheckoutActionComplete, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(CheckoutActionComplete, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           className = _this$props.className,
           Button = _this$props.components.Button,
           content = _this$props.content,
           label = _this$props.label,
           stepNumber = _this$props.stepNumber;
-      var step = stepNumber ? React.createElement(Fragment, null, stepNumber, ".\xA0") : null;
-      return React.createElement(ActionContainer, {
-        className: className
-      }, React.createElement(ActionTitle, null, step, label), React.createElement(ActionDetail, null, content), React.createElement(ActionButton, null, React.createElement(Button, {
-        actionType: "important",
-        onClick: this.handleOnChange,
-        isShortHeight: true,
-        isTextOnly: true
-      }, "Change")));
-    }
-  }]);
+        var step = stepNumber ? React.createElement(Fragment, null, stepNumber, ".\xA0") : null;
+        return React.createElement(ActionContainer, {
+          className: className
+        }, React.createElement(ActionTitle, null, step, label), React.createElement(ActionDetail, null, content), React.createElement(ActionButton, null, React.createElement(Button, {
+          actionType: "important",
+          onClick: this.handleOnChange,
+          isShortHeight: true,
+          isTextOnly: true
+        }, "Change")));
+      }
+    }]);
 
-  return CheckoutActionComplete;
-}(Component);
+    return CheckoutActionComplete;
+  }(Component);
 
 CheckoutActionComplete.propTypes = {
   /**

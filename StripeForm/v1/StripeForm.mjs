@@ -7,7 +7,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import { CardNumberElement, CardExpiryElement, CardCVCElement, PostalCodeElement, injectStripe } from "react-stripe-elements";
 import styled from "styled-components";
@@ -54,140 +54,140 @@ var FlexContainer = styled.div.withConfig({
 })(["display:flex;"]);
 
 var StripeForm =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(StripeForm, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(StripeForm, _Component);
 
-  function StripeForm() {
-    var _getPrototypeOf2;
+    function StripeForm() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, StripeForm);
+      _classCallCheck(this, StripeForm);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(StripeForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      cardNumberComplete: false,
-      cardNumberIsFocused: false,
-      cardExpiryComplete: false,
-      cardExpiryIsFocused: false,
-      cardCvcComplete: false,
-      cardCvcIsFocused: false,
-      postalCodeComplete: false,
-      postalCodeIsFocused: false
-    };
-
-    _this.componentDidUpdate = function () {
-      if (_this.props.stripe) {
-        _this.props.stripeRef(_this.props.stripe);
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
       }
-    };
 
-    _this.handleOnFocus = function (event) {
-      _this.setState(_defineProperty({}, "".concat(event.elementType, "IsFocused"), true));
-    };
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(StripeForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        cardNumberComplete: false,
+        cardNumberIsFocused: false,
+        cardExpiryComplete: false,
+        cardExpiryIsFocused: false,
+        cardCvcComplete: false,
+        cardCvcIsFocused: false,
+        postalCodeComplete: false,
+        postalCodeIsFocused: false
+      };
 
-    _this.handleOnBlur = function (event) {
-      _this.setState(_defineProperty({}, "".concat(event.elementType, "IsFocused"), false));
-    };
+      _this.componentDidUpdate = function () {
+        if (_this.props.stripe) {
+          _this.props.stripeRef(_this.props.stripe);
+        }
+      };
 
-    _this.handleOnChange = function (event) {
-      var complete = event.complete,
+      _this.handleOnFocus = function (event) {
+        _this.setState(_defineProperty({}, "".concat(event.elementType, "IsFocused"), true));
+      };
+
+      _this.handleOnBlur = function (event) {
+        _this.setState(_defineProperty({}, "".concat(event.elementType, "IsFocused"), false));
+      };
+
+      _this.handleOnChange = function (event) {
+        var complete = event.complete,
           elementType = event.elementType;
 
-      _this.setState(_defineProperty({}, "".concat(elementType, "Complete"), complete), _this.isComplete);
-    };
+        _this.setState(_defineProperty({}, "".concat(elementType, "Complete"), complete), _this.isComplete);
+      };
 
-    _this.isComplete = function () {
-      var _this$state = _this.state,
+      _this.isComplete = function () {
+        var _this$state = _this.state,
           cardNumberComplete = _this$state.cardNumberComplete,
           cardExpiryComplete = _this$state.cardExpiryComplete,
           cardCvcComplete = _this$state.cardCvcComplete,
           postalCodeComplete = _this$state.postalCodeComplete; // console.log("isComplete", this.state);
 
-      if (cardNumberComplete && cardExpiryComplete && cardCvcComplete && postalCodeComplete) {
-        _this.props.isComplete(true);
-      } else {
-        _this.props.isComplete(false);
-      }
-    };
+        if (cardNumberComplete && cardExpiryComplete && cardCvcComplete && postalCodeComplete) {
+          _this.props.isComplete(true);
+        } else {
+          _this.props.isComplete(false);
+        }
+      };
 
-    _this.renderIcons = function (ccIcons) {
-      return React.createElement("div", null, ccIcons.map(function (icon, index) {
-        return React.createElement(Span, {
-          key: index
-        }, icon);
-      }));
-    };
+      _this.renderIcons = function (ccIcons) {
+        return React.createElement("div", null, ccIcons.map(function (icon, index) {
+          return React.createElement(Span, {
+            key: index
+          }, icon);
+        }));
+      };
 
-    return _this;
-  }
+      return _this;
+    }
 
-  _createClass(StripeForm, [{
-    key: "render",
-    value: function render() {
-      var ccIcons = [this.props.components.iconVisa, this.props.components.iconAmericanExpress, this.props.components.iconMastercard, this.props.components.iconDiscover];
-      var _this$props = this.props,
+    _createClass(StripeForm, [{
+      key: "render",
+      value: function render() {
+        var ccIcons = [this.props.components.iconVisa, this.props.components.iconAmericanExpress, this.props.components.iconMastercard, this.props.components.iconDiscover];
+        var _this$props = this.props,
           cardNumberPlaceholder = _this$props.cardNumberPlaceholder,
           cardExpiryPlaceholder = _this$props.cardExpiryPlaceholder,
           cardCvcPlaceholder = _this$props.cardCvcPlaceholder,
           postalCodePlaceholder = _this$props.postalCodePlaceholder;
-      var _this$state2 = this.state,
+        var _this$state2 = this.state,
           cardNumberIsFocused = _this$state2.cardNumberIsFocused,
           cardExpiryIsFocused = _this$state2.cardExpiryIsFocused,
           cardCvcIsFocused = _this$state2.cardCvcIsFocused,
           postalCodeIsFocused = _this$state2.postalCodeIsFocused;
-      var commonProps = {
-        style: {
-          base: {
-            "fontSize": applyTheme("Input.fontSize")(this.props),
-            "color": applyTheme("Input.color_default")(this.props),
-            "fontFamily": applyTheme("Input.fontFamily")(this.props),
-            "::placeholder": {
-              color: applyTheme("Input.placeholderColor")(this.props)
+        var commonProps = {
+          style: {
+            base: {
+              "fontSize": applyTheme("Input.fontSize")(this.props),
+              "color": applyTheme("Input.color_default")(this.props),
+              "fontFamily": applyTheme("Input.fontFamily")(this.props),
+              "::placeholder": {
+                color: applyTheme("Input.placeholderColor")(this.props)
+              }
             }
+          },
+          onFocus: this.handleOnFocus,
+          onBlur: this.handleOnBlur
+        };
+        return React.createElement(Fragment, null, React.createElement(AcceptedPaymentMethods, null, this.renderIcons(ccIcons)), React.createElement(Field, {
+          isFocused: cardNumberIsFocused
+        }, React.createElement(CardNumberElement, _extends({
+          onChange: this.handleOnChange,
+          placeholder: cardNumberPlaceholder
+        }, commonProps))), React.createElement(FlexContainer, null, React.createElement(Field, {
+          isFocused: cardExpiryIsFocused,
+          style: {
+            flexGrow: 1,
+            marginRight: "1rem"
           }
-        },
-        onFocus: this.handleOnFocus,
-        onBlur: this.handleOnBlur
-      };
-      return React.createElement(Fragment, null, React.createElement(AcceptedPaymentMethods, null, this.renderIcons(ccIcons)), React.createElement(Field, {
-        isFocused: cardNumberIsFocused
-      }, React.createElement(CardNumberElement, _extends({
-        onChange: this.handleOnChange,
-        placeholder: cardNumberPlaceholder
-      }, commonProps))), React.createElement(FlexContainer, null, React.createElement(Field, {
-        isFocused: cardExpiryIsFocused,
-        style: {
-          flexGrow: 1,
-          marginRight: "1rem"
-        }
-      }, React.createElement(CardExpiryElement, _extends({
-        onChange: this.handleOnChange,
-        placeholder: cardExpiryPlaceholder
-      }, commonProps))), React.createElement(Field, {
-        isFocused: cardCvcIsFocused,
-        style: {
-          flexGrow: 1
-        }
-      }, React.createElement(CardCVCElement, _extends({
-        onChange: this.handleOnChange,
-        placeholder: cardCvcPlaceholder
-      }, commonProps)))), React.createElement(Field, {
-        isFocused: postalCodeIsFocused
-      }, React.createElement(PostalCodeElement, _extends({
-        onChange: this.handleOnChange,
-        placeholder: postalCodePlaceholder
-      }, commonProps))));
-    }
-  }]);
+        }, React.createElement(CardExpiryElement, _extends({
+          onChange: this.handleOnChange,
+          placeholder: cardExpiryPlaceholder
+        }, commonProps))), React.createElement(Field, {
+          isFocused: cardCvcIsFocused,
+          style: {
+            flexGrow: 1
+          }
+        }, React.createElement(CardCVCElement, _extends({
+          onChange: this.handleOnChange,
+          placeholder: cardCvcPlaceholder
+        }, commonProps)))), React.createElement(Field, {
+          isFocused: postalCodeIsFocused
+        }, React.createElement(PostalCodeElement, _extends({
+          onChange: this.handleOnChange,
+          placeholder: postalCodePlaceholder
+        }, commonProps))));
+      }
+    }]);
 
-  return StripeForm;
-}(Component); // We should be using `withTheme` here, but it seems to cause serious errors in the
+    return StripeForm;
+  }(Component); // We should be using `withTheme` here, but it seems to cause serious errors in the
 // deployed app, and does not work anyway. Need to investigate why `withComponents`
 // works and does not cause errors but `withTheme` does not work. It is surely
 // something related to the iframes that Stripe uses.

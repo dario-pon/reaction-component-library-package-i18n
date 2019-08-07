@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -20,47 +20,47 @@ var EmptyMessage = styled.div.withConfig({
 })(["", " display:flex;justify-content:center;margin-bottom:", ";"], addTypographyStyles("CartEmptyMessage", "bodyText"), applyTheme("CartEmptyMessage.textToButtonSpacing"));
 
 var CartEmptyMessage =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CartEmptyMessage, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CartEmptyMessage, _Component);
 
-  function CartEmptyMessage() {
-    var _getPrototypeOf2;
+    function CartEmptyMessage() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, CartEmptyMessage);
+      _classCallCheck(this, CartEmptyMessage);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CartEmptyMessage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+      _this.handleOnClick = function () {
+        _this.props.onClick();
+      };
+
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CartEmptyMessage)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _this.handleOnClick = function () {
-      _this.props.onClick();
-    };
-
-    return _this;
-  }
-
-  _createClass(CartEmptyMessage, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(CartEmptyMessage, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           buttonText = _this$props.buttonText,
           components = _this$props.components,
           messageText = _this$props.messageText;
-      var Button = components.Button;
-      return React.createElement(Fragment, null, React.createElement(EmptyMessage, null, t(messageText)), React.createElement(EmptyButton, null, React.createElement(Button, {
-        actionType: "important",
-        onClick: this.handleOnClick
-      }, t(buttonText))));
-    }
-  }]);
+        var Button = components.Button;
+        return React.createElement(Fragment, null, React.createElement(EmptyMessage, null, t(messageText)), React.createElement(EmptyButton, null, React.createElement(Button, {
+          actionType: "important",
+          onClick: this.handleOnClick
+        }, t(buttonText))));
+      }
+    }]);
 
-  return CartEmptyMessage;
-}(Component);
+    return CartEmptyMessage;
+  }(Component);
 
 CartEmptyMessage.propTypes = {
   /**

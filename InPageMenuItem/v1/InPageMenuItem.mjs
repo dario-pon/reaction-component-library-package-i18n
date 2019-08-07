@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -30,39 +30,39 @@ var InPageMenuItemIcon = styled.span.withConfig({
 })(["display:flex;flex:0 0 auto;height:", ";margin:0;width:", ";svg{height:", ";transform:rotateZ(270deg);width:", ";}"], applyTheme("InPageMenuItemIcon.height"), applyTheme("InPageMenuItemIcon.width"), applyTheme("InPageMenuItemIcon.height"), applyTheme("InPageMenuItemIcon.width"));
 
 var InPageMenuItem =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(InPageMenuItem, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(InPageMenuItem, _Component);
 
-  function InPageMenuItem() {
-    var _getPrototypeOf2;
+    function InPageMenuItem() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, InPageMenuItem);
+      _classCallCheck(this, InPageMenuItem);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(InPageMenuItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.handleClick = preventAccidentalDoubleClick(function (event) {
-      event.preventDefault();
-      var onClick = _this.props.onClick;
-
-      if (onClick) {
-        return onClick();
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
       }
 
-      return null;
-    });
-    return _this;
-  }
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(InPageMenuItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.handleClick = preventAccidentalDoubleClick(function (event) {
+        event.preventDefault();
+        var onClick = _this.props.onClick;
 
-  _createClass(InPageMenuItem, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+        if (onClick) {
+          return onClick();
+        }
+
+        return null;
+      });
+      return _this;
+    }
+
+    _createClass(InPageMenuItem, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           className = _this$props.className,
           _this$props$component = _this$props.components,
           iconExpand = _this$props$component.iconExpand,
@@ -70,18 +70,18 @@ function (_Component) {
           href = _this$props.href,
           isSelected = _this$props.isSelected,
           label = _this$props.label;
-      return React.createElement(Link, {
-        href: href,
-        onClick: this.handleClick
-      }, React.createElement(InPageMenuItemContainer, {
-        className: className,
-        isSelected: isSelected
-      }, React.createElement(InPageMenuItemText, null, label), React.createElement(InPageMenuItemIcon, null, iconExpand)));
-    }
-  }]);
+        return React.createElement(Link, {
+          href: href,
+          onClick: this.handleClick
+        }, React.createElement(InPageMenuItemContainer, {
+          className: className,
+          isSelected: isSelected
+        }, React.createElement(InPageMenuItemText, null, label), React.createElement(InPageMenuItemIcon, null, iconExpand)));
+      }
+    }]);
 
-  return InPageMenuItem;
-}(Component);
+    return InPageMenuItem;
+  }(Component);
 
 InPageMenuItem.propTypes = {
   /**

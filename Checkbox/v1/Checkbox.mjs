@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import uniqueId from "lodash.uniqueid";
 import styled from "styled-components";
@@ -41,109 +41,109 @@ var StyledLabel = styled.label.withConfig({
 })(["", " display:inline-block;line-height:", ";padding-left:", ";position:relative;&:hover{cursor:pointer;}&::before,&::after{position:absolute;}&::before{content:\" \";border-color:", ";border-radius:", ";border-style:solid;border-width:", ";box-sizing:border-box;display:inline-block;height:", ";left:", ";top:", ";width:", ";}"], addTypographyStyles("CheckboxLabel", "labelText"), applyTheme("Checkbox.size"), applyTheme("Checkbox.labelSpacing"), applyTheme("Checkbox.borderColor"), applyTheme("Checkbox.borderRadius"), applyTheme("Checkbox.borderWidth"), applyTheme("Checkbox.size"), applyTheme("Checkbox.leftSpacing"), applyTheme("Checkbox.topSpacing"), applyTheme("Checkbox.size"));
 
 var Checkbox =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Checkbox, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(Checkbox, _Component);
 
-  function Checkbox(props) {
-    var _this;
+    function Checkbox(props) {
+      var _this;
 
-    _classCallCheck(this, Checkbox);
+      _classCallCheck(this, Checkbox);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Checkbox).call(this, props));
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(Checkbox).call(this, props));
 
-    _this.onChange = function (event) {
-      _this.setValue(event.target.checked);
-    };
+      _this.onChange = function (event) {
+        _this.setValue(event.target.checked);
+      };
 
-    _this.state = {
-      id: uniqueId("Checkbox_"),
-      value: props.value || false
-    };
-    return _this;
-  }
-
-  _createClass(Checkbox, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.handleChange(this.props.value || false);
+      _this.state = {
+        id: uniqueId("Checkbox_"),
+        value: props.value || false
+      };
+      return _this;
     }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      var value = this.props.value;
-      var nextValue = nextProps.value; // Whenever a changed value prop comes in, we reset state to that, thus becoming clean.
 
-      if (value !== nextValue) {
-        this.setState({
-          value: nextValue || false
-        });
-        this.handleChange(nextValue || false);
+    _createClass(Checkbox, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        this.handleChange(this.props.value || false);
       }
-    }
-  }, {
-    key: "getValue",
-    value: function getValue() {
-      return this.state.value;
-    }
-  }, {
-    key: "setValue",
-    value: function setValue(value) {
-      this.setState({
-        value: value
-      });
-      this.handleChange(value);
-    }
-  }, {
-    key: "resetValue",
-    value: function resetValue() {
-      this.setValue(this.props.value || false);
-    }
-  }, {
-    key: "handleChange",
-    value: function handleChange(checked) {
-      if (this.lastValue === checked) return;
-      this.lastValue = checked;
-      var _this$props = this.props,
+    }, {
+      key: "componentWillReceiveProps",
+      value: function componentWillReceiveProps(nextProps) {
+        var value = this.props.value;
+        var nextValue = nextProps.value; // Whenever a changed value prop comes in, we reset state to that, thus becoming clean.
+
+        if (value !== nextValue) {
+          this.setState({
+            value: nextValue || false
+          });
+          this.handleChange(nextValue || false);
+        }
+      }
+    }, {
+      key: "getValue",
+      value: function getValue() {
+        return this.state.value;
+      }
+    }, {
+      key: "setValue",
+      value: function setValue(value) {
+        this.setState({
+          value: value
+        });
+        this.handleChange(value);
+      }
+    }, {
+      key: "resetValue",
+      value: function resetValue() {
+        this.setValue(this.props.value || false);
+      }
+    }, {
+      key: "handleChange",
+      value: function handleChange(checked) {
+        if (this.lastValue === checked) return;
+        this.lastValue = checked;
+        var _this$props = this.props,
           onChanging = _this$props.onChanging,
           onChange = _this$props.onChange;
-      onChanging(checked);
-      onChange(checked);
-    } // Input is dirty if value prop doesn't match value state. Whenever a changed
-    // value prop comes in, we reset state to that, thus becoming clean.
+        onChanging(checked);
+        onChange(checked);
+      } // Input is dirty if value prop doesn't match value state. Whenever a changed
+      // value prop comes in, we reset state to that, thus becoming clean.
 
-  }, {
-    key: "isDirty",
-    value: function isDirty() {
-      return this.state.value !== this.props.value;
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
+    }, {
+      key: "isDirty",
+      value: function isDirty() {
+        return this.state.value !== this.props.value;
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props2 = this.props,
           className = _this$props2.className,
           isReadOnly = _this$props2.isReadOnly,
           label = _this$props2.label;
-      var _this$state = this.state,
+        var _this$state = this.state,
           id = _this$state.id,
           value = _this$state.value;
-      return React.createElement(StyledDiv, {
-        className: className
-      }, React.createElement(StyledInput, {
-        checked: value === true,
-        id: id,
-        onChange: this.onChange,
-        disabled: isReadOnly,
-        type: "checkbox",
-        value: "true"
-      }), React.createElement(StyledLabel, {
-        htmlFor: id
-      }, label));
-    }
-  }]);
+        return React.createElement(StyledDiv, {
+          className: className
+        }, React.createElement(StyledInput, {
+          checked: value === true,
+          id: id,
+          onChange: this.onChange,
+          disabled: isReadOnly,
+          type: "checkbox",
+          value: "true"
+        }), React.createElement(StyledLabel, {
+          htmlFor: id
+        }, label));
+      }
+    }]);
 
-  return Checkbox;
-}(Component);
+    return Checkbox;
+  }(Component);
 
 Checkbox.propTypes = {
   /**
@@ -186,8 +186,8 @@ Checkbox.defaultProps = {
   className: undefined,
   isReadOnly: false,
   name: undefined,
-  onChange: function onChange() {},
-  onChanging: function onChanging() {},
+  onChange: function onChange() { },
+  onChanging: function onChanging() { },
   value: undefined
 };
 Checkbox.isFormInput = true;

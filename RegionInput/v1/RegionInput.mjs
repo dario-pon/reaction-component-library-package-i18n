@@ -7,26 +7,26 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import { withComponents } from "@reactioncommerce/components-context";
 import { CustomPropTypes } from "../../utils";
 
 var RegionInput =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(RegionInput, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(RegionInput, _Component);
 
-  function RegionInput() {
-    _classCallCheck(this, RegionInput);
+    function RegionInput() {
+      _classCallCheck(this, RegionInput);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(RegionInput).apply(this, arguments));
-  }
+      return _possibleConstructorReturn(this, _getPrototypeOf(RegionInput).apply(this, arguments));
+    }
 
-  _createClass(RegionInput, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(RegionInput, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           className = _this$props.className,
           _this$props$component = _this$props.components,
           Select = _this$props$component.Select,
@@ -35,21 +35,21 @@ function (_Component) {
           value = _this$props.value,
           props = _objectWithoutProperties(_this$props, ["className", "components", "options", "value"]);
 
-      return React.createElement(Fragment, null, options && options.length > 1 ? React.createElement(Select, _extends({
-        className: className,
-        alphabetize: true,
-        isSearchable: true,
-        options: options,
-        value: value
-      }, props)) : React.createElement(TextInput, _extends({
-        className: className,
-        value: value
-      }, props)));
-    }
-  }]);
+        return React.createElement(Fragment, null, options && options.length > 1 ? React.createElement(Select, _extends({
+          className: className,
+          alphabetize: true,
+          isSearchable: true,
+          options: options,
+          value: value
+        }, props)) : React.createElement(TextInput, _extends({
+          className: className,
+          value: value
+        }, props)));
+      }
+    }]);
 
-  return RegionInput;
-}(Component);
+    return RegionInput;
+  }(Component);
 
 RegionInput.isFormInput = true;
 RegionInput.propTypes = {

@@ -7,7 +7,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import { withComponents } from "@reactioncommerce/components-context";
 import styled from "styled-components";
@@ -33,41 +33,41 @@ var Items = styled.div.withConfig({
 })(["border-bottom-color:", ";border-bottom-style:solid;border-bottom-width:", ";padding-bottom:", ";padding-left:", ";padding-right:", ";padding-top:", ";"], applyTheme("FinalReviewCheckoutAction.borderColor"), applyTheme("FinalReviewCheckoutAction.borderWidth"), applyTheme("FinalReviewCheckoutAction.itemsWrapperPaddingBottom"), applyTheme("FinalReviewCheckoutAction.itemsWrapperPaddingLeft"), applyTheme("FinalReviewCheckoutAction.itemsWrapperPaddingRight"), applyTheme("FinalReviewCheckoutAction.itemsWrapperPaddingTop"));
 
 var FinalReviewCheckoutAction =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(FinalReviewCheckoutAction, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(FinalReviewCheckoutAction, _Component);
 
-  function FinalReviewCheckoutAction() {
-    var _getPrototypeOf2;
+    function FinalReviewCheckoutAction() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, FinalReviewCheckoutAction);
+      _classCallCheck(this, FinalReviewCheckoutAction);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FinalReviewCheckoutAction)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+      _this.submit = function () {
+        var onSubmit = _this.props.onSubmit;
+        onSubmit();
+      };
+
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(FinalReviewCheckoutAction)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _this.submit = function () {
-      var onSubmit = _this.props.onSubmit;
-      onSubmit();
-    };
-
-    return _this;
-  }
-
-  _createClass(FinalReviewCheckoutAction, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var onReadyForSaveChange = this.props.onReadyForSaveChange;
-      onReadyForSaveChange(true);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(FinalReviewCheckoutAction, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        var onReadyForSaveChange = this.props.onReadyForSaveChange;
+        onReadyForSaveChange(true);
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           _this$props$checkoutS = _this$props.checkoutSummary,
           displayDiscount = _this$props$checkoutS.displayDiscount,
           displayShipping = _this$props$checkoutS.displayShipping,
@@ -83,23 +83,23 @@ function (_Component) {
           stepNumber = _this$props.stepNumber,
           props = _objectWithoutProperties(_this$props, ["checkoutSummary", "components", "label", "stepNumber"]);
 
-      return React.createElement(Fragment, null, React.createElement(Title, null, stepNumber, ". ", label), React.createElement(Summary, null, React.createElement(Items, null, React.createElement(CartItems, _extends({
-        isReadOnly: true,
-        items: items
-      }, props))), React.createElement(CartSummaryWrapper, null, React.createElement(CartSummary, {
-        isDense: true,
-        displayDiscount: displayDiscount,
-        displayShipping: displayShipping,
-        displaySubtotal: displaySubtotal,
-        displaySurcharge: displaySurcharge,
-        displayTax: displayTax,
-        displayTotal: displayTotal
-      }))));
-    }
-  }]);
+        return React.createElement(Fragment, null, React.createElement(Title, null, stepNumber, ". ", label), React.createElement(Summary, null, React.createElement(Items, null, React.createElement(CartItems, _extends({
+          isReadOnly: true,
+          items: items
+        }, props))), React.createElement(CartSummaryWrapper, null, React.createElement(CartSummary, {
+          isDense: true,
+          displayDiscount: displayDiscount,
+          displayShipping: displayShipping,
+          displaySubtotal: displaySubtotal,
+          displaySurcharge: displaySurcharge,
+          displayTax: displayTax,
+          displayTotal: displayTotal
+        }))));
+      }
+    }]);
 
-  return FinalReviewCheckoutAction;
-}(Component);
+    return FinalReviewCheckoutAction;
+  }(Component);
 
 FinalReviewCheckoutAction.renderComplete = function () {
   return null;
@@ -201,6 +201,6 @@ FinalReviewCheckoutAction.propTypes = {
   stepNumber: PropTypes.number.isRequired
 };
 FinalReviewCheckoutAction.defaultProps = {
-  onReadyForSaveChange: function onReadyForSaveChange() {}
+  onReadyForSaveChange: function onReadyForSaveChange() { }
 };
 export default i18n.withTranslation()(withComponents(FinalReviewCheckoutAction)); // auto-add i18n

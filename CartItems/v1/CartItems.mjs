@@ -7,7 +7,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -18,20 +18,20 @@ var Items = styled.div.withConfig({
 })([""]);
 
 var CartItems =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(CartItems, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(CartItems, _Component);
 
-  function CartItems() {
-    _classCallCheck(this, CartItems);
+    function CartItems() {
+      _classCallCheck(this, CartItems);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CartItems).apply(this, arguments));
-  }
+      return _possibleConstructorReturn(this, _getPrototypeOf(CartItems).apply(this, arguments));
+    }
 
-  _createClass(CartItems, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
+    _createClass(CartItems, [{
+      key: "render",
+      value: function render() {
+        var _this$props = this.props,
           className = _this$props.className,
           items = _this$props.items,
           _this$props$component = _this$props.components,
@@ -39,20 +39,20 @@ function (_Component) {
           components = _objectWithoutProperties(_this$props$component, ["CartItem"]),
           props = _objectWithoutProperties(_this$props, ["className", "items", "components"]);
 
-      return React.createElement(Items, {
-        className: className
-      }, items.map(function (item) {
-        return React.createElement(CartItem, _extends({
-          key: item._id,
-          item: item,
-          components: components
-        }, props));
-      }));
-    }
-  }]);
+        return React.createElement(Items, {
+          className: className
+        }, items.map(function (item) {
+          return React.createElement(CartItem, _extends({
+            key: item._id,
+            item: item,
+            components: components
+          }, props));
+        }));
+      }
+    }]);
 
-  return CartItems;
-}(Component);
+    return CartItems;
+  }(Component);
 
 CartItems.propTypes = {
   /**
@@ -117,7 +117,7 @@ CartItems.propTypes = {
 CartItems.defaultProps = {
   isMiniCart: false,
   isReadOnly: false,
-  onChangeCartItemQuantity: function onChangeCartItemQuantity() {},
-  onRemoveItemFromCart: function onRemoveItemFromCart() {}
+  onChangeCartItemQuantity: function onChangeCartItemQuantity() { },
+  onRemoveItemFromCart: function onRemoveItemFromCart() { }
 };
 export default i18n.withTranslation()(withComponents(CartItems)); // auto-add i18n

@@ -9,7 +9,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import uniqueId from "lodash.uniqueid";
 import isEmpty from "lodash.isempty";
@@ -31,91 +31,91 @@ var ColHalf = styled.div.withConfig({
 })(["flex:1 1 100%;@media (min-width:", "px){flex:0 1 calc(50% - 9px);}"], applyTheme("sm", "breakpoints"));
 
 var AddressForm =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(AddressForm, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(AddressForm, _Component);
 
-  function AddressForm() {
-    var _getPrototypeOf2;
+    function AddressForm() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, AddressForm);
+      _classCallCheck(this, AddressForm);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddressForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        // if the form has a value then try to use the value.country
+        // if that is not set check to see if any locales are provided and use the first one
+        // if no locales use "US"
+        activeCountry: // eslint-disable-next-line
+          _this.props.value && _this.props.value.country !== "" ? _this.props.value.country : isEmpty(_this.props.locales) ? "US" : Object.keys(_this.props.locales)[0]
+      };
+      _this._form = null;
+      _this.uniqueInstanceIdentifier = uniqueId("AddressForm_");
+
+      _this.handleCountryChange = function (country) {
+        if (!country) return;
+
+        _this.setState({
+          activeCountry: country
+        });
+      };
+
+      _this.handleCancel = function () {
+        var onCancel = _this.props.onCancel;
+        onCancel();
+      };
+
+      _this.getValue = function () {
+        return _this._form.getValue();
+      };
+
+      _this.submit = function () {
+        _this._form.submit();
+      };
+
+      _this.validate = function () {
+        return _this._form.validate();
+      };
+
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AddressForm)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      // if the form has a value then try to use the value.country
-      // if that is not set check to see if any locales are provided and use the first one
-      // if no locales use "US"
-      activeCountry: // eslint-disable-next-line
-      _this.props.value && _this.props.value.country !== "" ? _this.props.value.country : isEmpty(_this.props.locales) ? "US" : Object.keys(_this.props.locales)[0]
-    };
-    _this._form = null;
-    _this.uniqueInstanceIdentifier = uniqueId("AddressForm_");
-
-    _this.handleCountryChange = function (country) {
-      if (!country) return;
-
-      _this.setState({
-        activeCountry: country
-      });
-    };
-
-    _this.handleCancel = function () {
-      var onCancel = _this.props.onCancel;
-      onCancel();
-    };
-
-    _this.getValue = function () {
-      return _this._form.getValue();
-    };
-
-    _this.submit = function () {
-      _this._form.submit();
-    };
-
-    _this.validate = function () {
-      return _this._form.validate();
-    };
-
-    return _this;
-  }
-
-  _createClass(AddressForm, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var prevLocales = prevProps.locales;
-      var _this$props = this.props,
+    _createClass(AddressForm, [{
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps) {
+        var prevLocales = prevProps.locales;
+        var _this$props = this.props,
           nextLocales = _this$props.locales,
           nextValue = _this$props.value;
-      var prevCountry = this.state.activeCountry; // Sometimes the AddressForm will render before locales are provided.
-      // This is often the case when dynamically importing locales via a JSON file.
-      // Once the file loads and the locales are provided the form needs to check
-      // and correct the active country.
+        var prevCountry = this.state.activeCountry; // Sometimes the AddressForm will render before locales are provided.
+        // This is often the case when dynamically importing locales via a JSON file.
+        // Once the file loads and the locales are provided the form needs to check
+        // and correct the active country.
 
-      if (isEmpty(prevLocales) && !isEmpty(nextLocales) && prevLocales !== nextLocales) {
-        var nextCountry = Object.keys(nextLocales)[0];
+        if (isEmpty(prevLocales) && !isEmpty(nextLocales) && prevLocales !== nextLocales) {
+          var nextCountry = Object.keys(nextLocales)[0];
 
-        if (nextValue && nextValue.country === prevCountry) {
-          return;
-        } else if (nextCountry !== prevCountry) {
-          // eslint-disable-next-line
-          this.setState({
-            activeCountry: nextCountry
-          });
+          if (nextValue && nextValue.country === prevCountry) {
+            return;
+          } else if (nextCountry !== prevCountry) {
+            // eslint-disable-next-line
+            this.setState({
+              activeCountry: nextCountry
+            });
+          }
         }
       }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
+    }, {
+      key: "render",
+      value: function render() {
+        var _this2 = this;
 
-      var _this$props2 = this.props,
+        var _this$props2 = this.props,
           addressNamePlaceholder = _this$props2.addressNamePlaceholder,
           value = _this$props2.value,
           className = _this$props2.className,
@@ -136,197 +136,197 @@ function (_Component) {
           shouldShowAddressNameField = _this$props2.shouldShowAddressNameField,
           shouldShowIsCommercialField = _this$props2.shouldShowIsCommercialField,
           validator = _this$props2.validator;
-      var addressNameInputId = "addressName_".concat(this.uniqueInstanceIdentifier);
-      var countryInputId = "country_".concat(this.uniqueInstanceIdentifier);
-      var fullNameInputId = "fullName_".concat(this.uniqueInstanceIdentifier);
-      var address1InputId = "address1_".concat(this.uniqueInstanceIdentifier);
-      var address2InputId = "address2_".concat(this.uniqueInstanceIdentifier);
-      var cityInputId = "city_".concat(this.uniqueInstanceIdentifier);
-      var regionInputId = "region_".concat(this.uniqueInstanceIdentifier);
-      var postalInputId = "postal_".concat(this.uniqueInstanceIdentifier);
-      var phoneInputId = "phone_".concat(this.uniqueInstanceIdentifier);
-      var isCommercialInputId = "isCommercial_".concat(this.uniqueInstanceIdentifier);
-      return React.createElement(Form, {
-        className: className,
-        ref: function ref(formEl) {
-          _this2._form = formEl;
-        },
-        errors: errors,
-        name: name,
-        onChange: onChange,
-        onSubmit: this.props.onSubmit,
-        validator: validator,
-        revalidateOn: "changed",
-        value: value
-      }, React.createElement(Grid, null, shouldShowAddressNameField && React.createElement(ColFull, null, React.createElement(Field, {
-        name: "addressName",
-        label: t('Address Name'),
-        labelFor: addressNameInputId,
-        isOptional: true
-      }, React.createElement(TextInput, {
-        id: addressNameInputId,
-        name: "addressName",
-        placeholder: addressNamePlaceholder,
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }))), React.createElement(ColFull, null, React.createElement(Field, {
-        name: "country",
-        label: t('Country'),
-        labelFor: countryInputId,
-        isRequired: true
-      }, this.countryOptions && this.countryOptions.length > 1 ? React.createElement(Select, {
-        id: countryInputId,
-        alphabetize: true,
-        isSearchable: true,
-        name: "country",
-        onChange: this.handleCountryChange,
-        options: this.countryOptions,
-        placeholder: t('Country'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }) : React.createElement(TextInput, {
-        id: countryInputId,
-        name: "country",
-        placeholder: t('Country'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }), React.createElement(ErrorsBlock, {
-        names: ["country"]
-      }))), React.createElement(ColFull, null, React.createElement(Field, {
-        name: "fullName",
-        label: t('Name'),
-        labelFor: fullNameInputId,
-        isRequired: true
-      }, React.createElement(TextInput, {
-        id: fullNameInputId,
-        name: "fullName",
-        placeholder: t('Name'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }), React.createElement(ErrorsBlock, {
-        names: ["fullName"]
-      }))), React.createElement(ColFull, null, React.createElement(Field, {
-        name: "address1",
-        label: t('Address'),
-        labelFor: address1InputId,
-        isRequired: true
-      }, React.createElement(TextInput, {
-        id: address1InputId,
-        name: "address1",
-        placeholder: t('Address'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }), React.createElement(ErrorsBlock, {
-        names: ["address1"]
-      }))), React.createElement(ColFull, null, React.createElement(Field, {
-        name: "address2",
-        label: t('Address Line 2'),
-        labelFor: address2InputId,
-        isOptional: true
-      }, React.createElement(TextInput, {
-        id: address2InputId,
-        name: "address2",
-        placeholder: t('Address Line 2 (Optional)'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }))), React.createElement(ColFull, null, React.createElement(Field, {
-        name: "city",
-        label: t('City'),
-        labelFor: cityInputId
-      }, React.createElement(TextInput, {
-        id: cityInputId,
-        name: "city",
-        placeholder: t('City'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }), React.createElement(ErrorsBlock, {
-        names: ["city"]
-      }))), React.createElement(ColHalf, null, React.createElement(Field, {
-        name: "region",
-        label: t('Region'),
-        labelFor: regionInputId,
-        isRequired: true
-      }, React.createElement(RegionInput, {
-        id: regionInputId,
-        options: this.regionOptions,
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly,
-        name: "region",
-        placeholder: t('Region')
-      }), React.createElement(ErrorsBlock, {
-        names: ["region"]
-      }))), React.createElement(ColHalf, null, React.createElement(Field, {
-        name: "postal",
-        label: t('Postal Code'),
-        labelFor: postalInputId,
-        isRequired: true
-      }, React.createElement(TextInput, {
-        id: postalInputId,
-        name: "postal",
-        placeholder: t('Postal Code'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }), React.createElement(ErrorsBlock, {
-        names: ["postal"]
-      }))), React.createElement(ColFull, null, React.createElement(Field, {
-        name: "phone",
-        label: t('Phone'),
-        labelFor: phoneInputId,
-        isRequired: true
-      }, React.createElement(PhoneNumberInput, {
-        id: phoneInputId,
-        name: "phone",
-        placeholder: t('Phone'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      }), React.createElement(ErrorsBlock, {
-        names: ["phone"]
-      }))), shouldShowIsCommercialField && React.createElement(ColFull, null, React.createElement(Field, {
-        name: "isCommercial",
-        labelFor: isCommercialInputId
-      }, React.createElement(Checkbox, {
-        id: isCommercialInputId,
-        name: "isCommercial",
-        label: t('This is a commercial address.'),
-        isOnDarkBackground: isOnDarkBackground,
-        isReadOnly: isSaving || isReadOnly
-      })))));
-    }
-  }, {
-    key: "countryOptions",
-    get: function get() {
-      var locales = this.props.locales;
-      if (!locales) return [];
-      var options = Object.keys(locales).map(function (key) {
-        return {
-          value: key,
-          label: locales[key].name
-        };
-      });
-      return options;
-    }
-  }, {
-    key: "regionOptions",
-    get: function get() {
-      var locales = this.props.locales;
-      var activeCountry = this.state.activeCountry;
-      var options = [];
-
-      if (locales && locales[activeCountry] && locales[activeCountry].states) {
-        Object.keys(locales[activeCountry].states).forEach(function (key) {
-          options.push({
-            value: key,
-            label: locales[activeCountry].states[key].name
-          });
-        });
+        var addressNameInputId = "addressName_".concat(this.uniqueInstanceIdentifier);
+        var countryInputId = "country_".concat(this.uniqueInstanceIdentifier);
+        var fullNameInputId = "fullName_".concat(this.uniqueInstanceIdentifier);
+        var address1InputId = "address1_".concat(this.uniqueInstanceIdentifier);
+        var address2InputId = "address2_".concat(this.uniqueInstanceIdentifier);
+        var cityInputId = "city_".concat(this.uniqueInstanceIdentifier);
+        var regionInputId = "region_".concat(this.uniqueInstanceIdentifier);
+        var postalInputId = "postal_".concat(this.uniqueInstanceIdentifier);
+        var phoneInputId = "phone_".concat(this.uniqueInstanceIdentifier);
+        var isCommercialInputId = "isCommercial_".concat(this.uniqueInstanceIdentifier);
+        return React.createElement(Form, {
+          className: className,
+          ref: function ref(formEl) {
+            _this2._form = formEl;
+          },
+          errors: errors,
+          name: name,
+          onChange: onChange,
+          onSubmit: this.props.onSubmit,
+          validator: validator,
+          revalidateOn: "changed",
+          value: value
+        }, React.createElement(Grid, null, shouldShowAddressNameField && React.createElement(ColFull, null, React.createElement(Field, {
+          name: "addressName",
+          label: t('Address Name'),
+          labelFor: addressNameInputId,
+          isOptional: true
+        }, React.createElement(TextInput, {
+          id: addressNameInputId,
+          name: "addressName",
+          placeholder: addressNamePlaceholder,
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }))), React.createElement(ColFull, null, React.createElement(Field, {
+          name: "country",
+          label: t('Country'),
+          labelFor: countryInputId,
+          isRequired: true
+        }, this.countryOptions && this.countryOptions.length > 1 ? React.createElement(Select, {
+          id: countryInputId,
+          alphabetize: true,
+          isSearchable: true,
+          name: "country",
+          onChange: this.handleCountryChange,
+          options: this.countryOptions,
+          placeholder: t('Country'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }) : React.createElement(TextInput, {
+          id: countryInputId,
+          name: "country",
+          placeholder: t('Country'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }), React.createElement(ErrorsBlock, {
+          names: ["country"]
+        }))), React.createElement(ColFull, null, React.createElement(Field, {
+          name: "fullName",
+          label: t('Name'),
+          labelFor: fullNameInputId,
+          isRequired: true
+        }, React.createElement(TextInput, {
+          id: fullNameInputId,
+          name: "fullName",
+          placeholder: t('Name'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }), React.createElement(ErrorsBlock, {
+          names: ["fullName"]
+        }))), React.createElement(ColFull, null, React.createElement(Field, {
+          name: "address1",
+          label: t('Address'),
+          labelFor: address1InputId,
+          isRequired: true
+        }, React.createElement(TextInput, {
+          id: address1InputId,
+          name: "address1",
+          placeholder: t('Address'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }), React.createElement(ErrorsBlock, {
+          names: ["address1"]
+        }))), React.createElement(ColFull, null, React.createElement(Field, {
+          name: "address2",
+          label: t('Address Line 2'),
+          labelFor: address2InputId,
+          isOptional: true
+        }, React.createElement(TextInput, {
+          id: address2InputId,
+          name: "address2",
+          placeholder: t('Address Line 2 (Optional)'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }))), React.createElement(ColFull, null, React.createElement(Field, {
+          name: "city",
+          label: t('City'),
+          labelFor: cityInputId
+        }, React.createElement(TextInput, {
+          id: cityInputId,
+          name: "city",
+          placeholder: t('City'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }), React.createElement(ErrorsBlock, {
+          names: ["city"]
+        }))), React.createElement(ColHalf, null, React.createElement(Field, {
+          name: "region",
+          label: t('Region'),
+          labelFor: regionInputId,
+          isRequired: true
+        }, React.createElement(RegionInput, {
+          id: regionInputId,
+          options: this.regionOptions,
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly,
+          name: "region",
+          placeholder: t('Region')
+        }), React.createElement(ErrorsBlock, {
+          names: ["region"]
+        }))), React.createElement(ColHalf, null, React.createElement(Field, {
+          name: "postal",
+          label: t('Postal Code'),
+          labelFor: postalInputId,
+          isRequired: true
+        }, React.createElement(TextInput, {
+          id: postalInputId,
+          name: "postal",
+          placeholder: t('Postal Code'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }), React.createElement(ErrorsBlock, {
+          names: ["postal"]
+        }))), React.createElement(ColFull, null, React.createElement(Field, {
+          name: "phone",
+          label: t('Phone'),
+          labelFor: phoneInputId,
+          isRequired: true
+        }, React.createElement(PhoneNumberInput, {
+          id: phoneInputId,
+          name: "phone",
+          placeholder: t('Phone'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        }), React.createElement(ErrorsBlock, {
+          names: ["phone"]
+        }))), shouldShowIsCommercialField && React.createElement(ColFull, null, React.createElement(Field, {
+          name: "isCommercial",
+          labelFor: isCommercialInputId
+        }, React.createElement(Checkbox, {
+          id: isCommercialInputId,
+          name: "isCommercial",
+          label: t('This is a commercial address.'),
+          isOnDarkBackground: isOnDarkBackground,
+          isReadOnly: isSaving || isReadOnly
+        })))));
       }
+    }, {
+      key: "countryOptions",
+      get: function get() {
+        var locales = this.props.locales;
+        if (!locales) return [];
+        var options = Object.keys(locales).map(function (key) {
+          return {
+            value: key,
+            label: locales[key].name
+          };
+        });
+        return options;
+      }
+    }, {
+      key: "regionOptions",
+      get: function get() {
+        var locales = this.props.locales;
+        var activeCountry = this.state.activeCountry;
+        var options = [];
 
-      return options;
-    }
-  }]);
+        if (locales && locales[activeCountry] && locales[activeCountry].states) {
+          Object.keys(locales[activeCountry].states).forEach(function (key) {
+            options.push({
+              value: key,
+              label: locales[activeCountry].states[key].name
+            });
+          });
+        }
 
-  return AddressForm;
-}(Component);
+        return options;
+      }
+    }]);
+
+    return AddressForm;
+  }(Component);
 
 AddressForm.propTypes = {
   /**
@@ -487,9 +487,9 @@ AddressForm.defaultProps = {
   isReadOnly: false,
   isSaving: false,
   name: "address",
-  onCancel: function onCancel() {},
-  onChange: function onChange() {},
-  onSubmit: function onSubmit() {},
+  onCancel: function onCancel() { },
+  onChange: function onChange() { },
+  onSubmit: function onSubmit() { },
   shouldShowAddressNameField: false,
   shouldShowIsCommercialField: false,
   validator: getRequiredValidator("country", "fullName", "address1", "city", "phone", "postal", "region"),
