@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -19,50 +19,50 @@ var StyledSpan = styled.span.withConfig({
 })(["", ""], addTypographyStyles("CheckoutEmailAddressEmphasis", "labelTextBold"));
 
 var CheckoutEmailAddress =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(CheckoutEmailAddress, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CheckoutEmailAddress, _Component);
 
-    function CheckoutEmailAddress() {
-      var _getPrototypeOf2;
+  function CheckoutEmailAddress() {
+    var _getPrototypeOf2;
 
-      var _this;
+    var _this;
 
-      _classCallCheck(this, CheckoutEmailAddress);
+    _classCallCheck(this, CheckoutEmailAddress);
 
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CheckoutEmailAddress)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-      _this.renderAccountEmail = function () {
-        var isAccountEmail = _this.props.isAccountEmail;
-
-        if (isAccountEmail) {
-          return "Signed in as";
-        }
-
-        return null;
-      };
-
-      return _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(CheckoutEmailAddress, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CheckoutEmailAddress)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _this.renderAccountEmail = function () {
+      var isAccountEmail = _this.props.isAccountEmail;
+
+      if (isAccountEmail) {
+        return "Signed in as";
+      }
+
+      return null;
+    };
+
+    return _this;
+  }
+
+  _createClass(CheckoutEmailAddress, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           emailAddress = _this$props.emailAddress;
-        return React.createElement(StyledDiv, {
-          className: className
-        }, this.renderAccountEmail(), " ", React.createElement(StyledSpan, null, emailAddress));
-      }
-    }]);
+      return React.createElement(StyledDiv, {
+        className: className
+      }, this.renderAccountEmail(), " ", React.createElement(StyledSpan, null, emailAddress));
+    }
+  }]);
 
-    return CheckoutEmailAddress;
-  }(Component);
+  return CheckoutEmailAddress;
+}(Component);
 
 CheckoutEmailAddress.propTypes = {
   /**

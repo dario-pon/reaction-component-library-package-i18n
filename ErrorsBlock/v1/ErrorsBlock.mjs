@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import isEmpty from "lodash.isempty";
@@ -26,53 +26,53 @@ var IconWrapper = styled.div.withConfig({
 })(["display:inline-block;margin-bottom:0;margin-left:0;margin-right:", ";margin-top:0;path{fill:", ";}svg{height:0.875em;}"], applyTheme("ErrorsBlock.iconSpacingToLabel"), applyTheme("ErrorsBlock.iconColor"));
 
 var ErrorsBlock =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(ErrorsBlock, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ErrorsBlock, _Component);
 
-    function ErrorsBlock() {
-      _classCallCheck(this, ErrorsBlock);
+  function ErrorsBlock() {
+    _classCallCheck(this, ErrorsBlock);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(ErrorsBlock).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(ErrorsBlock).apply(this, arguments));
+  }
+
+  _createClass(ErrorsBlock, [{
+    key: "renderIcon",
+    value: function renderIcon() {
+      var iconError = this.props.components.iconError;
+      return React.createElement(IconWrapper, null, iconError);
     }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
 
-    _createClass(ErrorsBlock, [{
-      key: "renderIcon",
-      value: function renderIcon() {
-        var iconError = this.props.components.iconError;
-        return React.createElement(IconWrapper, null, iconError);
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this = this;
-
-        var _this$props = this.props,
+      var _this$props = this.props,
           errorClassName = _this$props.errorClassName,
           errors = _this$props.errors,
           className = _this$props.className,
           shouldShowIcon = _this$props.shouldShowIcon;
-        if (isEmpty(errors)) return null; // https://reactjs.org/docs/lists-and-keys.html
-        // "When you don’t have stable IDs for rendered items, you may use the item index as a key as a last resort.
-        // We don’t recommend using indexes for keys if the items can reorder, as that would be slow."
-        //
-        // There will rarely be more than a few errors for a field, and forcing unique ID
-        // generation for them would be arbitrary and unnecessary. So we'll use the index.
+      if (isEmpty(errors)) return null; // https://reactjs.org/docs/lists-and-keys.html
+      // "When you don’t have stable IDs for rendered items, you may use the item index as a key as a last resort.
+      // We don’t recommend using indexes for keys if the items can reorder, as that would be slow."
+      //
+      // There will rarely be more than a few errors for a field, and forcing unique ID
+      // generation for them would be arbitrary and unnecessary. So we'll use the index.
 
-        return React.createElement(ErrorWrapper, {
-          className: className
-        }, errors.map(function (error, index) {
-          return React.createElement(Error, {
-            key: index,
-            className: errorClassName,
-            "data-name": error.name
-          }, shouldShowIcon ? _this.renderIcon() : "", error.message);
-        }));
-      }
-    }]);
+      return React.createElement(ErrorWrapper, {
+        className: className
+      }, errors.map(function (error, index) {
+        return React.createElement(Error, {
+          key: index,
+          className: errorClassName,
+          "data-name": error.name
+        }, shouldShowIcon ? _this.renderIcon() : "", error.message);
+      }));
+    }
+  }]);
 
-    return ErrorsBlock;
-  }(Component);
+  return ErrorsBlock;
+}(Component);
 
 ErrorsBlock.isFormErrors = true;
 ErrorsBlock.propTypes = {

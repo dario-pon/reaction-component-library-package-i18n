@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { preventAccidentalDoubleClick } from "../../utils";
@@ -19,54 +19,54 @@ var UnstyledLinkOnClick = styled.div.withConfig({
 })(["cursor:pointer;display:inline-block;text-decoration:none;"]);
 
 var Link =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(Link, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Link, _Component);
 
-    function Link() {
-      var _getPrototypeOf2;
+  function Link() {
+    var _getPrototypeOf2;
 
-      var _this;
+    var _this;
 
-      _classCallCheck(this, Link);
+    _classCallCheck(this, Link);
 
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Link)).call.apply(_getPrototypeOf2, [this].concat(args)));
-      _this.onClick = preventAccidentalDoubleClick(function (event) {
-        _this.props.onClick(event);
-      });
-      return _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(Link, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Link)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.onClick = preventAccidentalDoubleClick(function (event) {
+      _this.props.onClick(event);
+    });
+    return _this;
+  }
+
+  _createClass(Link, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           children = _this$props.children,
           href = _this$props.href;
 
-        if (href) {
-          return React.createElement(UnstyledLinkHref, {
-            className: className,
-            href: href,
-            onClick: this.onClick
-          }, children);
-        }
-
-        return React.createElement(UnstyledLinkOnClick, {
+      if (href) {
+        return React.createElement(UnstyledLinkHref, {
           className: className,
-          onClick: this.onClick,
-          role: "button"
+          href: href,
+          onClick: this.onClick
         }, children);
       }
-    }]);
 
-    return Link;
-  }(Component);
+      return React.createElement(UnstyledLinkOnClick, {
+        className: className,
+        onClick: this.onClick,
+        role: "button"
+      }, children);
+    }
+  }]);
+
+  return Link;
+}(Component);
 
 Link.propTypes = {
   /**
@@ -92,6 +92,6 @@ Link.propTypes = {
   onClick: PropTypes.func
 };
 Link.defaultProps = {
-  onClick: function onClick() { }
+  onClick: function onClick() {}
 };
 export default i18n.withTranslation()(Link); // auto-add i18n

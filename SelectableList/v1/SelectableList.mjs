@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -44,179 +44,179 @@ var HorizontalWrapper = styled.div.withConfig({
 })(["border-left-color:", ";border-left-style:", ";border-left-width:", ";flex:1 1 auto;padding-bottom:", ";padding-left:", ";padding-right:", ";padding-top:", ";&:first-of-type{border-left:none;padding-right:", ";}&:last-of-type{padding-left:", ";}"], applyTheme("SelectableList.borderColor"), applyTheme("SelectableList.borderStyle"), applyTheme("SelectableList.borderWidth"), applyTheme("SelectableList.horizontalItemPaddingBottom"), applyTheme("SelectableList.horizontalItemPaddingLeft"), applyTheme("SelectableList.horizontalItemPaddingRight"), applyTheme("SelectableList.horizontalItemPaddingTop"), applyTheme("SelectableList.horizontalFirstItemPaddingRight"), applyTheme("SelectableList.horizontalLastItemPaddingLeft"));
 
 var SelectableList =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(SelectableList, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(SelectableList, _Component);
 
-    function SelectableList(props) {
-      var _this;
+  function SelectableList(props) {
+    var _this;
 
-      _classCallCheck(this, SelectableList);
+    _classCallCheck(this, SelectableList);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(SelectableList).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SelectableList).call(this, props));
 
-      _this.onChange = function (isChecked, value) {
-        if (isChecked) {
-          _this.setValue(value);
-        }
-      };
+    _this.onChange = function (isChecked, value) {
+      if (isChecked) {
+        _this.setValue(value);
+      }
+    };
 
-      _this.state = {
-        value: props.value || ""
-      };
-      return _this;
+    _this.state = {
+      value: props.value || ""
+    };
+    return _this;
+  } // eslint-disable-next-line camelcase
+
+
+  _createClass(SelectableList, [{
+    key: "UNSAFE_componentWillMount",
+    value: function UNSAFE_componentWillMount() {
+      this.handleChange(this.props.value || "");
     } // eslint-disable-next-line camelcase
 
+  }, {
+    key: "UNSAFE_componentWillReceiveProps",
+    value: function UNSAFE_componentWillReceiveProps(nextProps) {
+      var value = this.props.value;
+      var nextValue = nextProps.value; // Whenever a changed value prop comes in, we reset state to that, thus becoming clean.
 
-    _createClass(SelectableList, [{
-      key: "UNSAFE_componentWillMount",
-      value: function UNSAFE_componentWillMount() {
-        this.handleChange(this.props.value || "");
-      } // eslint-disable-next-line camelcase
-
-    }, {
-      key: "UNSAFE_componentWillReceiveProps",
-      value: function UNSAFE_componentWillReceiveProps(nextProps) {
-        var value = this.props.value;
-        var nextValue = nextProps.value; // Whenever a changed value prop comes in, we reset state to that, thus becoming clean.
-
-        if (nextValue && value !== nextValue) {
-          this.setState({
-            value: nextValue || ""
-          });
-          this.handleChange(nextValue || "");
-        }
-      }
-    }, {
-      key: "getValue",
-      value: function getValue() {
-        return this.state.value;
-      }
-    }, {
-      key: "setValue",
-      value: function setValue(value) {
+      if (nextValue && value !== nextValue) {
         this.setState({
-          value: value
+          value: nextValue || ""
         });
-        this.handleChange(value);
+        this.handleChange(nextValue || "");
       }
-    }, {
-      key: "resetValue",
-      value: function resetValue() {
-        this.setValue(this.props.value || "");
-      }
-    }, {
-      key: "handleChange",
-      value: function handleChange(value) {
-        if (this.lastValue === value) return;
-        this.lastValue = value;
-        var _this$props = this.props,
+    }
+  }, {
+    key: "getValue",
+    value: function getValue() {
+      return this.state.value;
+    }
+  }, {
+    key: "setValue",
+    value: function setValue(value) {
+      this.setState({
+        value: value
+      });
+      this.handleChange(value);
+    }
+  }, {
+    key: "resetValue",
+    value: function resetValue() {
+      this.setValue(this.props.value || "");
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(value) {
+      if (this.lastValue === value) return;
+      this.lastValue = value;
+      var _this$props = this.props,
           onChanging = _this$props.onChanging,
           onChange = _this$props.onChange;
-        onChanging(value);
-        onChange(value);
-      } // Input is dirty if value prop doesn't match value state. Whenever a changed
-      // value prop comes in, we reset state to that, thus becoming clean.
+      onChanging(value);
+      onChange(value);
+    } // Input is dirty if value prop doesn't match value state. Whenever a changed
+    // value prop comes in, we reset state to that, thus becoming clean.
 
-    }, {
-      key: "isDirty",
-      value: function isDirty() {
-        return this.state.value !== this.props.value;
-      }
-    }, {
-      key: "renderBorderedList",
-      value: function renderBorderedList() {
-        var _this2 = this;
+  }, {
+    key: "isDirty",
+    value: function isDirty() {
+      return this.state.value !== this.props.value;
+    }
+  }, {
+    key: "renderBorderedList",
+    value: function renderBorderedList() {
+      var _this2 = this;
 
-        var _this$props2 = this.props,
+      var _this$props2 = this.props,
           options = _this$props2.options,
           listAction = _this$props2.listAction,
           isLeftAligned = _this$props2.isLeftAligned,
           isReadOnly = _this$props2.isReadOnly,
           SelectableItem = _this$props2.components.SelectableItem;
-        return React.createElement(BorderedList, null, React.createElement("fieldset", null, options.map(function (option) {
-          return React.createElement(BorderedWrapper, {
-            key: option.id
-          }, React.createElement(SelectableItem, {
-            detail: option.detail,
-            icon: option.icon,
-            isChecked: option.value === _this2.state.value,
-            isLeftAligned: isLeftAligned,
-            isReadOnly: isReadOnly,
-            label: option.label,
-            onChange: _this2.onChange,
-            value: option.value
-          }));
-        })), listAction ? React.createElement(BorderedListAction, null, listAction) : null);
-      }
-    }, {
-      key: "renderVerticalList",
-      value: function renderVerticalList() {
-        var _this3 = this;
+      return React.createElement(BorderedList, null, React.createElement("fieldset", null, options.map(function (option) {
+        return React.createElement(BorderedWrapper, {
+          key: option.id
+        }, React.createElement(SelectableItem, {
+          detail: option.detail,
+          icon: option.icon,
+          isChecked: option.value === _this2.state.value,
+          isLeftAligned: isLeftAligned,
+          isReadOnly: isReadOnly,
+          label: option.label,
+          onChange: _this2.onChange,
+          value: option.value
+        }));
+      })), listAction ? React.createElement(BorderedListAction, null, listAction) : null);
+    }
+  }, {
+    key: "renderVerticalList",
+    value: function renderVerticalList() {
+      var _this3 = this;
 
-        var _this$props3 = this.props,
+      var _this$props3 = this.props,
           options = _this$props3.options,
           listAction = _this$props3.listAction,
           isLeftAligned = _this$props3.isLeftAligned,
           isReadOnly = _this$props3.isReadOnly,
           SelectableItem = _this$props3.components.SelectableItem;
-        return React.createElement(StyledList, null, React.createElement("fieldset", null, options.map(function (option) {
-          return React.createElement(StyledWrapper, {
-            key: option.id
-          }, React.createElement(SelectableItem, {
-            detail: option.detail,
-            icon: option.icon,
-            isChecked: option.value === _this3.state.value,
-            isLeftAligned: isLeftAligned,
-            isReadOnly: isReadOnly,
-            label: option.label,
-            onChange: _this3.onChange,
-            value: option.value
-          }));
-        })), listAction ? React.createElement(StyledListAction, null, listAction) : null);
-      }
-    }, {
-      key: "renderHorizontalList",
-      value: function renderHorizontalList() {
-        var _this4 = this;
+      return React.createElement(StyledList, null, React.createElement("fieldset", null, options.map(function (option) {
+        return React.createElement(StyledWrapper, {
+          key: option.id
+        }, React.createElement(SelectableItem, {
+          detail: option.detail,
+          icon: option.icon,
+          isChecked: option.value === _this3.state.value,
+          isLeftAligned: isLeftAligned,
+          isReadOnly: isReadOnly,
+          label: option.label,
+          onChange: _this3.onChange,
+          value: option.value
+        }));
+      })), listAction ? React.createElement(StyledListAction, null, listAction) : null);
+    }
+  }, {
+    key: "renderHorizontalList",
+    value: function renderHorizontalList() {
+      var _this4 = this;
 
-        var _this$props4 = this.props,
+      var _this$props4 = this.props,
           options = _this$props4.options,
           listAction = _this$props4.listAction,
           isHorizontal = _this$props4.isHorizontal,
           isReadOnly = _this$props4.isReadOnly,
           SelectableItem = _this$props4.components.SelectableItem;
-        return React.createElement(HorizontalList, null, options.map(function (option) {
-          return React.createElement(HorizontalWrapper, {
-            key: option.id
-          }, React.createElement(SelectableItem, {
-            detail: option.detail,
-            icon: option.icon,
-            isChecked: option.value === _this4.state.value,
-            isStacked: isHorizontal,
-            isReadOnly: isReadOnly,
-            label: option.label,
-            onChange: _this4.onChange,
-            value: option.value
-          }));
-        }), listAction ? React.createElement(StyledListAction, null, listAction) : null);
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this$props5 = this.props,
+      return React.createElement(HorizontalList, null, options.map(function (option) {
+        return React.createElement(HorizontalWrapper, {
+          key: option.id
+        }, React.createElement(SelectableItem, {
+          detail: option.detail,
+          icon: option.icon,
+          isChecked: option.value === _this4.state.value,
+          isStacked: isHorizontal,
+          isReadOnly: isReadOnly,
+          label: option.label,
+          onChange: _this4.onChange,
+          value: option.value
+        }));
+      }), listAction ? React.createElement(StyledListAction, null, listAction) : null);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props5 = this.props,
           className = _this$props5.className,
           isBordered = _this$props5.isBordered,
           isHorizontal = _this$props5.isHorizontal;
-        return React.createElement("div", {
-          className: className
-        }, // eslint-disable-next-line
-          isHorizontal ? this.renderHorizontalList() : isBordered ? this.renderBorderedList() : this.renderVerticalList());
-      }
-    }]);
+      return React.createElement("div", {
+        className: className
+      }, // eslint-disable-next-line
+      isHorizontal ? this.renderHorizontalList() : isBordered ? this.renderBorderedList() : this.renderVerticalList());
+    }
+  }]);
 
-    return SelectableList;
-  }(Component);
+  return SelectableList;
+}(Component);
 
 SelectableList.isFormInput = true;
 SelectableList.propTypes = {
@@ -324,7 +324,7 @@ SelectableList.defaultProps = {
   isHorizontal: false,
   isLeftAligned: false,
   isReadOnly: false,
-  onChange: function onChange() { },
-  onChanging: function onChanging() { }
+  onChange: function onChange() {},
+  onChanging: function onChanging() {}
 };
 export default i18n.withTranslation()(withComponents(SelectableList)); // auto-add i18n

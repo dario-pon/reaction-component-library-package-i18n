@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -31,75 +31,75 @@ var Attr = styled.p.withConfig({
 })(["", " margin:0;"], addTypographyStyles("CartItemDetailAttributes", "labelText"));
 
 var CartItemDetail =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(CartItemDetail, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CartItemDetail, _Component);
 
-    function CartItemDetail() {
-      _classCallCheck(this, CartItemDetail);
+  function CartItemDetail() {
+    _classCallCheck(this, CartItemDetail);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(CartItemDetail).apply(this, arguments));
-    }
+    return _possibleConstructorReturn(this, _getPrototypeOf(CartItemDetail).apply(this, arguments));
+  }
 
-    _createClass(CartItemDetail, [{
-      key: "renderBlockAttributes",
-      value: function renderBlockAttributes() {
-        var attributes = this.props.attributes;
-        return (attributes || []).map(function (_ref) {
-          var label = _ref.label,
+  _createClass(CartItemDetail, [{
+    key: "renderBlockAttributes",
+    value: function renderBlockAttributes() {
+      var attributes = this.props.attributes;
+      return (attributes || []).map(function (_ref) {
+        var label = _ref.label,
             value = _ref.value;
-          if (!label && !value) return null; // For now, due to strange implementation of attributes/options in the product data,
-          // we allow labels without values and values without labels.
+        if (!label && !value) return null; // For now, due to strange implementation of attributes/options in the product data,
+        // we allow labels without values and values without labels.
 
-          return React.createElement(Attr, {
-            key: label || value
-          }, label ? React.createElement("span", null, label, ":") : null, " ", value);
-        });
-      }
-    }, {
-      key: "renderInlineAttributes",
-      value: function renderInlineAttributes() {
-        var attributes = this.props.attributes;
-        if (!attributes || !attributes.length) return null;
-        var values = attributes.map(function (_ref2) {
-          var value = _ref2.value;
-          return value;
-        }).filter(function (value) {
-          return !!value;
-        });
-        return React.createElement(Attr, null, values.join(", "));
-      }
-    }, {
-      key: "renderAttributes",
-      value: function renderAttributes() {
-        var _this$props = this.props,
+        return React.createElement(Attr, {
+          key: label || value
+        }, label ? React.createElement("span", null, label, ":") : null, " ", value);
+      });
+    }
+  }, {
+    key: "renderInlineAttributes",
+    value: function renderInlineAttributes() {
+      var attributes = this.props.attributes;
+      if (!attributes || !attributes.length) return null;
+      var values = attributes.map(function (_ref2) {
+        var value = _ref2.value;
+        return value;
+      }).filter(function (value) {
+        return !!value;
+      });
+      return React.createElement(Attr, null, values.join(", "));
+    }
+  }, {
+    key: "renderAttributes",
+    value: function renderAttributes() {
+      var _this$props = this.props,
           attributes = _this$props.attributes,
           isMiniCart = _this$props.isMiniCart,
           productVendor = _this$props.productVendor,
           quantity = _this$props.quantity;
-        if ((!attributes || attributes.length === 0) && !productVendor) return null;
-        return React.createElement(Attributes, {
-          isMiniCart: isMiniCart
-        }, productVendor ? React.createElement(Text, null, productVendor) : null, isMiniCart ? this.renderInlineAttributes() : this.renderBlockAttributes(), quantity ? React.createElement(Text, null, "Quantity: ", quantity) : null);
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this$props2 = this.props,
+      if ((!attributes || attributes.length === 0) && !productVendor) return null;
+      return React.createElement(Attributes, {
+        isMiniCart: isMiniCart
+      }, productVendor ? React.createElement(Text, null, productVendor) : null, isMiniCart ? this.renderInlineAttributes() : this.renderBlockAttributes(), quantity ? React.createElement(Text, null, "Quantity: ", quantity) : null);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
           className = _this$props2.className,
           productURLPath = _this$props2.productURLPath,
           productSlug = _this$props2.productSlug,
           title = _this$props2.title;
-        return React.createElement(Detail, {
-          className: className
-        }, React.createElement(Title, null, React.createElement("a", {
-          href: [productURLPath, productSlug].join("")
-        }, title)), this.renderAttributes());
-      }
-    }]);
+      return React.createElement(Detail, {
+        className: className
+      }, React.createElement(Title, null, React.createElement("a", {
+        href: [productURLPath, productSlug].join("")
+      }, title)), this.renderAttributes());
+    }
+  }]);
 
-    return CartItemDetail;
-  }(Component);
+  return CartItemDetail;
+}(Component);
 
 CartItemDetail.propTypes = {
   /**

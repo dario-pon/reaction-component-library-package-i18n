@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import uniqueId from "lodash.uniqueid";
@@ -61,37 +61,37 @@ var LeftAlignedItem = styled.div.withConfig({
 })(["display:flex;justify-content:flex-start;height:", ";@media (max-width:768px){height:", ";}", "{position:relative;font-weight:", ";}", "{", " margin-left:", ";}"], applyTheme("SelectableList.height"), applyTheme("SelectableList.heightMobile"), StyledLabel, applyTheme("SelectableList.leftAlignedLabelFontWeight"), StyledDetail, addTypographyStyles("SelectableItemDetailLeft", "labelText"), applyTheme("SelectableList.leftAlignedDetailSpacingToLabel"));
 
 var SelectableItem =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(SelectableItem, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(SelectableItem, _Component);
 
-    function SelectableItem() {
-      var _getPrototypeOf2;
+  function SelectableItem() {
+    var _getPrototypeOf2;
 
-      var _this;
+    var _this;
 
-      _classCallCheck(this, SelectableItem);
+    _classCallCheck(this, SelectableItem);
 
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SelectableItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
-      _this.uniqueInstanceIdentifier = uniqueId("SelectableItem_");
-
-      _this.handleChange = function (event) {
-        var value = _this.props.value;
-
-        _this.props.onChange(event.target.checked, value);
-      };
-
-      return _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(SelectableItem, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(SelectableItem)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.uniqueInstanceIdentifier = uniqueId("SelectableItem_");
+
+    _this.handleChange = function (event) {
+      var value = _this.props.value;
+
+      _this.props.onChange(event.target.checked, value);
+    };
+
+    return _this;
+  }
+
+  _createClass(SelectableItem, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           detail = _this$props.detail,
           icon = _this$props.icon,
@@ -101,35 +101,35 @@ var SelectableItem =
           isStacked = _this$props.isStacked,
           label = _this$props.label,
           value = _this$props.value;
-        var id = "radio_".concat(this.uniqueInstanceIdentifier);
-        var input = React.createElement(StyledInput, {
-          id: id,
-          checked: isChecked,
-          value: value,
-          onChange: this.handleChange,
-          type: "radio",
-          disabled: isReadOnly
-        });
-        var labelAndButton = React.createElement(StyledLabel, {
-          htmlFor: id,
-          isStacked: isStacked
-        }, React.createElement(StyledRadioButton, null), icon ? React.createElement(StyledIcon, null, icon) : null, label);
-        return React.createElement("div", {
-          className: className
-        }, isLeftAligned ? React.createElement(LeftAlignedItem, {
-          isStacked: isStacked
-        }, input, labelAndButton, detail ? React.createElement(StyledDetail, {
-          isStacked: isStacked
-        }, detail) : null) : React.createElement(StyledItem, {
-          isStacked: isStacked
-        }, input, labelAndButton, detail ? React.createElement(StyledDetail, {
-          isStacked: isStacked
-        }, detail) : null));
-      }
-    }]);
+      var id = "radio_".concat(this.uniqueInstanceIdentifier);
+      var input = React.createElement(StyledInput, {
+        id: id,
+        checked: isChecked,
+        value: value,
+        onChange: this.handleChange,
+        type: "radio",
+        disabled: isReadOnly
+      });
+      var labelAndButton = React.createElement(StyledLabel, {
+        htmlFor: id,
+        isStacked: isStacked
+      }, React.createElement(StyledRadioButton, null), icon ? React.createElement(StyledIcon, null, icon) : null, label);
+      return React.createElement("div", {
+        className: className
+      }, isLeftAligned ? React.createElement(LeftAlignedItem, {
+        isStacked: isStacked
+      }, input, labelAndButton, detail ? React.createElement(StyledDetail, {
+        isStacked: isStacked
+      }, detail) : null) : React.createElement(StyledItem, {
+        isStacked: isStacked
+      }, input, labelAndButton, detail ? React.createElement(StyledDetail, {
+        isStacked: isStacked
+      }, detail) : null));
+    }
+  }]);
 
-    return SelectableItem;
-  }(Component);
+  return SelectableItem;
+}(Component);
 
 SelectableItem.propTypes = {
   /**
@@ -186,7 +186,7 @@ SelectableItem.propTypes = {
   value: PropTypes.string.isRequired
 };
 SelectableItem.defaultProps = {
-  onChange: function onChange() { },
+  onChange: function onChange() {},
   isChecked: false,
   isLeftAligned: false,
   isReadOnly: false,

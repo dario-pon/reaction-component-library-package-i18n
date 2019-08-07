@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -21,52 +21,52 @@ var DefaultSpan = styled.div.withConfig({
 })(["", ""], addTypographyStyles("", "labelText"));
 
 var InventoryStatus =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(InventoryStatus, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(InventoryStatus, _Component);
 
-    function InventoryStatus() {
-      _classCallCheck(this, InventoryStatus);
+  function InventoryStatus() {
+    _classCallCheck(this, InventoryStatus);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(InventoryStatus).apply(this, arguments));
-    }
+    return _possibleConstructorReturn(this, _getPrototypeOf(InventoryStatus).apply(this, arguments));
+  }
 
-    _createClass(InventoryStatus, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+  _createClass(InventoryStatus, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           components = _this$props.components,
           product = _this$props.product,
           statusLabels = _this$props.statusLabels;
 
-        var _ref = components || {},
+      var _ref = components || {},
           StockWarning = _ref.StockWarning;
 
-        var status = inventoryStatus(product, statusLabels);
-        if (!status) return null;
+      var status = inventoryStatus(product, statusLabels);
+      if (!status) return null;
 
-        if (status.type && status.type === "LOW_QUANTITY") {
-          return React.createElement(StockWarning, {
-            inventoryQuantity: product.inventoryAvailableToSell,
-            isLowInventoryQuantity: product.isLowQuantity
-          });
-        }
+      if (status.type && status.type === "LOW_QUANTITY") {
+        return React.createElement(StockWarning, {
+          inventoryQuantity: product.inventoryAvailableToSell,
+          isLowInventoryQuantity: product.isLowQuantity
+        });
+      }
 
-        if (status.type && status.type === "SOLD_OUT") {
-          return React.createElement(SoldOutSpan, {
-            className: className
-          }, status.label);
-        }
-
-        return React.createElement(DefaultSpan, {
+      if (status.type && status.type === "SOLD_OUT") {
+        return React.createElement(SoldOutSpan, {
           className: className
         }, status.label);
       }
-    }]);
 
-    return InventoryStatus;
-  }(Component);
+      return React.createElement(DefaultSpan, {
+        className: className
+      }, status.label);
+    }
+  }]);
+
+  return InventoryStatus;
+}(Component);
 
 InventoryStatus.propTypes = {
   /**

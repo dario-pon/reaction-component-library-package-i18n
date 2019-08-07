@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles } from "../../utils";
@@ -15,32 +15,32 @@ var Span = styled.div.withConfig({
 })(["", ""], addTypographyStyles("StockWarning", "labelText"));
 
 var StockWarning =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(StockWarning, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(StockWarning, _Component);
 
-    function StockWarning() {
-      _classCallCheck(this, StockWarning);
+  function StockWarning() {
+    _classCallCheck(this, StockWarning);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(StockWarning).apply(this, arguments));
-    }
+    return _possibleConstructorReturn(this, _getPrototypeOf(StockWarning).apply(this, arguments));
+  }
 
-    _createClass(StockWarning, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+  _createClass(StockWarning, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           inventoryQuantity = _this$props.inventoryQuantity,
           isLowInventoryQuantity = _this$props.isLowInventoryQuantity;
-        if (!isLowInventoryQuantity) return null;
-        return React.createElement(Span, {
-          className: className
-        }, "Only ", inventoryQuantity, " in stock");
-      }
-    }]);
+      if (!isLowInventoryQuantity) return null;
+      return React.createElement(Span, {
+        className: className
+      }, "Only ", inventoryQuantity, " in stock");
+    }
+  }]);
 
-    return StockWarning;
-  }(Component);
+  return StockWarning;
+}(Component);
 
 StockWarning.propTypes = {
   /**

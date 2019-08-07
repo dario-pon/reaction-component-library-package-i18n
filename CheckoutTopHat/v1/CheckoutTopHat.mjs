@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { addTypographyStyles, applyTheme } from "../../utils";
@@ -19,35 +19,35 @@ var TopHatMessage = styled.div.withConfig({
 })(["", " align-items:center;display:flex;"], addTypographyStyles("CheckoutTopHatMessage", "labelTextBold"));
 
 var CheckoutTopHat =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(CheckoutTopHat, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(CheckoutTopHat, _Component);
 
-    function CheckoutTopHat() {
-      _classCallCheck(this, CheckoutTopHat);
+  function CheckoutTopHat() {
+    _classCallCheck(this, CheckoutTopHat);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(CheckoutTopHat).apply(this, arguments));
-    }
+    return _possibleConstructorReturn(this, _getPrototypeOf(CheckoutTopHat).apply(this, arguments));
+  }
 
-    _createClass(CheckoutTopHat, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+  _createClass(CheckoutTopHat, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           checkoutMessage = _this$props.checkoutMessage;
 
-        if (checkoutMessage) {
-          return React.createElement(TopHatContainer, {
-            className: className
-          }, React.createElement(TopHatMessage, null, checkoutMessage));
-        }
-
-        return null;
+      if (checkoutMessage) {
+        return React.createElement(TopHatContainer, {
+          className: className
+        }, React.createElement(TopHatMessage, null, checkoutMessage));
       }
-    }]);
 
-    return CheckoutTopHat;
-  }(Component);
+      return null;
+    }
+  }]);
+
+  return CheckoutTopHat;
+}(Component);
 
 CheckoutTopHat.propTypes = {
   checkoutMessage: PropTypes.string,

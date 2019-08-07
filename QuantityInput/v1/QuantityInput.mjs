@@ -7,7 +7,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -53,118 +53,118 @@ var styles = function styles() {
 };
 
 var QuantityInput =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(QuantityInput, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(QuantityInput, _Component);
 
-    function QuantityInput(props) {
-      var _this;
+  function QuantityInput(props) {
+    var _this;
 
-      _classCallCheck(this, QuantityInput);
+    _classCallCheck(this, QuantityInput);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(QuantityInput).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(QuantityInput).call(this, props));
 
-      _this.handleQuantityInputChange = function (event) {
-        var value = event.target.value;
-        var numericValue = Math.floor(Number(value));
-        if (Number.isNaN(numericValue)) return;
+    _this.handleQuantityInputChange = function (event) {
+      var value = event.target.value;
+      var numericValue = Math.floor(Number(value));
+      if (Number.isNaN(numericValue)) return;
 
-        _this.setState({
-          value: numericValue
-        });
+      _this.setState({
+        value: numericValue
+      });
 
-        _this.handleChanged(numericValue);
-      };
+      _this.handleChanged(numericValue);
+    };
 
-      _this.handleIncrementButton = function () {
-        var value = _this.state.value + 1;
+    _this.handleIncrementButton = function () {
+      var value = _this.state.value + 1;
 
+      _this.setState({
+        value: value
+      });
+
+      _this.handleChanged(value);
+    };
+
+    _this.handleDecrementButton = function () {
+      var value = _this.state.value - 1;
+
+      if (value >= 0) {
         _this.setState({
           value: value
         });
 
         _this.handleChanged(value);
-      };
-
-      _this.handleDecrementButton = function () {
-        var value = _this.state.value - 1;
-
-        if (value >= 0) {
-          _this.setState({
-            value: value
-          });
-
-          _this.handleChanged(value);
-        }
-      };
-
-      var _value = props.value || 0;
-
-      _this.state = {
-        initialValue: props.value,
-        value: _value
-      };
-      return _this;
-    }
-
-    _createClass(QuantityInput, [{
-      key: "handleChanged",
-      value: function handleChanged(value) {
-        var onChange = this.props.onChange;
-        onChange(value);
       }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+    };
+
+    var _value = props.value || 0;
+
+    _this.state = {
+      initialValue: props.value,
+      value: _value
+    };
+    return _this;
+  }
+
+  _createClass(QuantityInput, [{
+    key: "handleChanged",
+    value: function handleChanged(value) {
+      var onChange = this.props.onChange;
+      onChange(value);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           _this$props$classes = _this$props.classes,
           incrementButton = _this$props$classes.incrementButton,
           quantityContainer = _this$props$classes.quantityContainer,
           quantityInput = _this$props$classes.quantityInput;
-        var value = this.state.value;
-        return React.createElement(TextField, {
-          id: "addToCartQuantityInput",
-          className: className,
-          value: value,
-          onChange: this.handleQuantityInputChange,
-          InputProps: {
-            startAdornment: React.createElement(InputAdornment, null, React.createElement(ButtonBase, {
-              color: "default",
-              variant: "outlined",
-              onClick: this.handleDecrementButton,
-              className: incrementButton,
-              disableRipple: true,
-              disableTouchRipple: true
-            }, React.createElement(Minus, {
-              style: {
-                fontSize: "14px"
-              }
-            }))),
-            endAdornment: React.createElement(InputAdornment, null, React.createElement(ButtonBase, {
-              variant: "outlined",
-              color: "default",
-              onClick: this.handleIncrementButton,
-              className: incrementButton,
-              disableRipple: true,
-              disableTouchRipple: true
-            }, React.createElement(Plus, {
-              style: {
-                fontSize: "14px"
-              }
-            }))),
-            disableUnderline: true,
-            classes: {
-              root: quantityContainer,
-              input: quantityInput
+      var value = this.state.value;
+      return React.createElement(TextField, {
+        id: "addToCartQuantityInput",
+        className: className,
+        value: value,
+        onChange: this.handleQuantityInputChange,
+        InputProps: {
+          startAdornment: React.createElement(InputAdornment, null, React.createElement(ButtonBase, {
+            color: "default",
+            variant: "outlined",
+            onClick: this.handleDecrementButton,
+            className: incrementButton,
+            disableRipple: true,
+            disableTouchRipple: true
+          }, React.createElement(Minus, {
+            style: {
+              fontSize: "14px"
             }
+          }))),
+          endAdornment: React.createElement(InputAdornment, null, React.createElement(ButtonBase, {
+            variant: "outlined",
+            color: "default",
+            onClick: this.handleIncrementButton,
+            className: incrementButton,
+            disableRipple: true,
+            disableTouchRipple: true
+          }, React.createElement(Plus, {
+            style: {
+              fontSize: "14px"
+            }
+          }))),
+          disableUnderline: true,
+          classes: {
+            root: quantityContainer,
+            input: quantityInput
           }
-        });
-      }
-    }]);
+        }
+      });
+    }
+  }]);
 
-    return QuantityInput;
-  }(Component);
+  return QuantityInput;
+}(Component);
 
 QuantityInput.propTypes = {
   /**
@@ -191,6 +191,6 @@ QuantityInput.propTypes = {
 };
 QuantityInput.defaultProps = {
   classes: {},
-  onChange: function onChange() { }
+  onChange: function onChange() {}
 };
 export default i18n.withTranslation()(withStyles(styles)(QuantityInput)); // auto-add i18n

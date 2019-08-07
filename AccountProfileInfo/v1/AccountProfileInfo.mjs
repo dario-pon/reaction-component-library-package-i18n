@@ -5,7 +5,8 @@ import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConst
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
-import i18n from "../../utils/i18n";
+
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -28,93 +29,93 @@ var ViewerNameText = styled.span.withConfig({
 })(["", " align-self:left;margin-bottom:", ";"], addTypographyStyles("AccountProfileInfoName", "titleTextBold"), applyTheme("AccountProfileInfo.spacingAfterName"));
 
 var AccountProfileInfo =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(AccountProfileInfo, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AccountProfileInfo, _Component);
 
-    function AccountProfileInfo() {
-      var _getPrototypeOf2;
+  function AccountProfileInfo() {
+    var _getPrototypeOf2;
 
-      var _this;
+    var _this;
 
-      _classCallCheck(this, AccountProfileInfo);
+    _classCallCheck(this, AccountProfileInfo);
 
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AccountProfileInfo)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AccountProfileInfo)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-      _this.viewerProfileEditLink = function () {
-        var _this$props = _this.props,
+    _this.viewerProfileEditLink = function () {
+      var _this$props = _this.props,
           Button = _this$props.components.Button,
           onClickEdit = _this$props.onClickEdit,
           shouldShowEditButton = _this$props.shouldShowEditButton;
 
-        if (shouldShowEditButton) {
-          return React.createElement(Button, {
-            isShortHeight: true,
-            isTextOnly: true,
-            isTextOnlyNoPadding: true,
-            onClick: onClickEdit
-          }, "Edit Account");
-        }
+      if (shouldShowEditButton) {
+        return React.createElement(Button, {
+          isShortHeight: true,
+          isTextOnly: true,
+          isTextOnlyNoPadding: true,
+          onClick: onClickEdit
+        }, "Edit Account");
+      }
 
-        return null;
-      };
+      return null;
+    };
 
-      return _this;
-    }
+    return _this;
+  }
 
-    _createClass(AccountProfileInfo, [{
-      key: "render",
-      value: function render() {
-        var _this$props2 = this.props,
+  _createClass(AccountProfileInfo, [{
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
           className = _this$props2.className,
           ProfileImage = _this$props2.components.ProfileImage,
           viewer = _this$props2.viewer;
-        return React.createElement(AccountProfileInfoContainer, {
-          className: className
-        }, React.createElement(ProfileImage, {
-          size: 80,
-          viewer: viewer
-        }), React.createElement(AccountProfileInfoTextContainer, null, React.createElement(ViewerNameText, null, this.viewerName), React.createElement(ViewerEmailText, null, this.viewerPrimaryEmailAddress), this.viewerProfileEditLink()));
-      }
-    }, {
-      key: "viewerPrimaryEmailAddress",
+      return React.createElement(AccountProfileInfoContainer, {
+        className: className
+      }, React.createElement(ProfileImage, {
+        size: 80,
+        viewer: viewer
+      }), React.createElement(AccountProfileInfoTextContainer, null, React.createElement(ViewerNameText, null, this.viewerName), React.createElement(ViewerEmailText, null, this.viewerPrimaryEmailAddress), this.viewerProfileEditLink()));
+    }
+  }, {
+    key: "viewerPrimaryEmailAddress",
 
-      /**
-       *
-       * @name viewerEmail
-       * @summary Return viewer email address
-       * @return {String} the viewers email address.
-       */
-      get: function get() {
-        var primaryEmailAddress = this.props.viewer.primaryEmailAddress;
-        return primaryEmailAddress;
-      }
-      /**
-       *
-       * @name viewerName
-       * @summary If `name` is availible on the `viewer` object
-       * return that else return `fistName` and `lastName`,
-       * else return `firstName`, else return null
-       * @return {String} the viewers name.
-       */
+    /**
+     *
+     * @name viewerEmail
+     * @summary Return viewer email address
+     * @return {String} the viewers email address.
+     */
+    get: function get() {
+      var primaryEmailAddress = this.props.viewer.primaryEmailAddress;
+      return primaryEmailAddress;
+    }
+    /**
+     *
+     * @name viewerName
+     * @summary If `name` is availible on the `viewer` object
+     * return that else return `fistName` and `lastName`,
+     * else return `firstName`, else return null
+     * @return {String} the viewers name.
+     */
 
-    }, {
-      key: "viewerName",
-      get: function get() {
-        var _this$props$viewer = this.props.viewer,
+  }, {
+    key: "viewerName",
+    get: function get() {
+      var _this$props$viewer = this.props.viewer,
           firstName = _this$props$viewer.firstName,
           lastName = _this$props$viewer.lastName,
           name = _this$props$viewer.name;
-        return name || firstName && lastName && "".concat(firstName, " ").concat(lastName) || firstName || null;
-      }
-    }]);
+      return name || firstName && lastName && "".concat(firstName, " ").concat(lastName) || firstName || null;
+    }
+  }]);
 
-    return AccountProfileInfo;
-  }(Component);
+  return AccountProfileInfo;
+}(Component);
 
 AccountProfileInfo.propTypes = {
   /**

@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -16,38 +16,38 @@ var InPageMenuContainer = styled.div.withConfig({
 })(["box-sizing:border-box;display:flex;flex-direction:column;flex-wrap:wrap;width:100%;"]);
 
 var InPageMenu =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(InPageMenu, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(InPageMenu, _Component);
 
-    function InPageMenu() {
-      _classCallCheck(this, InPageMenu);
+  function InPageMenu() {
+    _classCallCheck(this, InPageMenu);
 
-      return _possibleConstructorReturn(this, _getPrototypeOf(InPageMenu).apply(this, arguments));
-    }
+    return _possibleConstructorReturn(this, _getPrototypeOf(InPageMenu).apply(this, arguments));
+  }
 
-    _createClass(InPageMenu, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
+  _createClass(InPageMenu, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
           className = _this$props.className,
           InPageMenuItem = _this$props.components.InPageMenuItem,
           menuItems = _this$props.menuItems;
-        return React.createElement(InPageMenuContainer, {
-          className: className
-        }, menuItems.map(function (menuItem, index) {
-          return React.createElement(InPageMenuItem, {
-            href: menuItem.href,
-            isSelected: menuItem.isSelected,
-            key: menuItem.id || "item-".concat(index),
-            label: menuItem.label
-          });
-        }));
-      }
-    }]);
+      return React.createElement(InPageMenuContainer, {
+        className: className
+      }, menuItems.map(function (menuItem, index) {
+        return React.createElement(InPageMenuItem, {
+          href: menuItem.href,
+          isSelected: menuItem.isSelected,
+          key: menuItem.id || "item-".concat(index),
+          label: menuItem.label
+        });
+      }));
+    }
+  }]);
 
-    return InPageMenu;
-  }(Component);
+  return InPageMenu;
+}(Component);
 
 InPageMenu.propTypes = {
   /**

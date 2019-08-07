@@ -20,7 +20,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import isEqual from "lodash.isequal";
 import PropTypes from "prop-types";
 import ReactSelect from "react-select";
@@ -175,203 +175,203 @@ function getCustomStyles(props) {
 }
 
 var Select =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(Select, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Select, _Component);
 
-    function Select(props) {
-      var _this;
+  function Select(props) {
+    var _this;
 
-      _classCallCheck(this, Select);
+    _classCallCheck(this, Select);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(Select).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Select).call(this, props));
 
-      _this.handleChanged = function (value) {
-        var _this$props = _this.props,
+    _this.handleChanged = function (value) {
+      var _this$props = _this.props,
           onChange = _this$props.onChange,
           onChanging = _this$props.onChanging;
 
-        if (value !== _this.lastValue) {
-          _this.lastValue = value;
-          onChanging(value);
-          onChange(value);
-        }
-      };
+      if (value !== _this.lastValue) {
+        _this.lastValue = value;
+        onChanging(value);
+        onChange(value);
+      }
+    };
 
-      _this.handleSelectLibChanged = function (selection) {
-        var _ref = selection || {},
+    _this.handleSelectLibChanged = function (selection) {
+      var _ref = selection || {},
           value = _ref.value;
 
-        if (value !== undefined && value !== null) {
-          switch (_this.dataType) {
-            case "string":
-              value = String(value);
-              break;
+      if (value !== undefined && value !== null) {
+        switch (_this.dataType) {
+          case "string":
+            value = String(value);
+            break;
 
-            case "number":
-              value = value === "" ? null : Number(value);
-              break;
+          case "number":
+            value = value === "" ? null : Number(value);
+            break;
 
-            case "boolean":
-              value = value === "" ? null : Boolean(value);
-              break;
+          case "boolean":
+            value = value === "" ? null : Boolean(value);
+            break;
 
-            default: // do nothing
+          default: // do nothing
 
-          }
         }
-
-        _this.setValue(value || null);
-      };
-
-      _this.sortOptions = function (thisOpt, nextOpt) {
-        if (thisOpt.options) thisOpt.options.sort(_this.sortOptions);
-        if (nextOpt.options) nextOpt.options.sort(_this.sortOptions);
-
-        if (thisOpt.label > nextOpt.label) {
-          return 1;
-        } else if (nextOpt.label > thisOpt.label) {
-          return -1;
-        }
-
-        return 0;
-      };
-
-      _this.validateOptions(props.options);
-
-      _this.state = {
-        value: props.value || null
-      };
-      return _this;
-    }
-
-    _createClass(Select, [{
-      key: "componentWillMount",
-      value: function componentWillMount() {
-        this.handleChanged(this.state.value);
       }
-    }, {
-      key: "componentWillReceiveProps",
-      value: function componentWillReceiveProps(nextProps) {
-        var _this$props2 = this.props,
+
+      _this.setValue(value || null);
+    };
+
+    _this.sortOptions = function (thisOpt, nextOpt) {
+      if (thisOpt.options) thisOpt.options.sort(_this.sortOptions);
+      if (nextOpt.options) nextOpt.options.sort(_this.sortOptions);
+
+      if (thisOpt.label > nextOpt.label) {
+        return 1;
+      } else if (nextOpt.label > thisOpt.label) {
+        return -1;
+      }
+
+      return 0;
+    };
+
+    _this.validateOptions(props.options);
+
+    _this.state = {
+      value: props.value || null
+    };
+    return _this;
+  }
+
+  _createClass(Select, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.handleChanged(this.state.value);
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var _this$props2 = this.props,
           options = _this$props2.options,
           value = _this$props2.value;
-        var nextOptions = nextProps.options,
+      var nextOptions = nextProps.options,
           nextValue = nextProps.value; // Whenever a changed value prop comes in, we reset state to that, thus becoming clean.
 
-        if (!nullDefaultEquals(value, nextValue)) {
-          this.setValue(nextValue);
-        }
-
-        if (!isEqual(options, nextOptions)) {
-          this.validateOptions(nextOptions);
-        }
+      if (!nullDefaultEquals(value, nextValue)) {
+        this.setValue(nextValue);
       }
-    }, {
-      key: "getValue",
-      value: function getValue() {
-        return this.state.value;
-      }
-    }, {
-      key: "setValue",
-      value: function setValue(value) {
-        this.setState({
-          value: value
-        });
-        this.handleChanged(value);
-      }
-    }, {
-      key: "resetValue",
-      value: function resetValue() {
-        this.setValue(this.props.value);
-      }
-    }, {
-      key: "isDirty",
-      // Input is dirty if value prop doesn't match value state. Whenever a changed
-      // value prop comes in, we reset state to that, thus becoming clean.
-      value: function isDirty() {
-        return (this.state.value || null) !== (this.props.value || null);
-      } // Make sure all option values have the same data type, and record what that is
 
-    }, {
-      key: "validateOptions",
-      value: function validateOptions(options) {
-        var _this2 = this;
+      if (!isEqual(options, nextOptions)) {
+        this.validateOptions(nextOptions);
+      }
+    }
+  }, {
+    key: "getValue",
+    value: function getValue() {
+      return this.state.value;
+    }
+  }, {
+    key: "setValue",
+    value: function setValue(value) {
+      this.setState({
+        value: value
+      });
+      this.handleChanged(value);
+    }
+  }, {
+    key: "resetValue",
+    value: function resetValue() {
+      this.setValue(this.props.value);
+    }
+  }, {
+    key: "isDirty",
+    // Input is dirty if value prop doesn't match value state. Whenever a changed
+    // value prop comes in, we reset state to that, thus becoming clean.
+    value: function isDirty() {
+      return (this.state.value || null) !== (this.props.value || null);
+    } // Make sure all option values have the same data type, and record what that is
 
-        (options || []).forEach(function (option) {
-          if (option.optgroup) {
-            _this2.validateOptions(option.options);
-          } else {
-            var checkDataType = _typeof(option.value);
+  }, {
+    key: "validateOptions",
+    value: function validateOptions(options) {
+      var _this2 = this;
 
-            if (!_this2.dataType) {
-              _this2.dataType = checkDataType;
-            } else if (checkDataType !== _this2.dataType) {
-              // eslint-disable-next-line
-              throw new Error("All option values must have the same data type. The data type of the first option is \"".concat(_this2.dataType, "\" while the data type of the ").concat(option.label, " option is \"").concat(checkDataType, "\""));
-            }
+      (options || []).forEach(function (option) {
+        if (option.optgroup) {
+          _this2.validateOptions(option.options);
+        } else {
+          var checkDataType = _typeof(option.value);
+
+          if (!_this2.dataType) {
+            _this2.dataType = checkDataType;
+          } else if (checkDataType !== _this2.dataType) {
+            // eslint-disable-next-line
+            throw new Error("All option values must have the same data type. The data type of the first option is \"".concat(_this2.dataType, "\" while the data type of the ").concat(option.label, " option is \"").concat(checkDataType, "\""));
           }
-        });
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this3 = this;
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
 
-        var _this$props3 = this.props,
+      var _this$props3 = this.props,
           className = _this$props3.className,
           alphabetize = _this$props3.alphabetize,
           isReadOnly = _this$props3.isReadOnly,
           options = _this$props3.options;
-        var value = this.state.value; // Unfortunately right now, react-select optgroup support is just a tad different from the
-        // composable form spec. Might be able to do a PR to get react-select updated.
+      var value = this.state.value; // Unfortunately right now, react-select optgroup support is just a tad different from the
+      // composable form spec. Might be able to do a PR to get react-select updated.
 
-        var reactSelectOptions = options.map(function (opt) {
-          if (opt.options) {
-            return {
-              label: opt.optgroup,
-              options: opt.options
-            };
-          }
-
-          return opt;
-        });
-
-        if (alphabetize) {
-          reactSelectOptions.sort(this.sortOptions);
+      var reactSelectOptions = options.map(function (opt) {
+        if (opt.options) {
+          return {
+            label: opt.optgroup,
+            options: opt.options
+          };
         }
 
-        var passthroughProps = {};
-        supportedPassthroughProps.forEach(function (prop) {
-          passthroughProps[prop] = _this3.props[prop];
-        });
-        var optionValue = null;
+        return opt;
+      });
 
-        if (value !== undefined && value !== null) {
-          optionValue = reactSelectOptions.find(function (opt) {
-            if (opt.options) return opt.options.find(function (subOpt) {
-              return subOpt.value === value;
-            });
-            return opt.value === value;
-          });
-        }
-
-        return React.createElement(ReactSelect, _extends({}, passthroughProps, {
-          className: className,
-          isDisabled: isReadOnly,
-          value: optionValue,
-          components: {
-            IndicatorSeparator: null
-          },
-          onChange: this.handleSelectLibChanged,
-          options: reactSelectOptions,
-          styles: getCustomStyles(this.props)
-        }));
+      if (alphabetize) {
+        reactSelectOptions.sort(this.sortOptions);
       }
-    }]);
 
-    return Select;
-  }(Component);
+      var passthroughProps = {};
+      supportedPassthroughProps.forEach(function (prop) {
+        passthroughProps[prop] = _this3.props[prop];
+      });
+      var optionValue = null;
+
+      if (value !== undefined && value !== null) {
+        optionValue = reactSelectOptions.find(function (opt) {
+          if (opt.options) return opt.options.find(function (subOpt) {
+            return subOpt.value === value;
+          });
+          return opt.value === value;
+        });
+      }
+
+      return React.createElement(ReactSelect, _extends({}, passthroughProps, {
+        className: className,
+        isDisabled: isReadOnly,
+        value: optionValue,
+        components: {
+          IndicatorSeparator: null
+        },
+        onChange: this.handleSelectLibChanged,
+        options: reactSelectOptions,
+        styles: getCustomStyles(this.props)
+      }));
+    }
+  }]);
+
+  return Select;
+}(Component);
 
 Select.propTypes = {
   /**
@@ -635,8 +635,8 @@ Select.defaultProps = {
   alphabetize: false,
   isReadOnly: false,
   isSearchable: false,
-  onChange: function onChange() { },
-  onChanging: function onChanging() { },
+  onChange: function onChange() {},
+  onChanging: function onChanging() {},
   options: []
 };
 Select.isFormInput = true;

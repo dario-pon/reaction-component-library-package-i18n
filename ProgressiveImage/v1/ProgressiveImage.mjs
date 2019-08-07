@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import PropTypes from "prop-types";
 import { ContainerQuery } from "react-container-query";
 import styled from "styled-components";
@@ -41,8 +41,8 @@ var Img = styled.img.withConfig({
   return fit === "cover" && "100%" || "auto";
 }, function (_ref3) {
   var isLoading = _ref3.isLoading,
-    isLoaded = _ref3.isLoaded,
-    isHidden = _ref3.isHidden;
+      isLoaded = _ref3.isLoaded,
+      isHidden = _ref3.isHidden;
   var styles = "";
 
   if (isLoading) {
@@ -61,235 +61,235 @@ var Img = styled.img.withConfig({
 });
 
 var ProgressiveImage =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(ProgressiveImage, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProgressiveImage, _Component);
 
-    function ProgressiveImage() {
-      var _getPrototypeOf2;
+  function ProgressiveImage() {
+    var _getPrototypeOf2;
 
-      var _this;
+    var _this;
 
-      _classCallCheck(this, ProgressiveImage);
+    _classCallCheck(this, ProgressiveImage);
 
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-
-      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ProgressiveImage)).call.apply(_getPrototypeOf2, [this].concat(args)));
-      _this.state = {
-        ready: false
-      };
-      _this._mounted = false;
-      _this._wrapper = null;
-      return _this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    _createClass(ProgressiveImage, [{
-      key: "componentDidMount",
-      value: function componentDidMount() {
-        this._mounted = true;
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ProgressiveImage)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.state = {
+      ready: false
+    };
+    _this._mounted = false;
+    _this._wrapper = null;
+    return _this;
+  }
 
-        if (typeof window !== "undefined") {
-          this.lazyLoad();
-        }
+  _createClass(ProgressiveImage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._mounted = true;
+
+      if (typeof window !== "undefined") {
+        this.lazyLoad();
       }
-    }, {
-      key: "componentWillUnmount",
-      value: function componentWillUnmount() {
-        this._mounted = false;
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this._mounted = false;
+    }
+    /**
+     * Private check for component mount, used in image buffer
+     */
+
+  }, {
+    key: "lazyLoad",
+
+    /**
+     *
+     * @method lazyLoad
+     * @summary If `IntersectionObserver` is supported create a new one and watch for the `_wrapper` element
+     * to scroll within the viewport, once it's with 50px of the viewport start loading the full res image.
+     * If the `IntersectionObserver` isn't supported just load the image normally.
+     * https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+     * @return {Undefined} Nothing
+     */
+    value: function lazyLoad() {
+      var _this2 = this;
+
+      if (this.supportIntersectionObserver) {
+        var viewportIntersection = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.intersectionRatio > 0 && !_this2.state.ready) {
+              _this2.loadImage();
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: "50px 0px",
+          threshold: 0.01
+        });
+        viewportIntersection.observe(this._wrapper);
+      } else {
+        this.loadImage();
       }
-      /**
-       * Private check for component mount, used in image buffer
-       */
+    }
+    /**
+     *
+     * @method loadImage
+     * @summary Create a new `Image` buffer and set the `src` to be
+     * ether the `props.src` or `props.srcs.medium` if a responsive picture.
+     * Once the buffer loads set the `ready` state to `true`
+     * @return {Undefined} Nothing
+     */
 
-    }, {
-      key: "lazyLoad",
+  }, {
+    key: "loadImage",
+    value: function loadImage() {
+      var _this3 = this;
 
-      /**
-       *
-       * @method lazyLoad
-       * @summary If `IntersectionObserver` is supported create a new one and watch for the `_wrapper` element
-       * to scroll within the viewport, once it's with 50px of the viewport start loading the full res image.
-       * If the `IntersectionObserver` isn't supported just load the image normally.
-       * https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-       * @return {Undefined} Nothing
-       */
-      value: function lazyLoad() {
-        var _this2 = this;
-
-        if (this.supportIntersectionObserver) {
-          var viewportIntersection = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.intersectionRatio > 0 && !_this2.state.ready) {
-                _this2.loadImage();
-              }
-            });
-          }, {
-              root: null,
-              rootMargin: "50px 0px",
-              threshold: 0.01
-            });
-          viewportIntersection.observe(this._wrapper);
-        } else {
-          this.loadImage();
-        }
-      }
-      /**
-       *
-       * @method loadImage
-       * @summary Create a new `Image` buffer and set the `src` to be
-       * ether the `props.src` or `props.srcs.medium` if a responsive picture.
-       * Once the buffer loads set the `ready` state to `true`
-       * @return {Undefined} Nothing
-       */
-
-    }, {
-      key: "loadImage",
-      value: function loadImage() {
-        var _this3 = this;
-
-        var _this$props = this.props,
+      var _this$props = this.props,
           src = _this$props.src,
           srcs = _this$props.srcs;
-        var buffer = new Image();
+      var buffer = new Image();
 
-        buffer.onload = function () {
-          _this3._mounted && _this3.setState({
-            ready: true
-          });
-        };
+      buffer.onload = function () {
+        _this3._mounted && _this3.setState({
+          ready: true
+        });
+      };
 
-        buffer.src = src || srcs && srcs.medium;
-      }
-      /**
-       *
-       * @method renderResponsiveImage
-       * @summary Renders an image that uses medium by default, and large when appropriate container width
-       *  (see imageContainerQueries definition)
-       * @return {Element} - `picture`
-       */
+      buffer.src = src || srcs && srcs.medium;
+    }
+    /**
+     *
+     * @method renderResponsiveImage
+     * @summary Renders an image that uses medium by default, and large when appropriate container width
+     *  (see imageContainerQueries definition)
+     * @return {Element} - `picture`
+     */
 
-    }, {
-      key: "renderResponsiveImage",
-      value: function renderResponsiveImage() {
-        var _this$props2 = this.props,
+  }, {
+    key: "renderResponsiveImage",
+    value: function renderResponsiveImage() {
+      var _this$props2 = this.props,
           altText = _this$props2.altText,
           fit = _this$props2.fit,
           srcs = _this$props2.srcs;
-        var medium = srcs.medium,
+      var medium = srcs.medium,
           large = srcs.large;
-        return React.createElement(ContainerQuery, {
-          query: imageContainerQueries
-        }, function (params) {
-          var src = medium;
-          var isLargeWidth = params.isLargeWidth;
+      return React.createElement(ContainerQuery, {
+        query: imageContainerQueries
+      }, function (params) {
+        var src = medium;
+        var isLargeWidth = params.isLargeWidth;
 
-          if (isLargeWidth) {
-            src = large;
-          }
+        if (isLargeWidth) {
+          src = large;
+        }
 
-          return React.createElement(Img, {
-            src: src,
-            isLoaded: true,
-            alt: altText,
-            fit: fit
-          });
-        });
-      }
-      /**
-       *
-       * @method renderImg
-       * @summary Renders a `img` element with the provided `props.src`
-       * @return {Element} - `img`
-       */
-
-    }, {
-      key: "renderImg",
-      value: function renderImg() {
-        var _this$props3 = this.props,
-          altText = _this$props3.altText,
-          fit = _this$props3.fit,
-          src = _this$props3.src;
         return React.createElement(Img, {
           src: src,
           isLoaded: true,
           alt: altText,
           fit: fit
         });
-      }
-      /**
-       *
-       * @method renderImage
-       * @summary If a `props.src` is provided call `renderImg` else call `renderResponsiveImage`
-       * @return {Element} - `picture` or `img`
-       */
+      });
+    }
+    /**
+     *
+     * @method renderImg
+     * @summary Renders a `img` element with the provided `props.src`
+     * @return {Element} - `img`
+     */
 
-    }, {
-      key: "renderImage",
-      value: function renderImage() {
-        var src = this.props.src;
-        return src ? this.renderImg() : this.renderResponsiveImage();
-      }
-      /**
-       *
-       * @method renderLoadingImage
-       * @summary Renders a `img` element with the provided `props.presrc`
-       * once the full res image has loaded this `img` will fade out
-       * @return {Element} - `img`
-       */
+  }, {
+    key: "renderImg",
+    value: function renderImg() {
+      var _this$props3 = this.props,
+          altText = _this$props3.altText,
+          fit = _this$props3.fit,
+          src = _this$props3.src;
+      return React.createElement(Img, {
+        src: src,
+        isLoaded: true,
+        alt: altText,
+        fit: fit
+      });
+    }
+    /**
+     *
+     * @method renderImage
+     * @summary If a `props.src` is provided call `renderImg` else call `renderResponsiveImage`
+     * @return {Element} - `picture` or `img`
+     */
 
-    }, {
-      key: "renderLoadingImage",
-      value: function renderLoadingImage() {
-        var _this$props4 = this.props,
+  }, {
+    key: "renderImage",
+    value: function renderImage() {
+      var src = this.props.src;
+      return src ? this.renderImg() : this.renderResponsiveImage();
+    }
+    /**
+     *
+     * @method renderLoadingImage
+     * @summary Renders a `img` element with the provided `props.presrc`
+     * once the full res image has loaded this `img` will fade out
+     * @return {Element} - `img`
+     */
+
+  }, {
+    key: "renderLoadingImage",
+    value: function renderLoadingImage() {
+      var _this$props4 = this.props,
           fit = _this$props4.fit,
           presrc = _this$props4.presrc;
-        var ready = this.state.ready;
-        return React.createElement(Img, {
-          src: presrc,
-          isLoading: true,
-          isHidden: ready,
-          alt: "",
-          fit: fit
-        });
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this4 = this;
+      var ready = this.state.ready;
+      return React.createElement(Img, {
+        src: presrc,
+        isLoading: true,
+        isHidden: ready,
+        alt: "",
+        fit: fit
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
 
-        var _this$props5 = this.props,
+      var _this$props5 = this.props,
           className = _this$props5.className,
           presrc = _this$props5.presrc;
-        var ready = this.state.ready;
-        return React.createElement(ImageWrapper, {
-          className: className,
-          innerRef: function innerRef(wrapper) {
-            _this4._wrapper = wrapper;
-          }
-        }, ready ? this.renderImage() : null, presrc && this.renderLoadingImage());
-      }
-    }, {
-      key: "supportIntersectionObserver",
-
-      /**
-       *
-       * @method supportIntersectionObserver
-       * @summary `IntersectionObserver` feature detection
-       * @return {Boolean} - `true` if `IntersectionObserver` is supported by browser
-       */
-      get: function get() {
-        if (typeof window === "undefined") {
-          return false;
+      var ready = this.state.ready;
+      return React.createElement(ImageWrapper, {
+        className: className,
+        innerRef: function innerRef(wrapper) {
+          _this4._wrapper = wrapper;
         }
+      }, ready ? this.renderImage() : null, presrc && this.renderLoadingImage());
+    }
+  }, {
+    key: "supportIntersectionObserver",
 
-        return "IntersectionObserver" in window;
+    /**
+     *
+     * @method supportIntersectionObserver
+     * @summary `IntersectionObserver` feature detection
+     * @return {Boolean} - `true` if `IntersectionObserver` is supported by browser
+     */
+    get: function get() {
+      if (typeof window === "undefined") {
+        return false;
       }
-    }]);
 
-    return ProgressiveImage;
-  }(Component);
+      return "IntersectionObserver" in window;
+    }
+  }]);
+
+  return ProgressiveImage;
+}(Component);
 
 ProgressiveImage.propTypes = {
   /**

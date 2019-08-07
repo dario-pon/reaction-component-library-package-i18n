@@ -20,7 +20,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils/i18n";
+import i18n from "../../utils";
 import isEqual from "lodash.isequal";
 import PropTypes from "prop-types";
 import ReactSelect from "react-select";
@@ -203,190 +203,190 @@ function getCustomStyles(props) {
 }
 
 var MultiSelect =
-  /*#__PURE__*/
-  function (_Component) {
-    _inherits(MultiSelect, _Component);
+/*#__PURE__*/
+function (_Component) {
+  _inherits(MultiSelect, _Component);
 
-    function MultiSelect(props) {
-      var _this;
+  function MultiSelect(props) {
+    var _this;
 
-      _classCallCheck(this, MultiSelect);
+    _classCallCheck(this, MultiSelect);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(MultiSelect).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MultiSelect).call(this, props));
 
-      _this.handleChanged = function (value) {
-        var _this$props = _this.props,
+    _this.handleChanged = function (value) {
+      var _this$props = _this.props,
           onChange = _this$props.onChange,
           onChanging = _this$props.onChanging;
 
-        if (value !== _this.lastValue) {
-          _this.lastValue = value;
-          onChanging(value);
-          onChange(value);
-        }
-      };
-
-      _this.handleSelectLibChanged = function (selection) {
-        var value = selection.map(function (item) {
-          return item.value;
-        });
-
-        _this.setValue(value.length ? value : null);
-      };
-
-      _this.sortOptions = function (thisOpt, nextOpt) {
-        if (thisOpt.options) thisOpt.options.sort(_this.sortOptions);
-        if (nextOpt.options) nextOpt.options.sort(_this.sortOptions);
-
-        if (thisOpt.label > nextOpt.label) {
-          return 1;
-        } else if (nextOpt.label > thisOpt.label) {
-          return -1;
-        }
-
-        return 0;
-      };
-
-      _this.validateOptions(props.options);
-
-      _this.state = {
-        value: props.value || null
-      };
-      return _this;
-    }
-
-    _createClass(MultiSelect, [{
-      key: "componentWillMount",
-      value: function componentWillMount() {
-        this.handleChanged(this.state.value);
+      if (value !== _this.lastValue) {
+        _this.lastValue = value;
+        onChanging(value);
+        onChange(value);
       }
-    }, {
-      key: "componentWillReceiveProps",
-      value: function componentWillReceiveProps(nextProps) {
-        var _this$props2 = this.props,
+    };
+
+    _this.handleSelectLibChanged = function (selection) {
+      var value = selection.map(function (item) {
+        return item.value;
+      });
+
+      _this.setValue(value.length ? value : null);
+    };
+
+    _this.sortOptions = function (thisOpt, nextOpt) {
+      if (thisOpt.options) thisOpt.options.sort(_this.sortOptions);
+      if (nextOpt.options) nextOpt.options.sort(_this.sortOptions);
+
+      if (thisOpt.label > nextOpt.label) {
+        return 1;
+      } else if (nextOpt.label > thisOpt.label) {
+        return -1;
+      }
+
+      return 0;
+    };
+
+    _this.validateOptions(props.options);
+
+    _this.state = {
+      value: props.value || null
+    };
+    return _this;
+  }
+
+  _createClass(MultiSelect, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.handleChanged(this.state.value);
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var _this$props2 = this.props,
           options = _this$props2.options,
           value = _this$props2.value;
-        var nextOptions = nextProps.options,
+      var nextOptions = nextProps.options,
           nextValue = nextProps.value; // Whenever a changed value prop comes in, we reset state to that, thus becoming clean.
 
-        if (!nullDefaultEquals(value, nextValue)) {
-          this.setValue(nextValue);
-        }
-
-        if (!isEqual(options, nextOptions)) {
-          this.validateOptions(nextOptions);
-        }
+      if (!nullDefaultEquals(value, nextValue)) {
+        this.setValue(nextValue);
       }
-    }, {
-      key: "getValue",
-      value: function getValue() {
-        return this.state.value;
-      }
-    }, {
-      key: "setValue",
-      value: function setValue(value) {
-        this.setState({
-          value: value
-        });
-        this.handleChanged(value);
-      }
-    }, {
-      key: "resetValue",
-      value: function resetValue() {
-        this.setValue(this.props.value);
-      }
-    }, {
-      key: "isDirty",
-      // Input is dirty if value prop doesn't match value state. Whenever a changed
-      // value prop comes in, we reset state to that, thus becoming clean.
-      value: function isDirty() {
-        return (this.state.value || null) !== (this.props.value || null);
-      } // Make sure all option values have the same data type, and record what that is
 
-    }, {
-      key: "validateOptions",
-      value: function validateOptions(options) {
-        var _this2 = this;
+      if (!isEqual(options, nextOptions)) {
+        this.validateOptions(nextOptions);
+      }
+    }
+  }, {
+    key: "getValue",
+    value: function getValue() {
+      return this.state.value;
+    }
+  }, {
+    key: "setValue",
+    value: function setValue(value) {
+      this.setState({
+        value: value
+      });
+      this.handleChanged(value);
+    }
+  }, {
+    key: "resetValue",
+    value: function resetValue() {
+      this.setValue(this.props.value);
+    }
+  }, {
+    key: "isDirty",
+    // Input is dirty if value prop doesn't match value state. Whenever a changed
+    // value prop comes in, we reset state to that, thus becoming clean.
+    value: function isDirty() {
+      return (this.state.value || null) !== (this.props.value || null);
+    } // Make sure all option values have the same data type, and record what that is
 
-        (options || []).forEach(function (option) {
-          if (option.optgroup) {
-            _this2.validateOptions(option.options);
-          } else {
-            var checkDataType = _typeof(option.value);
+  }, {
+    key: "validateOptions",
+    value: function validateOptions(options) {
+      var _this2 = this;
 
-            if (!_this2.dataType) {
-              _this2.dataType = checkDataType;
-            } else if (checkDataType !== _this2.dataType) {
-              // eslint-disable-next-line
-              throw new Error("All option values must have the same data type. The data type of the first option is \"".concat(_this2.dataType, "\" while the data type of the ").concat(option.label, " option is \"").concat(checkDataType, "\""));
-            }
+      (options || []).forEach(function (option) {
+        if (option.optgroup) {
+          _this2.validateOptions(option.options);
+        } else {
+          var checkDataType = _typeof(option.value);
+
+          if (!_this2.dataType) {
+            _this2.dataType = checkDataType;
+          } else if (checkDataType !== _this2.dataType) {
+            // eslint-disable-next-line
+            throw new Error("All option values must have the same data type. The data type of the first option is \"".concat(_this2.dataType, "\" while the data type of the ").concat(option.label, " option is \"").concat(checkDataType, "\""));
           }
-        });
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this3 = this;
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
 
-        var _this$props3 = this.props,
+      var _this$props3 = this.props,
           className = _this$props3.className,
           alphabetize = _this$props3.alphabetize,
           isReadOnly = _this$props3.isReadOnly,
           options = _this$props3.options;
-        var value = this.state.value; // Unfortunately right now, react-select optgroup support is just a tad different from the
-        // composable form spec. Might be able to do a PR to get react-select updated.
+      var value = this.state.value; // Unfortunately right now, react-select optgroup support is just a tad different from the
+      // composable form spec. Might be able to do a PR to get react-select updated.
 
-        var reactSelectOptions = options.map(function (opt) {
+      var reactSelectOptions = options.map(function (opt) {
+        if (opt.options) {
+          return {
+            label: opt.optgroup,
+            options: opt.options
+          };
+        }
+
+        return opt;
+      });
+
+      if (alphabetize) {
+        reactSelectOptions.sort(this.sortOptions);
+      }
+
+      var passthroughProps = {};
+      supportedPassthroughProps.forEach(function (prop) {
+        passthroughProps[prop] = _this3.props[prop];
+      });
+      var optionValue;
+
+      if (value !== undefined && value !== null) {
+        optionValue = [];
+        reactSelectOptions.forEach(function (opt) {
           if (opt.options) {
-            return {
-              label: opt.optgroup,
-              options: opt.options
-            };
+            opt.options.forEach(function (subOpt) {
+              if (value.includes(subOpt.value)) optionValue.push(subOpt);
+            });
           }
 
-          return opt;
+          if (value.includes(opt.value)) optionValue.push(opt);
         });
-
-        if (alphabetize) {
-          reactSelectOptions.sort(this.sortOptions);
-        }
-
-        var passthroughProps = {};
-        supportedPassthroughProps.forEach(function (prop) {
-          passthroughProps[prop] = _this3.props[prop];
-        });
-        var optionValue;
-
-        if (value !== undefined && value !== null) {
-          optionValue = [];
-          reactSelectOptions.forEach(function (opt) {
-            if (opt.options) {
-              opt.options.forEach(function (subOpt) {
-                if (value.includes(subOpt.value)) optionValue.push(subOpt);
-              });
-            }
-
-            if (value.includes(opt.value)) optionValue.push(opt);
-          });
-        }
-
-        return React.createElement(ReactSelect, _extends({}, passthroughProps, {
-          className: className,
-          isDisabled: isReadOnly,
-          value: optionValue,
-          components: {
-            IndicatorSeparator: null
-          },
-          onChange: this.handleSelectLibChanged,
-          options: reactSelectOptions,
-          styles: getCustomStyles(this.props),
-          isMulti: true
-        }));
       }
-    }]);
 
-    return MultiSelect;
-  }(Component);
+      return React.createElement(ReactSelect, _extends({}, passthroughProps, {
+        className: className,
+        isDisabled: isReadOnly,
+        value: optionValue,
+        components: {
+          IndicatorSeparator: null
+        },
+        onChange: this.handleSelectLibChanged,
+        options: reactSelectOptions,
+        styles: getCustomStyles(this.props),
+        isMulti: true
+      }));
+    }
+  }]);
+
+  return MultiSelect;
+}(Component);
 
 MultiSelect.propTypes = {
   /**
@@ -655,8 +655,8 @@ MultiSelect.defaultProps = {
   alphabetize: false,
   isReadOnly: false,
   isSearchable: false,
-  onChange: function onChange() { },
-  onChanging: function onChanging() { },
+  onChange: function onChange() {},
+  onChanging: function onChanging() {},
   options: []
 };
 MultiSelect.isFormInput = true;
