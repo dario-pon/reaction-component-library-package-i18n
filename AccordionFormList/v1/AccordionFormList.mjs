@@ -6,7 +6,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component, Fragment } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -37,71 +37,71 @@ var ENTRY = "entry";
 var LIST = "list";
 
 var AccordionFormList =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(AccordionFormList, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(AccordionFormList, _Component);
 
-  function AccordionFormList() {
-    var _getPrototypeOf2;
+    function AccordionFormList() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, AccordionFormList);
+      _classCallCheck(this, AccordionFormList);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AccordionFormList)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      status: LIST
-    };
-    _this._refs = {};
-
-    _this.handleDeleteItem = function (itemId) {
-      var onItemDeleted = _this.props.onItemDeleted;
-      onItemDeleted(itemId);
-    };
-
-    _this.handleAddClick = function () {
-      _this.showEntryForm();
-    };
-
-    _this.handleEntryFormCancel = function () {
-      _this.showList();
-    };
-
-    return _this;
-  }
-
-  _createClass(AccordionFormList, [{
-    key: "showEntryForm",
-    value: function showEntryForm() {
-      this.setState({
-        status: ENTRY
-      });
-    }
-  }, {
-    key: "showList",
-    value: function showList() {
-      this.setState({
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(AccordionFormList)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
         status: LIST
-      });
+      };
+      _this._refs = {};
+
+      _this.handleDeleteItem = function (itemId) {
+        var onItemDeleted = _this.props.onItemDeleted;
+        onItemDeleted(itemId);
+      };
+
+      _this.handleAddClick = function () {
+        _this.showEntryForm();
+      };
+
+      _this.handleEntryFormCancel = function () {
+        _this.showList();
+      };
+
+      return _this;
     }
-  }, {
-    key: "toggleAccordionForItem",
-    value: function toggleAccordionForItem(itemId) {
-      this._refs["accordion_".concat(itemId)].toggle();
-    } //
-    // Render Methods
-    //
 
-  }, {
-    key: "renderAccordion",
-    value: function renderAccordion() {
-      var _this2 = this;
+    _createClass(AccordionFormList, [{
+      key: "showEntryForm",
+      value: function showEntryForm() {
+        this.setState({
+          status: ENTRY
+        });
+      }
+    }, {
+      key: "showList",
+      value: function showList() {
+        this.setState({
+          status: LIST
+        });
+      }
+    }, {
+      key: "toggleAccordionForItem",
+      value: function toggleAccordionForItem(itemId) {
+        this._refs["accordion_".concat(itemId)].toggle();
+      } //
+      // Render Methods
+      //
 
-      var _this$props = this.props,
+    }, {
+      key: "renderAccordion",
+      value: function renderAccordion() {
+        var _this2 = this;
+
+        var _this$props = this.props,
           addNewItemButtonText = _this$props.addNewItemButtonText,
           _this$props$component = _this$props.components,
           Accordion = _this$props$component.Accordion,
@@ -111,88 +111,88 @@ function (_Component) {
           deleteItemButtonText = _this$props.deleteItemButtonText,
           isWaiting = _this$props.isWaiting,
           items = _this$props.items;
-      return React.createElement(Fragment, null, items && items.map(function (_ref) {
-        var detail = _ref.detail,
+        return React.createElement(Fragment, null, items && items.map(function (_ref) {
+          var detail = _ref.detail,
             id = _ref.id,
             itemEditFormProps = _ref.itemEditFormProps,
             label = _ref.label;
-        return React.createElement(Accordion, {
-          key: id,
-          label: label,
-          detail: detail,
-          ref: function ref(el) {
-            _this2._refs["accordion_".concat(id)] = el;
-          }
-        }, React.createElement(ItemEditForm, _extends({}, itemEditFormProps, {
-          ref: function ref(el) {
-            _this2._refs["editForm_".concat(id)] = el;
-          }
-        })), React.createElement(FormActions, null, React.createElement(FormActionDelete, null, React.createElement(Button, {
-          actionType: "secondaryDanger",
-          isTextOnlyNoPadding: true,
-          isShortHeight: true,
-          onClick: function onClick() {
-            _this2.handleDeleteItem(id);
-          }
-        }, deleteItemButtonText)), React.createElement(Button, {
-          actionType: "secondary",
-          isShortHeight: true,
-          onClick: function onClick() {
-            _this2.toggleAccordionForItem(id);
-          }
-        }, "Cancel"), React.createElement(Button, {
-          onClick: function onClick() {
-            return _this2._refs["editForm_".concat(id)].submit();
-          },
-          isShortHeight: true,
-          isWaiting: isWaiting
-        }, "Save Changes")));
-      }), React.createElement(AddNewItemAction, {
-        listCount: items && items.length
-      }, React.createElement(AddNewItemActionButton, {
-        onClick: this.handleAddClick,
-        tabIndex: 0
-      }, React.createElement(AddNewItemActionIcon, null, iconPlus), addNewItemButtonText)));
-    }
-  }, {
-    key: "renderEntryForm",
-    value: function renderEntryForm() {
-      var _this3 = this;
+          return React.createElement(Accordion, {
+            key: id,
+            label: label,
+            detail: detail,
+            ref: function ref(el) {
+              _this2._refs["accordion_".concat(id)] = el;
+            }
+          }, React.createElement(ItemEditForm, _extends({}, itemEditFormProps, {
+            ref: function ref(el) {
+              _this2._refs["editForm_".concat(id)] = el;
+            }
+          })), React.createElement(FormActions, null, React.createElement(FormActionDelete, null, React.createElement(Button, {
+            actionType: "secondaryDanger",
+            isTextOnlyNoPadding: true,
+            isShortHeight: true,
+            onClick: function onClick() {
+              _this2.handleDeleteItem(id);
+            }
+          }, deleteItemButtonText)), React.createElement(Button, {
+            actionType: "secondary",
+            isShortHeight: true,
+            onClick: function onClick() {
+              _this2.toggleAccordionForItem(id);
+            }
+          }, "Cancel"), React.createElement(Button, {
+            onClick: function onClick() {
+              return _this2._refs["editForm_".concat(id)].submit();
+            },
+            isShortHeight: true,
+            isWaiting: isWaiting
+          }, "Save Changes")));
+        }), React.createElement(AddNewItemAction, {
+          listCount: items && items.length
+        }, React.createElement(AddNewItemActionButton, {
+          onClick: this.handleAddClick,
+          tabIndex: 0
+        }, React.createElement(AddNewItemActionIcon, null, iconPlus), addNewItemButtonText)));
+      }
+    }, {
+      key: "renderEntryForm",
+      value: function renderEntryForm() {
+        var _this3 = this;
 
-      var _this$props2 = this.props,
+        var _this$props2 = this.props,
           _this$props2$componen = _this$props2.components,
           Button = _this$props2$componen.Button,
           ItemAddForm = _this$props2$componen.ItemAddForm,
           entryFormSubmitButtonText = _this$props2.entryFormSubmitButtonText,
           isWaiting = _this$props2.isWaiting,
           itemAddFormProps = _this$props2.itemAddFormProps;
-      return React.createElement(Fragment, null, React.createElement(ItemAddForm, _extends({}, itemAddFormProps, {
-        ref: function ref(el) {
-          _this3._addItemForm = el;
-        }
-      })), React.createElement(FormActions, null, React.createElement(Button, {
-        actionType: "secondary",
-        onClick: this.handleEntryFormCancel
-      }, "Cancel"), React.createElement(Button, {
-        onClick: function onClick() {
-          return _this3._addItemForm.submit();
-        },
-        isWaiting: isWaiting
-      }, entryFormSubmitButtonText)));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var className = this.props.className;
-      var status = this.state.status;
-      return React.createElement("div", {
-        className: className
-      }, status === LIST ? this.renderAccordion() : this.renderEntryForm());
-    }
-  }]);
+        return React.createElement(Fragment, null, React.createElement(ItemAddForm, _extends({}, itemAddFormProps, {
+          ref: function ref(el) {
+            _this3._addItemForm = el;
+          }
+        })), React.createElement(FormActions, null, React.createElement(Button, {
+          actionType: "secondary",
+          onClick: this.handleEntryFormCancel
+        }, "Cancel"), React.createElement(Button, {
+          onClick: function onClick() {
+            return _this3._addItemForm.submit();
+          },
+          isWaiting: isWaiting
+        }, entryFormSubmitButtonText)));
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var className = this.props.className;
+        var status = this.state.status;
+        return React.createElement("div", {
+          className: className
+        }, status === LIST ? this.renderAccordion() : this.renderEntryForm());
+      }
+    }]);
 
-  return AccordionFormList;
-}(Component);
+    return AccordionFormList;
+  }(Component);
 
 AccordionFormList.propTypes = {
   /**
@@ -294,6 +294,6 @@ AccordionFormList.defaultProps = {
   deleteItemButtonText: "Delete this item",
   entryFormSubmitButtonText: "Add item",
   isWaiting: false,
-  onItemDeleted: function onItemDeleted() {}
+  onItemDeleted: function onItemDeleted() { }
 };
 export default i18n.withTranslation()(withComponents(AccordionFormList)); // auto-add i18n

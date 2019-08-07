@@ -5,7 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react"; // auto-add i18n 
 
-import i18n from "../../utils";
+import i18n from "../../utils/i18n";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withComponents } from "@reactioncommerce/components-context";
@@ -51,72 +51,72 @@ var AccordionContent = styled.div.withConfig({
 });
 
 var Accordion =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Accordion, _Component);
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(Accordion, _Component);
 
-  function Accordion() {
-    var _getPrototypeOf2;
+    function Accordion() {
+      var _getPrototypeOf2;
 
-    var _this;
+      var _this;
 
-    _classCallCheck(this, Accordion);
+      _classCallCheck(this, Accordion);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Accordion)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this.state = {
+        isExpanded: _this.props.isExpanded
+      };
+      _this._accordion = null;
+
+      _this.toggle = function () {
+        return _this.handleToggle();
+      };
+
+      _this.handleToggle = function () {
+        var isExpanded = _this.state.isExpanded;
+
+        _this.setState({
+          isExpanded: !isExpanded
+        });
+      };
+
+      return _this;
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Accordion)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      isExpanded: _this.props.isExpanded
-    };
-    _this._accordion = null;
+    _createClass(Accordion, [{
+      key: "render",
+      value: function render() {
+        var _this2 = this;
 
-    _this.toggle = function () {
-      return _this.handleToggle();
-    };
-
-    _this.handleToggle = function () {
-      var isExpanded = _this.state.isExpanded;
-
-      _this.setState({
-        isExpanded: !isExpanded
-      });
-    };
-
-    return _this;
-  }
-
-  _createClass(Accordion, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var _this$props = this.props,
+        var _this$props = this.props,
           children = _this$props.children,
           className = _this$props.className,
           iconExpand = _this$props.components.iconExpand,
           detail = _this$props.detail,
           icon = _this$props.icon,
           label = _this$props.label;
-      var isExpanded = this.state.isExpanded;
-      return React.createElement(AccordionWrapper, {
-        className: className,
-        ref: function ref(accordionEl) {
-          _this2._accordion = accordionEl;
-        }
-      }, React.createElement(AccordionHeader, {
-        onClick: this.handleToggle
-      }, React.createElement("span", null, icon ? React.createElement(AccordionHeaderIcon, null, icon) : null, React.createElement(AccordionHeaderLabel, null, label), detail ? React.createElement(AccordionHeaderDetail, null, ", ", detail) : ""), React.createElement(AccordionHeaderIcon, {
-        isExpanded: isExpanded
-      }, iconExpand)), React.createElement(AccordionContent, {
-        isExpanded: isExpanded
-      }, children));
-    }
-  }]);
+        var isExpanded = this.state.isExpanded;
+        return React.createElement(AccordionWrapper, {
+          className: className,
+          ref: function ref(accordionEl) {
+            _this2._accordion = accordionEl;
+          }
+        }, React.createElement(AccordionHeader, {
+          onClick: this.handleToggle
+        }, React.createElement("span", null, icon ? React.createElement(AccordionHeaderIcon, null, icon) : null, React.createElement(AccordionHeaderLabel, null, label), detail ? React.createElement(AccordionHeaderDetail, null, ", ", detail) : ""), React.createElement(AccordionHeaderIcon, {
+          isExpanded: isExpanded
+        }, iconExpand)), React.createElement(AccordionContent, {
+          isExpanded: isExpanded
+        }, children));
+      }
+    }]);
 
-  return Accordion;
-}(Component);
+    return Accordion;
+  }(Component);
 
 Accordion.propTypes = {
   /**

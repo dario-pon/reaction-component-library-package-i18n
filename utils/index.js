@@ -92,4 +92,4 @@ var _addressToString = _interopRequireDefault(require("./addressToString"));
 
 var _formatMoney = _interopRequireDefault(require("./formatMoney"));
 
-var _i18n = _interopRequireDefault(require("./i18n"));
+// var _i18n = _interopRequireDefault(require("./i18n"));
